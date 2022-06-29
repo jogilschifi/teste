@@ -1,0 +1,13 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+<p>{{request.user}}</p>
+<hr>
+<form method="post">
+  {% csrf_token %}
+  <p>Are you sure? "{{palpite}}"</p>
+  <input type="submit" value="Deletar"/>
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+<p>{{request.user}}</p>
+<hr>
+{% for clubes in palpites %}
+{% if clubes.user == request.user %}
+voce já palpitou
+{% endif %}
+{% empty %}
+<form method="POST" action="">
+    {% csrf_token %}
+
+    Athletico-PR:{{form.athleticoPR}}{{form.libertad}}:Libertad<br>
+    Fortaleza:{{form.fortaleza}}{{form.estudiantes}}:Estudiantes<br>
+    Cerro Porteño:{{form.cerroPorteno}}{{form.palmeiras}}:Palmeiras<br>
+    Emelec:{{form.emelec}}{{form.atleticoMG}}:Atlético-MG<br>
+    Tolima:{{form.tolima}}{{form.flamengo}}:Flamengo<br>
+    Corinthians:{{form.corinthians}}{{form.bocaJuniors}}:Boca Juniors<br>
+    Talleres:{{form.talleres}}{{form.colon}}:Colón<br>
+    Vélez Sarsfield:{{form.velezSarsfield}}{{form.riverPlate}}:River Plate<br>
+    <input type="submit" value="Salvar">
+
+</form>
+{% endfor %}
+{% endblock %}

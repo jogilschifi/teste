@@ -1,0 +1,25 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+<p>{{request.user}}</p>
+<hr>
+{% for clubes in palpite %}
+{% if clubes.user == request.user %}
+voce já palpitou
+{% endif %}
+{% empty %}
+{% for clubes in palpites %}
+        <a href="/pontuacao/">critérios de pontuação</a><br>
+        <a href="/palpiteupdate/{{clubes.id}}">editar</a><br>
+        <a href="/palpitedelete/{{clubes.id}}">deletar</a><br>
+{% empty %}
+<a href="/pontuacao/">critérios de pontuação</a><br>
+voce ainda não tem palpites para essa rodada
+        <a href="/palpitar/">palpitar</a><br>
+{% endfor %}
+{% endfor %}
+{% endblock %}
