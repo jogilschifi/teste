@@ -43,10 +43,14 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
-class PalpiteList(ListView):
+class PalpiteList(LoginRequiredMixin, ListView):
     model = Clubes
     context_object_name = 'palpites'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['palpites'] = context['palpites'].filter(user=self.request.user)
+        return context
 
     def filter(self, user):
         pass
@@ -61,7 +65,7 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'palpites'
 
 
-class PalpiteCreate(CreateView):
+class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Clubes
     fields = '__all__'
     context_object_name = 'palpites'
