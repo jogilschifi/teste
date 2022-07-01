@@ -43,7 +43,7 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 
-class PalpiteList(LoginRequiredMixin, ListView):
+class PalpiteList(ListView):
     model = Clubes
     context_object_name = 'palpites'
 
