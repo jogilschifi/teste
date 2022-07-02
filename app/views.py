@@ -1,4 +1,5 @@
 from urllib import request
+from django.http import HttpResponse
 
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
@@ -11,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from app.models import Clubes
+from app.models import Clubes, Brasileirao
 
 
 # Create your views here.
@@ -44,7 +45,7 @@ class RegisterPage(FormView):
 
 
 class PalpiteList(LoginRequiredMixin, ListView):
-    model = Clubes
+    model = Brasileirao
     context_object_name = 'palpites'
 
     def get_context_data(self, **kwargs):
@@ -61,23 +62,22 @@ class PalpiteList(LoginRequiredMixin, ListView):
 
 
 class PalpiteDetail(LoginRequiredMixin, DetailView):
-    model = Clubes
+    model = Brasileirao
     context_object_name = 'palpites'
 
 
 class PalpiteCreate(LoginRequiredMixin, CreateView):
-    model = Clubes
+    model = Brasileirao
     fields = '__all__'
     context_object_name = 'palpites'
     success_url = reverse_lazy('palpites')
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PalpiteCreate, self).form_valid(form)
 
 
 class PalpiteUpdate(LoginRequiredMixin, UpdateView):
-    model = Clubes
+    model = Brasileirao
     fields = '__all__'
     success_url = reverse_lazy('palpites')
 
@@ -87,18 +87,22 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
 
 
 class PalpiteDelete(DeleteView):
-    model = Clubes
+    model = Brasileirao
     success_url = reverse_lazy('palpites')
 
 
 def pontuacao(request):
-    return render(request, 'app/pontuacao.html')
+    current_user = request.user
+    data = {}
+    data['club'] = Clubes.objects.all()
+    i = data['club']
+    return HttpResponse(f'{i}')
 
 
 def palpitar(request):
     current_user = request.user
     data = {}
-    data['form'] = Clubes.objects.all()
+    data['form'] = Brasileirao.objects.all()
     if not data['form'].filter(user=current_user):
         return redirect('palpitecreate')
     return redirect('palpites')

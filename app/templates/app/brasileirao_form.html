@@ -1,0 +1,29 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+<p>{{request.user}}</p>
+<hr>
+{% for clubes in palpites %}
+{% if clubes.user == request.user %}
+voce já palpitou
+{% endif %}
+{% empty %}
+<form method="POST" action="">
+    {% csrf_token %}
+
+    Fluminense:{{form.Fluminense}}{{form.Corinthians}}:Corinthians<br>
+    Juventude:{{form.Juventude}}{{form.AtleticoMG}}:Atlético-MG<br>
+    Santos:{{form.Santos}}{{form.Flamengo}}:Flamengo<br>
+    Ceará:{{form.Ceara}}{{form.Internacional}}:Internacional<br>
+    Palmeiras:{{form.Palmeiras}}{{form.AthleticoPR}}:Athletico-PR<br>
+    Avaí:{{form.Avai}}{{form.Cuiaba}}:Cuiabá<br>
+    Atlético-GO:{{form.AtleticoGO}}{{form.SaoPaulo}}:São Paulo<br>
+    América-MG:{{form.AmericaMG}}{{form.Goias}}:Goiás<br>
+    Coritiba:{{form.Coritiba}}{{form.Fortaleza}}:Fortaleza<br>
+    Bragantino:{{form.Bragantino}}{{form.Botafogo}}:Botafogo<br>
+    <input type="submit" value="Salvar">
+
+</form>
+{% endfor %}
+{% endblock %}
