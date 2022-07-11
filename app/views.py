@@ -108,8 +108,3 @@ def pontuacao(request):
     data['form'] = Brasileirao.objects.all()
     data['form'] = data['form'].filter(user=current_user)
     return render(request, 'app/pontuacao.html', data)
-
-
-
-def calculo(self):
-
