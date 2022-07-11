@@ -4,14 +4,16 @@
 
 <p>{{request.user}}</p>
 <hr>
-{% for clubes in palpites %}
-{% if clubes.user == request.user %}
+{% for dadoss in dados %}
+{% if dadoss.user == request.user %}
 voce já palpitou
+        <a href="/">voltar</a><br>
 {% endif %}
 {% empty %}
 <form method="POST" action="">
     {% csrf_token %}
-
+<h3>BRASILEIRÃO</h3>
+<h4>Rodada 14º</h4>
     Fluminense:{{form.Fluminense}}{{form.Corinthians}}:Corinthians<br>
     Juventude:{{form.Juventude}}{{form.AtleticoMG}}:Atlético-MG<br>
     Santos:{{form.Santos}}{{form.Flamengo}}:Flamengo<br>

@@ -8,14 +8,12 @@
 <p>{{request.user}}</p>
 <hr>
 
-{% for clubes in palpites %}
+{% for brasileirao in palpites %}
         <a href="/pontuacao/">critérios de pontuação</a><br>
-        <a href="/palpiteupdate/{{clubes.id}}">editar</a><br>
-        <a href="/palpitedelete/{{clubes.id}}">deletar</a><br>
+        <a href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
 {% empty %}
 <a href="/pontuacao/">critérios de pontuação</a><br>
 voce ainda não tem palpites para essa rodada
-        <a href="/palpitar/">palpitar</a><br>
-
+        <a href="/palpitecreate/">palpitar</a><br>
 {% endfor %}
 {% endblock %}

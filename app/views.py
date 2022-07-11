@@ -65,16 +65,27 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     model = Brasileirao
     context_object_name = 'palpites'
 
-
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao
     fields = '__all__'
     context_object_name = 'palpites'
     success_url = reverse_lazy('palpites')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dados'] = Brasileirao.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        return context
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(PalpiteCreate, self).form_valid(form)
 
+def condicao(request):
+    current_user = request.user
+    data = {}
+    data['dados'] = Brasileirao.objects.all().filter(user=current_user)
+    return render(request, 'app/brasileirao_form.html', data)
 
 class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     model = Brasileirao
@@ -94,15 +105,11 @@ class PalpiteDelete(DeleteView):
 def pontuacao(request):
     current_user = request.user
     data = {}
-    data['club'] = Clubes.objects.all()
-    i = data['club']
-    return HttpResponse(f'{i}')
-
-
-def palpitar(request):
-    current_user = request.user
-    data = {}
     data['form'] = Brasileirao.objects.all()
-    if not data['form'].filter(user=current_user):
-        return redirect('palpitecreate')
-    return redirect('palpites')
+    data['form'] = data['form'].filter(user=current_user)
+    return render(request, 'app/pontuacao.html', data)
+
+
+
+def calculo(self):
+
