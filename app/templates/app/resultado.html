@@ -1,0 +1,22 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+<p>{{request.user}}</p>
+<hr>
+
+{% for x in ordemobj %}
+{{x.AthleticoPR}}
+{% endfor %}
+
+
+Resultado Exato: {{exato}}<br/>
+Resultado Parcial: {{igual}}<br/>
+Resultado Parcial + bonus: {{bonus}}<br/>
+Voce errou: {{diferente}}<br/>
+Total de pontos: {{total}}
+
+{% endblock %}

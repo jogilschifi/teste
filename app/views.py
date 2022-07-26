@@ -1,18 +1,19 @@
 from urllib import request
 from django.http import HttpResponse
-
+from django.views import View
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
+from django.db.models import Sum
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from app.models import Clubes, Brasileirao
+from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao
 
 
 # Create your views here.
@@ -81,11 +82,6 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(PalpiteCreate, self).form_valid(form)
 
-def condicao(request):
-    current_user = request.user
-    data = {}
-    data['dados'] = Brasileirao.objects.all().filter(user=current_user)
-    return render(request, 'app/brasileirao_form.html', data)
 
 class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     model = Brasileirao
@@ -108,3 +104,180 @@ def pontuacao(request):
     data['form'] = Brasileirao.objects.all()
     data['form'] = data['form'].filter(user=current_user)
     return render(request, 'app/pontuacao.html', data)
+
+def rodada(request):
+    data = {}
+    data['rodada'] = ResultadosBrasileirao.objects.all()
+    return render(request, 'app/rodada.html', data)
+
+
+def resultado(request):
+    current_user = request.user
+    data = {}
+    resultado = ResultadosBrasileirao.objects.all()
+    resultado = resultado.filter(Rodada=request.GET['rodada'])
+    data['resultadoobj'] = resultado
+    resultado = resultado.first()
+
+    palpite = Brasileirao.objects.all()
+    palpite = palpite.filter(Rodada=request.GET['rodada'])
+    palpite = palpite.filter(user=current_user)
+    data['palpiteobj'] = palpite
+    palpite = palpite.first()
+
+    ordem = OrdenacaoBrasileirao.objects.all()
+    ordem = ordem.filter(Rodada=request.GET['rodada'])
+    data['ordemobj'] = ordem
+    times = ordem.first()
+    time1 = times.AthleticoPR
+    time2 = times.Palmeiras
+    time3 = times.Corinthians
+    time4 = times.Internacional
+    time5 = times.AtleticoMG
+    time6 = times.Fluminense
+    time7 = times.Santos
+    time8 = times.SaoPaulo
+    time9 = times.Flamengo
+    time10 = times.Botafogo
+    time11 = times.Avai
+    time12 = times.Bragantino
+    time13 = times.AtleticoGO
+    time14 = times.Goias
+    time15 = times.Ceara
+    time16 = times.Coritiba
+    time17 = times.AmericaMG
+    time18 = times.Cuiaba
+    time19 = times.Juventude
+    time20 = times.Fortaleza
+    ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20]
+    data['ordem'] = ordem
+    ttime1 = palpite.AthleticoPR
+    ttime2 = palpite.Palmeiras
+    ttime3 = palpite.Corinthians
+    ttime4 = palpite.Internacional
+    ttime5 = palpite.AtleticoMG
+    ttime6 = palpite.Fluminense
+    ttime7 = palpite.Santos
+    ttime8 = palpite.SaoPaulo
+    ttime9 = palpite.Flamengo
+    ttime10 = palpite.Botafogo
+    ttime11 = palpite.Avai
+    ttime12 = palpite.Bragantino
+    ttime13 = palpite.AtleticoGO
+    ttime14 = palpite.Goias
+    ttime15 = palpite.Ceara
+    ttime16 = palpite.Coritiba
+    ttime17 = palpite.AmericaMG
+    ttime18 = palpite.Cuiaba
+    ttime19 = palpite.Juventude
+    ttime20 = palpite.Fortaleza
+    palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3 , "Internacional": ttime4, "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8, "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12, "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16, "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20}
+    data['palpite'] = palpite
+    tttime1 = resultado.AthleticoPR
+    tttime2 = resultado.Palmeiras
+    tttime3 = resultado.Corinthians
+    tttime4 = resultado.Internacional
+    tttime5 = resultado.AtleticoMG
+    tttime6 = resultado.Fluminense
+    tttime7 = resultado.Santos
+    tttime8 = resultado.SaoPaulo
+    tttime9 = resultado.Flamengo
+    tttime10 = resultado.Botafogo
+    tttime11 = resultado.Avai
+    tttime12 = resultado.Bragantino
+    tttime13 = resultado.AtleticoGO
+    tttime14 = resultado.Goias
+    tttime15 = resultado.Ceara
+    tttime16 = resultado.Coritiba
+    tttime17 = resultado.AmericaMG
+    tttime18 = resultado.Cuiaba
+    tttime19 = resultado.Juventude
+    tttime20 = resultado.Fortaleza
+    resultado = {"AthleticoPR": tttime1, "Palmeiras": tttime2, "Corinthians": tttime3 , "Internacional": tttime4, "AtleticoMG": tttime5, "Fluminense": tttime6, "Santos": tttime7, "SaoPaulo": tttime8, "Flamengo": tttime9, "Botafogo": tttime10, "Avai": tttime11, "Bragantino": tttime12, "AtleticoGO": tttime13, "Goias": tttime14, "Ceara": tttime15, "Coritiba": tttime16, "AmericaMG": tttime17, "Cuiaba": tttime18, "Juventude": tttime19, "Fortaleza": tttime20}
+    data['resultado'] = resultado
+
+    i = 0
+    igual = 0
+    exato = 0
+    bonus = 0
+    diferente = 0
+    total = 0
+    while i < 19:
+        if i % 2 == 0:
+            if resultado[ordem[i]] - resultado[ordem[i+1]] > 0:
+                if palpite[ordem[i]] - palpite[ordem[i+1]] > 0:
+                    if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
+                        if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                            exato += 1
+                            data['exato'] = exato
+                            total += 18
+                            data['total'] = total
+                        else:
+                            bonus += 1
+                            data['bonus'] = bonus
+                            total += 12
+                            data['total'] = total
+                    else:
+                        igual += 1
+                        data['igual'] = igual
+                        total += 9
+                        data['total'] = total
+                else:
+                    diferente += 1
+                    data['diferente'] = diferente
+            elif resultado[ordem[i]] - resultado[ordem[i+1]] < 0:
+                if palpite[ordem[i]] - palpite[ordem[i+1]] < 0:
+                    if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
+                        if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                            exato += 1
+                            data['exato'] = exato
+                            total += 18
+                            data['total'] = total
+                        else:
+                            bonus += 1
+                            data['bonus'] = bonus
+                            total += 12
+                            data['total'] = total
+                    else:
+                        igual += 1
+                        data['igual'] = igual
+                        total += 9
+                        data['total'] = total
+                else:
+                    diferente += 1
+                    data['diferente'] = diferente
+            elif resultado[ordem[i]] - resultado[ordem[i+1]] == palpite[ordem[i]] - palpite[ordem[i+1]]:
+                if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                    exato += 1
+                    data['exato'] = exato
+                    total += 18
+                    data['total'] = total
+                else:
+                    igual += 1
+                    data['igual'] = igual
+                    total += 9
+                    data['total'] = total
+            else:
+                diferente += 1
+                data['diferente'] = diferente
+        i += 1
+
+    return render(request, 'app/resultado.html', data)
+    #return render(request, 'app/resultado.html', data)
+
+    #def get(self, request, rodada, *args, **kwargs):
+        #result = ResultadosBrasileirao.objects.filter(Rodada=rodada)
+        #return render(request, 'app/resultado.html', result)
+    #return render(request, 'app/resultado.html')
+
+#context = super(ResultadosBrasileirao).get_context_data(**kwargs)
+#context['resultado'] = ResultadosBrasileirao.objects.all()
+#context['resultado'] = context['resultado'].filter(Rodada=rodada)
+#return render(request, 'app/resultado.html', context)
+
+    #def form_valid(self, form, rodada):
+        #data = {}
+        #data['res'] = ResultadosBrasileirao.objects.all()
+        #data['res'] = data['res'].filter(Rodada=rodada)
+        #result = ResultadosBrasileirao.objects.filter(Rodada=rodada)
+        #return render(request, 'app/resultado.html', result, data)

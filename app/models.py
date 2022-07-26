@@ -23,6 +23,7 @@ class Clubes(models.Model):
     riverPlate = models.IntegerField()
 
 class Brasileirao(models.Model):
+    Rodada = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     AthleticoPR = models.IntegerField()
     Palmeiras = models.IntegerField()
@@ -72,7 +73,6 @@ class ResultadosBrasileirao(models.Model):
         ('37', '37'),
         ('38', '38'),
     )
-
     Rodada = models.CharField(max_length=2, choices=RODADAS)
     AthleticoPR = models.IntegerField()
     Palmeiras = models.IntegerField()
@@ -123,27 +123,49 @@ class OrdenacaoBrasileirao(models.Model):
         ('37', '37'),
         ('38', '38'),
     )
+    TIMES = (
+        ('AthleticoPR', 'AthleticoPR'),
+        ('Palmeiras', 'Palmeiras'),
+        ('Corinthians', 'Corinthians'),
+        ('Internacional', 'Internacional'),
+        ('AtleticoMG', 'AtleticoMG'),
+        ('Fluminense', 'Fluminense'),
+        ('Santos', 'Santos'),
+        ('SaoPaulo', 'SaoPaulo'),
+        ('Flamengo', 'Flamengo'),
+        ('Botafogo', 'Botafogo'),
+        ('Avai', 'Avai'),
+        ('Bragantino', 'Bragantino'),
+        ('AtleticoGO', 'AtleticoGO'),
+        ('Goias', 'Goias'),
+        ('Ceara', 'Ceara'),
+        ('Coritiba', 'Coritiba'),
+        ('AmericaMG', 'AmericaMG'),
+        ('Cuiaba', 'Cuiaba'),
+        ('Juventude', 'Juventude'),
+        ('Fortaleza', 'Fortaleza'),
+    )
     Rodada = models.CharField(max_length=2, choices=RODADAS)
-    AthleticoPR = models.IntegerField()
-    Palmeiras = models.IntegerField()
-    Corinthians = models.IntegerField()
-    Internacional = models.IntegerField()
-    AtleticoMG = models.IntegerField()
-    Fluminense = models.IntegerField()
-    Santos = models.IntegerField()
-    SaoPaulo = models.IntegerField()
-    Flamengo = models.IntegerField()
-    Botafogo = models.IntegerField()
-    Avai = models.IntegerField()
-    Bragantino = models.IntegerField()
-    AtleticoGO = models.IntegerField()
-    Goias = models.IntegerField()
-    Ceara = models.IntegerField()
-    Coritiba = models.IntegerField()
-    AmericaMG = models.IntegerField()
-    Cuiaba = models.IntegerField()
-    Juventude = models.IntegerField()
-    Fortaleza = models.IntegerField()
+    AthleticoPR = models.CharField(max_length=14, choices=TIMES)
+    Palmeiras = models.CharField(max_length=14, choices=TIMES)
+    Corinthians = models.CharField(max_length=14, choices=TIMES)
+    Internacional = models.CharField(max_length=14, choices=TIMES)
+    AtleticoMG = models.CharField(max_length=14, choices=TIMES)
+    Fluminense = models.CharField(max_length=14, choices=TIMES)
+    Santos = models.CharField(max_length=14, choices=TIMES)
+    SaoPaulo = models.CharField(max_length=14, choices=TIMES)
+    Flamengo = models.CharField(max_length=14, choices=TIMES)
+    Botafogo = models.CharField(max_length=14, choices=TIMES)
+    Avai = models.CharField(max_length=14, choices=TIMES)
+    Bragantino = models.CharField(max_length=14, choices=TIMES)
+    AtleticoGO = models.CharField(max_length=14, choices=TIMES)
+    Goias = models.CharField(max_length=14, choices=TIMES)
+    Ceara = models.CharField(max_length=14, choices=TIMES)
+    Coritiba = models.CharField(max_length=14, choices=TIMES)
+    AmericaMG = models.CharField(max_length=14, choices=TIMES)
+    Cuiaba = models.CharField(max_length=14, choices=TIMES)
+    Juventude = models.CharField(max_length=14, choices=TIMES)
+    Fortaleza = models.CharField(max_length=14, choices=TIMES)
 
 class PontuacaoBrasileirao(models.Model):
     RODADAS = (

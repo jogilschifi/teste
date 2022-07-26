@@ -1,0 +1,29 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+<p>{{request.user}}</p>
+<hr>
+
+<form id="formrodada" action="/resultado/" method="GET">
+    {% csrf_token %}
+    <label for="rodada">Rodada:</label>
+    <select name="rodada" id="rodada" class="form-control">
+        <option value="">Selecione</option>
+            {% for rodadas in rodada %}
+        <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
+            {% endfor %}
+    </select>
+    <input type="submit" class="btn btn-success" value="Verificar">
+</form>
+
+
+{% for x in rodada %}
+{{x.AthleticoPR}}
+
+{% endfor %}
+
+{% endblock %}

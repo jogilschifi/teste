@@ -6,14 +6,15 @@
 <hr>
 {% for dadoss in dados %}
 {% if dadoss.user == request.user %}
-voce já palpitou
+voce já palpitou nessa rodada
         <a href="/">voltar</a><br>
 {% endif %}
 {% empty %}
 <form method="POST" action="">
     {% csrf_token %}
 <h3>BRASILEIRÃO</h3>
-<h4>Rodada 14º</h4>
+<h4>Rodada 15º</h4>
+    <input type="hidden" name="Rodada" value="15">
     Fluminense:{{form.Fluminense}}{{form.Corinthians}}:Corinthians<br>
     Juventude:{{form.Juventude}}{{form.AtleticoMG}}:Atlético-MG<br>
     Santos:{{form.Santos}}{{form.Flamengo}}:Flamengo<br>
