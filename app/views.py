@@ -99,11 +99,7 @@ class PalpiteDelete(DeleteView):
 
 
 def pontuacao(request):
-    current_user = request.user
-    data = {}
-    data['form'] = Brasileirao.objects.all()
-    data['form'] = data['form'].filter(user=current_user)
-    return render(request, 'app/pontuacao.html', data)
+    return render(request, 'app/pontuacao.html')
 
 def rodada(request):
     data = {}
@@ -128,51 +124,57 @@ def resultado(request):
     ordem = OrdenacaoBrasileirao.objects.all()
     ordem = ordem.filter(Rodada=request.GET['rodada'])
     data['ordemobj'] = ordem
-    times = ordem.first()
-    time1 = times.AthleticoPR
-    time2 = times.Palmeiras
-    time3 = times.Corinthians
-    time4 = times.Internacional
-    time5 = times.AtleticoMG
-    time6 = times.Fluminense
-    time7 = times.Santos
-    time8 = times.SaoPaulo
-    time9 = times.Flamengo
-    time10 = times.Botafogo
-    time11 = times.Avai
-    time12 = times.Bragantino
-    time13 = times.AtleticoGO
-    time14 = times.Goias
-    time15 = times.Ceara
-    time16 = times.Coritiba
-    time17 = times.AmericaMG
-    time18 = times.Cuiaba
-    time19 = times.Juventude
-    time20 = times.Fortaleza
-    ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20]
-    data['ordem'] = ordem
-    ttime1 = palpite.AthleticoPR
-    ttime2 = palpite.Palmeiras
-    ttime3 = palpite.Corinthians
-    ttime4 = palpite.Internacional
-    ttime5 = palpite.AtleticoMG
-    ttime6 = palpite.Fluminense
-    ttime7 = palpite.Santos
-    ttime8 = palpite.SaoPaulo
-    ttime9 = palpite.Flamengo
-    ttime10 = palpite.Botafogo
-    ttime11 = palpite.Avai
-    ttime12 = palpite.Bragantino
-    ttime13 = palpite.AtleticoGO
-    ttime14 = palpite.Goias
-    ttime15 = palpite.Ceara
-    ttime16 = palpite.Coritiba
-    ttime17 = palpite.AmericaMG
-    ttime18 = palpite.Cuiaba
-    ttime19 = palpite.Juventude
-    ttime20 = palpite.Fortaleza
-    palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3 , "Internacional": ttime4, "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8, "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12, "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16, "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20}
-    data['palpite'] = palpite
+    if ordem:
+        times = ordem.first()
+        time1 = times.AthleticoPR
+        time2 = times.Palmeiras
+        time3 = times.Corinthians
+        time4 = times.Internacional
+        time5 = times.AtleticoMG
+        time6 = times.Fluminense
+        time7 = times.Santos
+        time8 = times.SaoPaulo
+        time9 = times.Flamengo
+        time10 = times.Botafogo
+        time11 = times.Avai
+        time12 = times.Bragantino
+        time13 = times.AtleticoGO
+        time14 = times.Goias
+        time15 = times.Ceara
+        time16 = times.Coritiba
+        time17 = times.AmericaMG
+        time18 = times.Cuiaba
+        time19 = times.Juventude
+        time20 = times.Fortaleza
+        ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20]
+        data['ordem'] = ordem
+    else:
+        return redirect('/rodada/')
+    if palpite:
+        ttime1 = palpite.AthleticoPR
+        ttime2 = palpite.Palmeiras
+        ttime3 = palpite.Corinthians
+        ttime4 = palpite.Internacional
+        ttime5 = palpite.AtleticoMG
+        ttime6 = palpite.Fluminense
+        ttime7 = palpite.Santos
+        ttime8 = palpite.SaoPaulo
+        ttime9 = palpite.Flamengo
+        ttime10 = palpite.Botafogo
+        ttime11 = palpite.Avai
+        ttime12 = palpite.Bragantino
+        ttime13 = palpite.AtleticoGO
+        ttime14 = palpite.Goias
+        ttime15 = palpite.Ceara
+        ttime16 = palpite.Coritiba
+        ttime17 = palpite.AmericaMG
+        ttime18 = palpite.Cuiaba
+        ttime19 = palpite.Juventude
+        ttime20 = palpite.Fortaleza
+        palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3 , "Internacional": ttime4, "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8, "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12, "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16, "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20}
+        data['palpite'] = palpite
+    else:
+        return redirect('/rodada/')
     tttime1 = resultado.AthleticoPR
     tttime2 = resultado.Palmeiras
     tttime3 = resultado.Corinthians

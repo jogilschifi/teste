@@ -12,18 +12,13 @@
     {% csrf_token %}
     <label for="rodada">Rodada:</label>
     <select name="rodada" id="rodada" class="form-control">
-        <option value="">Selecione</option>
+        <option action="/rodada/" value="0">Selecione</option>
             {% for rodadas in rodada %}
         <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
             {% endfor %}
     </select>
     <input type="submit" class="btn btn-success" value="Verificar">
 </form>
-
-
-{% for x in rodada %}
-{{x.AthleticoPR}}
-
-{% endfor %}
+    <a href="/">voltar</a><br>
 
 {% endblock %}
