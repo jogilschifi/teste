@@ -1,0 +1,36 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+<p>{{request.user}}</p>
+<hr>
+
+
+<div class="card card-body">
+    <table  border="1" class="table table-sm">
+        <tr>
+            <th>Nome</th>
+            <th>Rodada</th>
+            <th>Pontos</th>
+            <th>Acertos exatos</th>
+            <th>Acertos vencedor + bonus</th>
+            <th>Acertos vencedor:</th>
+        </tr>
+        {% for x in classificacao %}
+            <tr align="center">
+                <td align="left">{{x.user}}</td>
+                <td>{{x.Rodada}}</td>
+                <td>{{x.PONTOS}}</td>
+                <td>{{x.RE}}</td>
+                <td>{{x.RB}}</td>
+                <td>{{x.RP}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+
+    <a href="/caminhocalculadora/">voltar para o menu</a><br>
+{% endblock %}

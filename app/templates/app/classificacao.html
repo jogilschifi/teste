@@ -1,0 +1,52 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+<p>{{request.user}}</p>
+<hr>
+Classificação da rodada: {{rodada}}
+
+<div class="card card-body">
+    <table  border="1" class="table table-sm" cellpadding="5">
+        <tr>
+            <th>Posição</th>
+            <th>Time</th>
+            <th>Pontos</th>
+            <th>Acertos exatos</th>
+            <th>Acertos vencedor + bonus</th>
+            <th>Acertos vencedor:</th>
+        </tr>
+        {% for x in cla %}
+            <tr align="center">
+                <td>{{x.posicao}}</td>
+                <td align="left">{{x.user}}</td>
+                <td>{{x.PONTOS}}</td>
+                <td>{{x.RE}}</td>
+                <td>{{x.RB}}</td>
+                <td>{{x.RP}}</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+</div>
+
+{{cla.PONTOS}}
+<form id="formrodada" action="/classificacaoporrodada/" method="GET">
+    {% csrf_token %}
+    <label for="rodada">Veja a classificação da rodada:</label>
+    <select name="rodada" id="rodada" class="form-control">
+        <option action="/caminhocalculadora/" value="0">Selecione</option>
+            {% for x in rodadas %}
+        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
+            {% endfor %}
+    </select>
+
+    <input type="submit" class="btn btn-success" value="Verificar">
+
+</form>
+
+
+
+    <a href="/">voltar para o menu</a><br>
+{% endblock %}

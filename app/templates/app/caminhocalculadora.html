@@ -1,0 +1,32 @@
+{% extends 'app/main.html' %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+<p>{{request.user}} {{request.user.id}}</p>
+<hr>
+
+<form id="formrodada" action="/calculadoradoispontozero/" method="GET">
+    {% csrf_token %}
+    <label for="rodada">Rodada:</label>
+    <select name="rodada" id="rodada" class="form-control">
+        <option action="/caminhocalculadora/" value="0">Selecione</option>
+            {% for rodadas in rodada %}
+        <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
+            {% endfor %}
+    </select>
+    <label for="usuario">Usuário:</label>
+    <select name="usuario" id="usuario" class="form-control">
+        <option action="/caminhocalculadora/" value="0">Selecione</option>
+            {% for usuarios in usuario %}
+        <option value="{{ usuarios.user.id }}">{{ usuarios.user }}</option>
+            {% endfor %}
+    </select>
+    <input type="submit" class="btn btn-success" value="Calcular">
+
+</form>
+    <a href="/">voltar</a><br>
+
+{% endblock %}

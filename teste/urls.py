@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado
+from app.views import PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado, classificacao, classificacaoporrodada, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero
 from django.contrib.auth.views import LogoutView
 
 
@@ -31,5 +31,11 @@ urlpatterns = [
     path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
     path('pontuacao/', pontuacao),
     path('rodada/', rodada),
-    path('resultado/', resultado , name='resultado'),
+    path('resultado/', resultado),
+    path('classificacao/', classificacao),
+    path('classificacaoporrodada/', classificacaoporrodada),
+    path('classificacaodoispontozero/', classificacaodoispontozero),
+    path('caminhocalculadora/', caminhocalculadora),
+    path('calculadoradoispontozero/', calculadoradoispontozero),
+
 ]

@@ -8,18 +8,18 @@
 <p>{{request.user}}</p>
 <hr>
 <div id="right">
-<h4>Resultado 15ª rodada</h4><br>
+<h4>Resultado {{rodada}}ª rodada</h4><br>
 {% for x in resultadoobj %}
-Fluminense:{{x.Fluminense}} | {{x.Corinthians}}:Corinthians<br>
-Juventude:{{x.Juventude}} | {{x.AtleticoMG}}:Atlético-MG<br>
-Santos:{{x.Santos}} | {{x.Flamengo}}:Flamengo<br>
-Ceará:{{x.Ceara}} | {{x.Internacional}}:Internacional<br>
-Palmeiras:{{x.Palmeiras}} | {{x.AthleticoPR}}:Athletico-PR<br>
-Avaí:{{x.Avai}} | {{x.Cuiaba}}:Cuiabá<br>
-Atlético-GO:{{x.AtleticoGO}} | {{x.SaoPaulo}}:São Paulo<br>
-América-MG:{{x.AmericaMG}} | {{x.Goias}}:Goiás<br>
-Coritiba:{{x.Coritiba}} | {{x.Fortaleza}}:Fortaleza<br>
-Bragantino:{{x.Bragantino}} | {{x.Botafogo}}:Botafogo<br>
+    Fluminense:{{x.Fluminense}} | {{x.Corinthians}}:Corinthians<br>
+    Juventude:{{x.Juventude}} | {{x.AtleticoMG}}:Atlético-MG<br>
+    Santos:{{x.Santos}} | {{x.Flamengo}}:Flamengo<br>
+    Ceará:{{x.Ceara}} | {{x.Internacional}}:Internacional<br>
+    Palmeiras:{{x.Palmeiras}} | {{x.AthleticoPR}}:Athletico-PR<br>
+    Avaí:{{x.Avai}} | {{x.Cuiaba}}:Cuiabá<br>
+    Atlético-GO:{{x.AtleticoGO}} | {{x.SaoPaulo}}:São Paulo<br>
+    América-MG:{{x.AmericaMG}} | {{x.Goias}}:Goiás<br>
+    Coritiba:{{x.Coritiba}} | {{x.Fortaleza}}:Fortaleza<br>
+    Bragantino:{{x.Bragantino}} | {{x.Botafogo}}:Botafogo<br>
 {% endfor %}
 </div><div id="left">
 <h4>Seus palpites</h4><br>
@@ -42,5 +42,7 @@ Resultado Parcial: {{igual}}<br/>
 Resultado Parcial + bônus: {{bonus}}<br/>
 Você errou: {{diferente}}<br/>
 Total de pontos: {{total}}<br>
+
+    <a href="/classificacao/">veja como ficou a classificação</a><br>
     <a href="/rodada">voltar</a><br>
 {% endblock %}
