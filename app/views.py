@@ -52,7 +52,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['palpites'] = context['palpites'].filter(user=self.request.user)
-        context['palpites'] = context['palpites'].filter(Rodada=15)
+        context['palpites'] = context['palpites'].filter(Rodada=28)
         return context
 
     def filter(self, user):
@@ -77,6 +77,7 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
+        context['dados'] = context['dados'].filter(Rodada=28)
         return context
 
     def form_valid(self, form):

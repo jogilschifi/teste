@@ -13,18 +13,70 @@ voce já palpitou nessa rodada
 <form method="POST" action="">
     {% csrf_token %}
 <h3>BRASILEIRÃO</h3>
-<h4>Rodada 15º</h4>
-    <input type="hidden" name="Rodada" value="15">
-    Fluminense:{{form.Fluminense}}{{form.Corinthians}}:Corinthians<br>
-    Juventude:{{form.Juventude}}{{form.AtleticoMG}}:Atlético-MG<br>
-    Santos:{{form.Santos}}{{form.Flamengo}}:Flamengo<br>
-    Ceará:{{form.Ceara}}{{form.Internacional}}:Internacional<br>
-    Palmeiras:{{form.Palmeiras}}{{form.AthleticoPR}}:Athletico-PR<br>
-    Avaí:{{form.Avai}}{{form.Cuiaba}}:Cuiabá<br>
-    Atlético-GO:{{form.AtleticoGO}}{{form.SaoPaulo}}:São Paulo<br>
-    América-MG:{{form.AmericaMG}}{{form.Goias}}:Goiás<br>
-    Coritiba:{{form.Coritiba}}{{form.Fortaleza}}:Fortaleza<br>
-    Bragantino:{{form.Bragantino}}{{form.Botafogo}}:Botafogo<br>
+<h4>Rodada 28º</h4>
+    <input type="hidden" name="Rodada" value="28">
+                <table  border="1">
+                    <tr>
+                        <th>São Paulo</th>
+                        <th>{{form.SaoPaulo}}</th>
+                        <th>{{form.Avai}}</th>
+                        <th>Avaí</th>
+                    </tr>
+                    <tr>
+                        <th>Santos</th>
+                        <th>{{form.Santos}}</th>
+                        <th>{{form.AthleticoPR}}</th>
+                        <th>Athletico-PR</th>
+                    </tr>
+                    <tr>
+                        <th>Fluminense</th>
+                        <th>{{form.Fluminense}}</th>
+                        <th>{{form.Juventude}}</th>
+                        <th>Juventude</th>
+                    </tr>
+                            <tr>
+                        <th>Corinthians</th>
+                        <th>{{form.Corinthians}}</th>
+                        <th>{{form.AtleticoGO}}</th>
+                        <th>Atletico-GO</th>
+                    </tr>
+                    <tr>
+                        <th>Fortaleza</th>
+                        <th>{{form.Fortaleza}}</th>
+                        <th>{{form.Flamengo}}</th>
+                        <th>Flamengo</th>
+                    </tr>
+                    <tr>
+                        <th>Coritiba</th>
+                        <th>{{form.Coritiba}}</th>
+                        <th>{{form.Ceara}}</th>
+                        <th>Ceará</th>
+                    </tr>
+                    <tr>
+                        <th>Cuiabá</th>
+                        <th>{{form.Cuiaba}}</th>
+                        <th>{{form.AmericaMG}}</th>
+                        <th>América-MG</th>
+                    </tr>
+                    <tr>
+                        <th>Atlético-MG</th>
+                        <th>{{form.AtleticoMG}}</th>
+                        <th>{{form.Palmeiras}}</th>
+                        <th>Palmeiras</th>
+                    </tr>
+                    <tr>
+                        <th>Internacional</th>
+                        <th>{{form.Internacional}}</th>
+                        <th>{{form.Bragantino}}</th>
+                        <th>Bragantino</th>
+                    </tr>
+                    <tr>
+                        <th>Goiás</th>
+                        <th>{{form.Goias}}</th>
+                        <th>{{form.Botafogo}}</th>
+                        <th>Botafogo</th>
+                    </tr>
+                </table>
     <input type="submit" value="Salvar">
 
 </form>
