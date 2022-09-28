@@ -101,6 +101,15 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
         return super(PalpiteUpdate, self).form_valid(form)
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dados'] = Brasileirao.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        context['dados'] = context['dados'].filter(Rodada=28)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 9, 28, 19, 00)
+        return context
+
 class PalpiteDelete(DeleteView):
     model = Brasileirao
     success_url = reverse_lazy('palpites')
