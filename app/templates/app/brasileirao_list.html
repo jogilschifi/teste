@@ -7,6 +7,7 @@
     <a href="/login/">Login</a> {% endif %}
 <p>{{request.user}}</p>
 <hr>
+{% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
         <a href="/pontuacao/">critérios de pontuação</a><br>
@@ -17,5 +18,14 @@
         <a href="/pontuacao/">critérios de pontuação</a><br>
         voce ainda não tem palpites para essa rodada
         <a href="/palpitecreate/">palpitar</a><br>
+
 {% endfor %}
+{% else %}
+{% for brasileirao in palpites %}
+        <a href="/pontuacao/">critérios de pontuação</a><br>
+        <a href="/rodada/">veja seus resultados</a><br>
+        <a href="/classificacao/">classificacao</a><br>
+{% endfor %}
+{% endif %}
+
 {% endblock %}

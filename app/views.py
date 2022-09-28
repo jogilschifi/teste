@@ -13,6 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+import datetime
+
 from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao
 
 
@@ -53,6 +55,8 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['palpites'] = context['palpites'].filter(user=self.request.user)
         context['palpites'] = context['palpites'].filter(Rodada=28)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 9, 28, 19,00)
         return context
 
     def filter(self, user):
@@ -78,6 +82,8 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
         context['dados'] = context['dados'].filter(Rodada=28)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 9, 28, 19, 00)
         return context
 
     def form_valid(self, form):

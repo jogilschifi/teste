@@ -5,9 +5,14 @@
 <p>{{request.user}}</p>
 <hr>
 {% for dadoss in dados %}
+{% if horario > horalimite %}
+game over
+        <a href="/">voltar</a><br>
+{% endif %}
 {% if dadoss.user == request.user %}
 voce já palpitou nessa rodada
         <a href="/">voltar</a><br>
+
 {% endif %}
 {% empty %}
 <form method="POST" action="">
