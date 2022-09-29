@@ -127,7 +127,7 @@ def rodada(request):
 
 def classificacao(request):
     classificacao = PontuacaoTotalBrasileirao.objects.all()
-    if not classificacao:
+    if classificacao:
         rodada = classificacao.aggregate(Max('Rodada'))
         rodada = rodada["Rodada__max"]
         rodadas = ResultadosBrasileirao.objects.all()
