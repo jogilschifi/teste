@@ -15,12 +15,24 @@ voce já palpitou nessa rodada
         <a href="/">voltar</a><br>
 {% endif %}
 {% empty %}
+
+    <style>
+        th:nth-child(1), th:nth-child(4) {
+          background-color: #ddd;
+        }
+        tr {
+          border-bottom: 1px solid #ddd;
+        }
+        th:nth-child(2), th:nth-child(3) {
+          ;
+        }
+    </style>
 <form method="POST" action="">
     {% csrf_token %}
-<h3>BRASILEIRÃO</h3>
-<h4>Rodada 29º</h4>
+<h3 align="middle">BRASILEIRÃO</h3>
+<h4 align="middle">Rodada 29º</h4>
     <input type="hidden" name="Rodada" value="29">
-                <table  border="1">
+                <table border="1" cellpadding="5">
                     <tr>
                         <th>Atlético-MG</th>
                         <th>{{form.AtleticoMG}}</th>
@@ -83,7 +95,6 @@ voce já palpitou nessa rodada
                     </tr>
                 </table>
     <input type="submit" value="Salvar">
-
 </form>
 {% endfor %}
 {% endif %}
