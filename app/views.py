@@ -71,6 +71,8 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     model = Brasileirao
     context_object_name = 'palpites'
 
+
+
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao
     fields = '__all__'
@@ -124,25 +126,30 @@ def rodada(request):
     return render(request, 'app/rodada.html', data)
 
 def classificacao(request):
-
     classificacao = PontuacaoTotalBrasileirao.objects.all()
-    rodada = classificacao.aggregate(Max('Rodada'))
-    rodada = rodada["Rodada__max"]
-    rodadas = ResultadosBrasileirao.objects.all()
-    classificacao = classificacao.filter(Rodada=rodada)
-    def classif_sort(clas):
-        return clas.PONTOS, clas.RE, clas.RB, clas.id
-    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
-    data = {}
-    data['rodadas'] = rodadas
-    data['rodada'] = rodada
-    usuarios = len(classificacao)
+    if not classificacao:
+        rodada = classificacao.aggregate(Max('Rodada'))
+        rodada = rodada["Rodada__max"]
+        rodadas = ResultadosBrasileirao.objects.all()
+        classificacao = classificacao.filter(Rodada=rodada)
+        def classif_sort(clas):
+            return clas.PONTOS, clas.RE, clas.RB, clas.id
+        classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+        data = {}
+        data['rodadas'] = rodadas
+        data['rodada'] = rodada
+        usuarios = len(classificacao)
 
-    cla = []
-    for i in range(usuarios):
-        classifnova = classificacao_sort[i]
-        cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "posicao":i+1})
-    data['cla'] = cla
+        cla = []
+        for i in range(usuarios):
+            classifnova = classificacao_sort[i]
+            cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "posicao":i+1})
+        data['cla'] = cla
+        return render(request, 'app/classificacao.html', data)
+    data = {}
+    data['cla'] = Brasileirao.objects.all()
+
+
     return render(request, 'app/classificacao.html', data)
 
 def classificacaoporrodada(request):

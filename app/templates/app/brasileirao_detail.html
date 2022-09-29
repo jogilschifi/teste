@@ -4,6 +4,73 @@
 
 <p>{{request.user}}</p>
 <hr>
-Palpite:{{user}}
+
+
+    {% csrf_token %}
+<h3>BRASILEIRÃO</h3>
+<h4>Rodada 28º</h4>
+                <table  border="1">
+                    <tr>
+                        <th>São Paulo</th>
+                        <th>{{palpites.SaoPaulo}}</th>
+                        <th>{{palpites.Avai}}</th>
+                        <th>Avaí</th>
+                    </tr>
+                    <tr>
+                        <th>Santos</th>
+                        <th>{{palpites.Santos}}</th>
+                        <th>{{palpites.AthleticoPR}}</th>
+                        <th>Athletico-PR</th>
+                    </tr>
+                    <tr>
+                        <th>Fluminense</th>
+                        <th>{{palpites.Fluminense}}</th>
+                        <th>{{palpites.Juventude}}</th>
+                        <th>Juventude</th>
+                    </tr>
+                            <tr>
+                        <th>Corinthians</th>
+                        <th>{{palpites.Corinthians}}</th>
+                        <th>{{palpites.AtleticoGO}}</th>
+                        <th>Atletico-GO</th>
+                    </tr>
+                    <tr>
+                        <th>Fortaleza</th>
+                        <th>{{palpites.Fortaleza}}</th>
+                        <th>{{palpites.Flamengo}}</th>
+                        <th>Flamengo</th>
+                    </tr>
+                    <tr>
+                        <th>Coritiba</th>
+                        <th>{{palpites.Coritiba}}</th>
+                        <th>{{palpites.Ceara}}</th>
+                        <th>Ceará</th>
+                    </tr>
+                    <tr>
+                        <th>Cuiabá</th>
+                        <th>{{palpites.Cuiaba}}</th>
+                        <th>{{palpites.AmericaMG}}</th>
+                        <th>América-MG</th>
+                    </tr>
+                    <tr>
+                        <th>Atlético-MG</th>
+                        <th>{{palpites.AtleticoMG}}</th>
+                        <th>{{palpites.Palmeiras}}</th>
+                        <th>Palmeiras</th>
+                    </tr>
+                    <tr>
+                        <th>Internacional</th>
+                        <th>{{palpites.Internacional}}</th>
+                        <th>{{palpites.Bragantino}}</th>
+                        <th>Bragantino</th>
+                    </tr>
+                    <tr>
+                        <th>Goiás</th>
+                        <th>{{palpites.Goias}}</th>
+                        <th>{{palpites.Botafogo}}</th>
+                        <th>Botafogo</th>
+                    </tr>
+                </table>
+    <a href="/">voltar</a><br>
 
 {% endblock %}

@@ -4,15 +4,15 @@
 
 <p>{{request.user}}</p>
 <hr>
-{% for dadoss in dados %}
+
 {% if horario > horalimite %}
-game over
+the time is over
         <a href="/">voltar</a><br>
-{% endif %}
+{% else %}
+{% for dadoss in dados %}
 {% if dadoss.user == request.user %}
 voce já palpitou nessa rodada
         <a href="/">voltar</a><br>
-
 {% endif %}
 {% empty %}
 <form method="POST" action="">
@@ -86,4 +86,5 @@ voce já palpitou nessa rodada
 
 </form>
 {% endfor %}
+{% endif %}
 {% endblock %}
