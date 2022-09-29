@@ -195,18 +195,22 @@ def classificacaodoispontozero(request):
             igual = pontuser.aggregate(Sum('RP'))
             igual = igual["RP__sum"]
             pontuacaototal = PontuacaoTotalBrasileirao(user_id=i, Rodada=rodada, RE=exato, RB=bonus, RP=igual, PONTOS=total)
-            ponttotalantigo = PontuacaoTotalBrasileirao.objects.all()
-            ponttotalantigo = ponttotalantigo.filter(user=i)
-            rodadaantiga = ponttotalantigo.aggregate(Max('Rodada'))
-            rodadaantiga = rodadaantiga["Rodada__max"]
-            ponttotalantigo = ponttotalantigo.filter(Rodada=rodadaantiga)
-            ponttotalantigo = ponttotalantigo.first()
-            totalantigo = ponttotalantigo.PONTOS
-            if total != totalantigo:
-                if rodada != rodadaantiga:
-                    pontuacaototal.save()
-                else:
-                    ponttotalantigo.delete()
+            if PontuacaoTotalBrasileirao:
+                ponttotalantigo = PontuacaoTotalBrasileirao.objects.all()
+                ponttotalantigo = ponttotalantigo.filter(user=i)
+                rodadaantiga = ponttotalantigo.aggregate(Max('Rodada'))
+                rodadaantiga = rodadaantiga["Rodada__max"]
+                ponttotalantigo = ponttotalantigo.filter(Rodada=rodadaantiga)
+                ponttotalantigo = ponttotalantigo.first()
+                totalantigo = ponttotalantigo.PONTOS
+                if total != totalantigo:
+                    if rodada != rodadaantiga:
+                        pontuacaototal.save()
+                    else:
+                        ponttotalantigo.delete()
+                        pontuacaototal.save()
+            else:
+                if pontuacaototal:
                     pontuacaototal.save()
 
     data = {}
