@@ -23,28 +23,49 @@ class Clubes(models.Model):
     riverPlate = models.IntegerField()
 
 class Brasileirao(models.Model):
+    gols = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+        (16, 16),
+        (17, 17),
+        (18, 18),
+        (19, 19),
+    )
     Rodada = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    AthleticoPR = models.PositiveSmallIntegerField()
-    Palmeiras = models.PositiveSmallIntegerField()
-    Corinthians = models.PositiveSmallIntegerField()
-    Internacional = models.PositiveSmallIntegerField()
-    AtleticoMG = models.PositiveSmallIntegerField()
-    Fluminense = models.PositiveSmallIntegerField()
-    Santos = models.PositiveSmallIntegerField()
-    SaoPaulo = models.PositiveSmallIntegerField()
-    Flamengo = models.PositiveSmallIntegerField()
-    Botafogo = models.PositiveSmallIntegerField()
-    Avai = models.PositiveSmallIntegerField()
-    Bragantino = models.PositiveSmallIntegerField()
-    AtleticoGO = models.PositiveSmallIntegerField()
-    Goias = models.PositiveSmallIntegerField()
-    Ceara = models.PositiveSmallIntegerField()
-    Coritiba = models.PositiveSmallIntegerField()
-    AmericaMG = models.PositiveSmallIntegerField()
-    Cuiaba = models.PositiveSmallIntegerField()
-    Juventude = models.PositiveSmallIntegerField()
-    Fortaleza = models.PositiveSmallIntegerField()
+    AthleticoPR = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Palmeiras = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Corinthians = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Internacional = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    AtleticoMG = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Fluminense = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Santos = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    SaoPaulo = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Flamengo = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Botafogo = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Avai = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Bragantino = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    AtleticoGO = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Goias = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Ceara = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Coritiba = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    AmericaMG = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Cuiaba = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Juventude = models.PositiveSmallIntegerField(max_length=2, choices=gols)
+    Fortaleza = models.PositiveSmallIntegerField(max_length=2, choices=gols)
 
 class ResultadosBrasileirao(models.Model):
     RODADAS = (
