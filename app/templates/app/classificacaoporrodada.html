@@ -2,14 +2,21 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+
 <p>{{request.user}}</p>
 <hr>
-Classificação da rodada: {{rodada}}
 
-<div class="card card-body">
+
+<h4 align="middle">Classificação da rodada: {{rodada}}º</h4>
+
+
+
     <table  border="1" class="table table-sm" cellpadding="5">
         <tr>
-            <th class="rank"><abbr title="Position">Posição</abbr></th>
+            <th>Posição</th>
             <th>Time</th>
             <th>Pontos</th>
             <th>Acertos exatos</th>
@@ -26,9 +33,12 @@ Classificação da rodada: {{rodada}}
                 <td>{{x.RP}}</td>
             </tr>
         {% endfor %}
-    </table>
-</div>
 
+
+    </table>
+
+
+{{cla.PONTOS}}
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
     <label for="rodada">Veja a classificação da rodada:</label>
@@ -44,5 +54,7 @@ Classificação da rodada: {{rodada}}
 </form>
 
 
+
     <a href="/">voltar</a><br>
+
 {% endblock %}

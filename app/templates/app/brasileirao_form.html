@@ -2,6 +2,10 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
+    <a href="/logout/">Logout</a> {% else %}
+    <a href="/login/">Login</a> {% endif %}
+
 <p>{{request.user}}</p>
 <hr>
 
@@ -24,15 +28,16 @@ voce já palpitou nessa rodada
           border-bottom: 1px solid #ddd;
         }
         th:nth-child(2), th:nth-child(3) {
-          ;
+          background-color: white;
         }
     </style>
+
 <form method="POST" action="">
     {% csrf_token %}
 <h3 align="middle">BRASILEIRÃO</h3>
 <h4 align="middle">Rodada 29º</h4>
     <input type="hidden" name="Rodada" value="29">
-                <table border="1" cellpadding="5">
+                <table border="1" >
                     <tr>
                         <th>Atlético-MG</th>
                         <th>{{form.AtleticoMG}}</th>

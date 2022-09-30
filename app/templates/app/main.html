@@ -57,7 +57,7 @@
             margin: auto;
             background-color: #fff;
             -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
-            box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            box-shadow: 10px 10px 13px 10px rgba(0, 0, 0, 0.21);
         }
 
         input {
@@ -168,9 +168,34 @@
             padding: 20px;
         }
 
-        @media screen and (max-width:320px) {
+        @media screen and (max-width:500px) {
             #search-add-wrapper {
                 padding: 10px;
+            }
+            table {
+            font-size: 10.5px;
+            width: 100%
+            }
+            table tr:nth-child(odd) {
+            background-color: whitesmoke;
+            }
+            td, th  {
+            padding: 1px;
+            }
+            th {
+            background-color: lightgray;
+            }
+        }
+        @media screen and (max-width:2000px) {
+            #search-add-wrapper {
+                padding: 10px;
+            }
+
+            table tr:nth-child(odd) {
+            background-color: whitesmoke;
+            }
+            th {
+            background-color: lightgray;
             }
         }
 
@@ -213,7 +238,11 @@
 <body>
 
     <div class="container">
-        {% block content %} {% endblock content %}
+        <div class="card card-body">
+        {% block content %}
+
+        {% endblock content %}
+        </div>
     </div>
 
 </body>
