@@ -72,7 +72,6 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'palpites'
 
 
-
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao
     fields = '__all__'
