@@ -324,19 +324,100 @@ def resultado(request):
                             data['exato'] = exato
                             total += 18
                             data['total'] = total
+                            if i == 0:
+                                data['cor1'] = 'green'
+                            elif i == 2:
+                                data['cor2'] = 'green'
+                            elif i == 4:
+                                data['cor3'] = 'green'
+                            elif i == 6:
+                                data['cor4'] = 'green'
+                            elif i == 8:
+                                data['cor5'] = 'green'
+                            elif i == 10:
+                                data['cor6'] = 'green'
+                            elif i == 12:
+                                data['cor7'] = 'green'
+                            elif i == 14:
+                                data['cor8'] = 'green'
+                            elif i == 16:
+                                data['cor9'] = 'green'
+                            elif i == 18:
+                                data['cor10'] = 'green'
                         else:
                             bonus += 1
                             data['bonus'] = bonus
                             total += 12
                             data['total'] = total
+                            if i == 0:
+                                data['cor1'] = 'yellow'
+                            elif i == 2:
+                                data['cor2'] = 'yellow'
+                            elif i == 4:
+                                data['cor3'] = 'yellow'
+                            elif i == 6:
+                                data['cor4'] = 'yellow'
+                            elif i == 8:
+                                data['cor5'] = 'yellow'
+                            elif i == 10:
+                                data['cor6'] = 'yellow'
+                            elif i == 12:
+                                data['cor7'] = 'yellow'
+                            elif i == 14:
+                                data['cor8'] = 'yellow'
+                            elif i == 16:
+                                data['cor9'] = 'yellow'
+                            elif i == 18:
+                                data['cor10'] = 'yellow'
                     else:
                         igual += 1
                         data['igual'] = igual
                         total += 9
                         data['total'] = total
+                        if i == 0:
+                            data['cor1'] = 'orange'
+                        elif i == 2:
+                            data['cor2'] = 'orange'
+                        elif i == 4:
+                            data['cor3'] = 'orange'
+                        elif i == 6:
+                            data['cor4'] = 'orange'
+                        elif i == 8:
+                            data['cor5'] = 'orange'
+                        elif i == 10:
+                            data['cor6'] = 'orange'
+                        elif i == 12:
+                            data['cor7'] = 'orange'
+                        elif i == 14:
+                            data['cor8'] = 'orange'
+                        elif i == 16:
+                            data['cor9'] = 'orange'
+                        elif i == 18:
+                            data['cor10'] = 'orange'
+
                 else:
                     diferente += 1
                     data['diferente'] = diferente
+                    if i == 0:
+                        data['cor1'] = 'red'
+                    elif i == 2:
+                        data['cor2'] = 'red'
+                    elif i == 4:
+                        data['cor3'] = 'red'
+                    elif i == 6:
+                        data['cor4'] = 'red'
+                    elif i == 8:
+                        data['cor5'] = 'red'
+                    elif i == 10:
+                        data['cor6'] = 'red'
+                    elif i == 12:
+                        data['cor7'] = 'red'
+                    elif i == 14:
+                        data['cor8'] = 'red'
+                    elif i == 16:
+                        data['cor9'] = 'red'
+                    elif i == 18:
+                        data['cor10'] = 'red'
             elif resultado[ordem[i]] - resultado[ordem[i+1]] < 0:
                 if palpite[ordem[i]] - palpite[ordem[i+1]] < 0:
                     if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
@@ -345,33 +426,173 @@ def resultado(request):
                             data['exato'] = exato
                             total += 18
                             data['total'] = total
+                            if i == 0:
+                                data['cor1'] = 'green'
+                            elif i == 2:
+                                data['cor2'] = 'green'
+                            elif i == 4:
+                                data['cor3'] = 'green'
+                            elif i == 6:
+                                data['cor4'] = 'green'
+                            elif i == 8:
+                                data['cor5'] = 'green'
+                            elif i == 10:
+                                data['cor6'] = 'green'
+                            elif i == 12:
+                                data['cor7'] = 'green'
+                            elif i == 14:
+                                data['cor8'] = 'green'
+                            elif i == 16:
+                                data['cor9'] = 'green'
+                            elif i == 18:
+                                data['cor10'] = 'green'
                         else:
                             bonus += 1
                             data['bonus'] = bonus
                             total += 12
                             data['total'] = total
+                            if i == 0:
+                                data['cor1'] = 'yellow'
+                            elif i == 2:
+                                data['cor2'] = 'yellow'
+                            elif i == 4:
+                                data['cor3'] = 'yellow'
+                            elif i == 6:
+                                data['cor4'] = 'yellow'
+                            elif i == 8:
+                                data['cor5'] = 'yellow'
+                            elif i == 10:
+                                data['cor6'] = 'yellow'
+                            elif i == 12:
+                                data['cor7'] = 'yellow'
+                            elif i == 14:
+                                data['cor8'] = 'yellow'
+                            elif i == 16:
+                                data['cor9'] = 'yellow'
+                            elif i == 18:
+                                data['cor10'] = 'yellow'
                     else:
                         igual += 1
                         data['igual'] = igual
                         total += 9
                         data['total'] = total
+                        if i == 0:
+                            data['cor1'] = 'orange'
+                        elif i == 2:
+                            data['cor2'] = 'orange'
+                        elif i == 4:
+                            data['cor3'] = 'orange'
+                        elif i == 6:
+                            data['cor4'] = 'orange'
+                        elif i == 8:
+                            data['cor5'] = 'orange'
+                        elif i == 10:
+                            data['cor6'] = 'orange'
+                        elif i == 12:
+                            data['cor7'] = 'orange'
+                        elif i == 14:
+                            data['cor8'] = 'orange'
+                        elif i == 16:
+                            data['cor9'] = 'orange'
+                        elif i == 18:
+                            data['cor10'] = 'orange'
                 else:
                     diferente += 1
                     data['diferente'] = diferente
+                    if i == 0:
+                        data['cor1'] = 'red'
+                    elif i == 2:
+                        data['cor2'] = 'red'
+                    elif i == 4:
+                        data['cor3'] = 'red'
+                    elif i == 6:
+                        data['cor4'] = 'red'
+                    elif i == 8:
+                        data['cor5'] = 'red'
+                    elif i == 10:
+                        data['cor6'] = 'red'
+                    elif i == 12:
+                        data['cor7'] = 'red'
+                    elif i == 14:
+                        data['cor8'] = 'red'
+                    elif i == 16:
+                        data['cor9'] = 'red'
+                    elif i == 18:
+                        data['cor10'] = 'red'
             elif resultado[ordem[i]] - resultado[ordem[i+1]] == palpite[ordem[i]] - palpite[ordem[i+1]]:
                 if resultado[ordem[i]] - palpite[ordem[i]] == 0:
                     exato += 1
                     data['exato'] = exato
                     total += 18
                     data['total'] = total
+                    if i == 0:
+                        data['cor1'] = 'green'
+                    elif i == 2:
+                        data['cor2'] = 'green'
+                    elif i == 4:
+                        data['cor3'] = 'green'
+                    elif i == 6:
+                        data['cor4'] = 'green'
+                    elif i == 8:
+                        data['cor5'] = 'green'
+                    elif i == 10:
+                        data['cor6'] = 'green'
+                    elif i == 12:
+                        data['cor7'] = 'green'
+                    elif i == 14:
+                        data['cor8'] = 'green'
+                    elif i == 16:
+                        data['cor9'] = 'green'
+                    elif i == 18:
+                        data['cor10'] = 'green'
                 else:
                     igual += 1
                     data['igual'] = igual
                     total += 9
                     data['total'] = total
+                    if i == 0:
+                        data['cor1'] = 'orange'
+                    elif i == 2:
+                        data['cor2'] = 'orange'
+                    elif i == 4:
+                        data['cor3'] = 'orange'
+                    elif i == 6:
+                        data['cor4'] = 'orange'
+                    elif i == 8:
+                        data['cor5'] = 'orange'
+                    elif i == 10:
+                        data['cor6'] = 'orange'
+                    elif i == 12:
+                        data['cor7'] = 'orange'
+                    elif i == 14:
+                        data['cor8'] = 'orange'
+                    elif i == 16:
+                        data['cor9'] = 'orange'
+                    elif i == 18:
+                        data['cor10'] = 'orange'
             else:
                 diferente += 1
                 data['diferente'] = diferente
+                if i == 0:
+                    data['cor1'] = 'red'
+                elif i == 2:
+                    data['cor2'] = 'red'
+                elif i == 4:
+                    data['cor3'] = 'red'
+                elif i == 6:
+                    data['cor4'] = 'red'
+                elif i == 8:
+                    data['cor5'] = 'red'
+                elif i == 10:
+                    data['cor6'] = 'red'
+                elif i == 12:
+                    data['cor7'] = 'red'
+                elif i == 14:
+                    data['cor8'] = 'red'
+                elif i == 16:
+                    data['cor9'] = 'red'
+                elif i == 18:
+                    data['cor10'] = 'red'
         i += 1
 
     return render(request, 'app/resultado.html', data)
