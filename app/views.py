@@ -222,14 +222,14 @@ def resultado(request):
     data['rodada']= request.GET['rodada']
     resultado = ResultadosBrasileirao.objects.all()
     resultado = resultado.filter(Rodada=request.GET['rodada'])
-    data['resultadoobj'] = resultado
     resultado = resultado.first()
+    data['resultadoobj'] = resultado
 
     palpite = Brasileirao.objects.all()
     palpite = palpite.filter(Rodada=request.GET['rodada'])
     palpite = palpite.filter(user=current_user)
-    data['palpiteobj'] = palpite
     palpite = palpite.first()
+    data['palpiteobj'] = palpite
 
     ordem = OrdenacaoBrasileirao.objects.all()
     ordem = ordem.filter(Rodada=request.GET['rodada'])

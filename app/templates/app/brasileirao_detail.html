@@ -1,75 +1,104 @@
 {% extends 'app/main.html' %}
-
+{% load static %}
 {% block content %}
 
 <p>{{request.user}}</p>
 <hr>
 
+    <style>
+        td:nth-child(1), td:nth-child(1) {
+          text-align: right ;
+        }
+        }
+        table {
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
+        }
+    </style>
 
     {% csrf_token %}
-<h3>BRASILEIRÃO</h3>
-<h4>Rodada 29º</h4>
-                <table border="1">
+<h3 align="center">BRASILEIRÃO</h3>
+<h4 align="center">Rodada 29º </h4>
+                <table align="center" cellpadding="5">
                     <tr>
-                        <th>Atlético-MG</th>
-                        <th>{{palpites.AtleticoMG}}</th>
-                        <th>{{palpites.Fluminense}}</th>
-                        <th>Fluminense</th>
-                    </tr>
-                    <tr>
-                        <th>Internacional</th>
-                        <th>{{palpites.Internacional}}</th>
-                        <th>{{palpites.Santos}}</th>
-                        <th>Santos</th>
+                        <td>CAM</td>
+                        <td><img src="{% static 'img/AtleticoMG.svg' %}" width="18" name="CAM"></td>
+                        <td>{{palpites.AtleticoMG}}</td>
+                        <td>{{palpites.Fluminense}}</td>
+                        <td><img src="{% static 'img/Fluminense.svg' %}" width="20" name="FLU"></td>
+                        <td>FLU</td>
                     </tr>
                     <tr>
-                        <th>Ceará</th>
-                        <th>{{palpites.Ceara}}</th>
-                        <th>{{palpites.AmericaMG}}</th>
-                        <th>América-MG</th>
-                    </tr>
-                            <tr>
-                        <th>Flamengo</th>
-                        <th>{{palpites.Flamengo}}</th>
-                        <th>{{palpites.Bragantino}}</th>
-                        <th>Bragantino</th>
+                        <td>INT</td>
+                        <td><img src="{% static 'img/Internacional.svg' %}" width="20" name="INT"></td>
+                        <td>{{palpites.Internacional}}</td>
+                        <td>{{palpites.Santos}}</td>
+                        <td><img src="{% static 'img/Santos.svg' %}" width="20" name="SAN"></td>
+                        <td>SAN</td>
                     </tr>
                     <tr>
-                        <th>Goiás</th>
-                        <th>{{palpites.Goias}}</th>
-                        <th>{{palpites.Fortaleza}}</th>
-                        <th>Fortaleza</th>
+                        <td>CEA</td>
+                        <td><img src="{% static 'img/Ceara.svg' %}" width="18" name="CEA"></td>
+                        <td>{{palpites.Ceara}}</td>
+                        <td>{{palpites.AmericaMG}}</td>
+                        <td><img src="{% static 'img/AmericaMG.svg' %}" width="20" name="AME"></td>
+                        <td>AME</td>
                     </tr>
                     <tr>
-                        <th>Avaí</th>
-                        <th>{{palpites.Avai}}</th>
-                        <th>{{palpites.AtleticoGO}}</th>
-                        <th>Atletico-GO</th>
+                        <td>FLA</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="20" name="FLA"></td>
+                        <td>{{palpites.Flamengo}}</td>
+                        <td>{{palpites.Bragantino}}</td>
+                        <td><img src="{% static 'img/Bragantino.svg' %}" width="20" name="BGT"></td>
+                        <td>BGT</td>
                     </tr>
                     <tr>
-                        <th>Athletico-PR</th>
-                        <th>{{palpites.AthleticoPR}}</th>
-                        <th>{{palpites.Juventude}}</th>
-                        <th>Juventude</th>
+                        <td>GOI</td>
+                        <td><img src="{% static 'img/Goias.svg' %}" width="20" name="GOI"></td>
+                        <td>{{palpites.Goias}}</td>
+                        <td>{{palpites.Fortaleza}}</td>
+                        <td><img src="{% static 'img/Fortaleza.svg' %}" width="20" name="FOR"></td>
+                        <td>FOR</td>
                     </tr>
                     <tr>
-                        <th>Corinthians</th>
-                        <th>{{palpites.Corinthians}}</th>
-                        <th>{{palpites.Cuiaba}}</th>
-                        <th>Cuiabá</th>
+                        <td>AVA</td>
+                        <td><img src="{% static 'img/Avai.svg' %}" width="20" name="AVA"></td>
+                        <td>{{palpites.Avai}}</td>
+                        <td>{{palpites.AtleticoGO}}</td>
+                        <td><img src="{% static 'img/AtleticoGO.svg' %}" width="20" name="ACG"></td>
+                        <td>ACG</td>
                     </tr>
                     <tr>
-                        <th>Botafogo</th>
-                        <th>{{palpites.Botafogo}}</th>
-                        <th>{{palpites.Palmeiras}}</th>
-                        <th>Palmeiras</th>
+                        <td>CAP</td>
+                        <td><img src="{% static 'img/AthleticoPR.svg' %}" width="16" name="CAP"></td>
+                        <td>{{palpites.AthleticoPR}}</td>
+                        <td>{{palpites.Juventude}}</td>
+                        <td><img src="{% static 'img/Juventude.svg' %}" width="20" name="JUV"></td>
+                        <td>JUV</td>
                     </tr>
                     <tr>
-                        <th>São Paulo</th>
-                        <th>{{palpites.SaoPaulo}}</th>
-                        <th>{{palpites.Coritiba}}</th>
-                        <th>Coritiba</th>
+                        <td>COR</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>{{palpites.Corinthians}}</td>
+                        <td>{{palpites.Cuiaba}}</td>
+                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="20" name="CUI"></td>
+                        <td>CUI</td>
                     </tr>
+                    <tr>
+                        <td>BOT</td>
+                        <td><img src="{% static 'img/Botafogo.svg' %}" width="20" name="BOT"></td>
+                        <td>{{palpites.Botafogo}}</td>
+                        <td>{{palpites.Palmeiras}}</td>
+                        <td><img src="{% static 'img/Palmeiras.svg' %}" width="20" name="PAL"></td>
+                        <td>PAL</td>
+                    </tr>
+                    <tr>
+                        <td>SAO</td>
+                        <td><img src="{% static 'img/SaoPaulo.svg' %}" width="20" name="SAO"></td>
+                        <td>{{palpites.SaoPaulo}}</td>
+                        <td>{{palpites.Coritiba}}</td>
+                        <td><img src="{% static 'img/Coritiba.svg' %}" width="20" name="COR"></td>
+                        <td>COR</td>
                 </table>
     <a href="/">voltar</a><br>
 

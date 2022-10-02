@@ -1,7 +1,7 @@
 {% extends 'app/main.html' %}
 
 {% block content %}
-{% if request.user.is_authenticated %}
+{% if request.user.is_autdenticated %}
     <a href="/logout/">Logout</a> {% else %}
     <a href="/login/">Login</a> {% endif %}
 
@@ -36,8 +36,6 @@
 
     </table>
 
-
-{{cla.PONTOS}}
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
     <label for="rodada">Veja a classificação da rodada:</label>

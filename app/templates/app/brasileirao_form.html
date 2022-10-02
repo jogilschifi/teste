@@ -1,5 +1,7 @@
 {% extends 'app/main.html' %}
 
+{% load static %}
+
 {% block content %}
 
 {% if request.user.is_authenticated %}
@@ -21,8 +23,8 @@ voce já palpitou nessa rodada
 {% empty %}
 
     <style>
-        th:nth-child(1), th:nth-child(4) {
-          background-color: #ddd;
+        td:nth-child(1), td:nth-child(2) {
+          text-align: right ;
         }
         tr {
           border-bottom: 1px solid #ddd;
@@ -30,73 +32,98 @@ voce já palpitou nessa rodada
         th:nth-child(2), th:nth-child(3) {
           background-color: white;
         }
+        table {
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
+        }
     </style>
+
 
 <form method="POST" action="">
     {% csrf_token %}
 <h3 align="middle">BRASILEIRÃO</h3>
 <h4 align="middle">Rodada 29º</h4>
     <input type="hidden" name="Rodada" value="29">
-                <table border="1">
+                <table align="center" cellpadding="5">
                     <tr>
-                        <th>Atlético-MG</th>
-                        <th>{{form.AtleticoMG}}</th>
-                        <th>{{form.Fluminense}}</th>
-                        <th>Fluminense</th>
+                        <td>CAM</td>
+                        <td><img src="{% static 'img/AtleticoMG.svg' %}" width="18" name="CAM"></td>
+                        <td>{{form.AtleticoMG}}</td>
+                        <td>{{form.Fluminense}}</td>
+                        <td><img src="{% static 'img/Fluminense.svg' %}" width="20" name="FLU"></td>
+                        <td>FLU</td>
                     </tr>
                     <tr>
-                        <th>Internacional</th>
-                        <th>{{form.Internacional}}</th>
-                        <th>{{form.Santos}}</th>
-                        <th>Santos</th>
+                        <td>INT</td>
+                        <td><img src="{% static 'img/Internacional.svg' %}" width="20" name="INT"></td>
+                        <td>{{form.Internacional}}</td>
+                        <td>{{form.Santos}}</td>
+                        <td><img src="{% static 'img/Santos.svg' %}" width="20" name="SAN"></td>
+                        <td>SAN</td>
                     </tr>
                     <tr>
-                        <th>Ceará</th>
-                        <th>{{form.Ceara}}</th>
-                        <th>{{form.AmericaMG}}</th>
-                        <th>América-MG</th>
-                    </tr>
-                            <tr>
-                        <th>Flamengo</th>
-                        <th>{{form.Flamengo}}</th>
-                        <th>{{form.Bragantino}}</th>
-                        <th>Bragantino</th>
+                        <td>CEA</td>
+                        <td><img src="{% static 'img/Ceara.svg' %}" width="18" name="CEA"></td>
+                        <td>{{form.Ceara}}</td>
+                        <td>{{form.AmericaMG}}</td>
+                        <td><img src="{% static 'img/AmericaMG.svg' %}" width="20" name="AME"></td>
+                        <td>AME</td>
                     </tr>
                     <tr>
-                        <th>Goiás</th>
-                        <th>{{form.Goias}}</th>
-                        <th>{{form.Fortaleza}}</th>
-                        <th>Fortaleza</th>
+                        <td>FLA</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="20" name="FLA"></td>
+                        <td>{{form.Flamengo}}</td>
+                        <td>{{form.Bragantino}}</td>
+                        <td><img src="{% static 'img/Bragantino.svg' %}" width="20" name="BGT"></td>
+                        <td>BGT</td>
                     </tr>
                     <tr>
-                        <th>Avaí</th>
-                        <th>{{form.Avai}}</th>
-                        <th>{{form.AtleticoGO}}</th>
-                        <th>Atletico-GO</th>
+                        <td>GOI</td>
+                        <td><img src="{% static 'img/Goias.svg' %}" width="20" name="GOI"></td>
+                        <td>{{form.Goias}}</td>
+                        <td>{{form.Fortaleza}}</td>
+                        <td><img src="{% static 'img/Fortaleza.svg' %}" width="20" name="FOR"></td>
+                        <td>FOR</td>
                     </tr>
                     <tr>
-                        <th>Athletico-PR</th>
-                        <th>{{form.AthleticoPR}}</th>
-                        <th>{{form.Juventude}}</th>
-                        <th>Juventude</th>
+                        <td>AVA</td>
+                        <td><img src="{% static 'img/Avai.svg' %}" width="20" name="AVA"></td>
+                        <td>{{form.Avai}}</td>
+                        <td>{{form.AtleticoGO}}</td>
+                        <td><img src="{% static 'img/AtleticoGO.svg' %}" width="20" name="ACG"></td>
+                        <td>ACG</td>
                     </tr>
                     <tr>
-                        <th>Corinthians</th>
-                        <th>{{form.Corinthians}}</th>
-                        <th>{{form.Cuiaba}}</th>
-                        <th>Cuiabá</th>
+                        <td>CAP</td>
+                        <td><img src="{% static 'img/AthleticoPR.svg' %}" width="16" name="CAP"></td>
+                        <td>{{form.AthleticoPR}}</td>
+                        <td>{{form.Juventude}}</td>
+                        <td><img src="{% static 'img/Juventude.svg' %}" width="20" name="JUV"></td>
+                        <td>JUV</td>
                     </tr>
                     <tr>
-                        <th>Botafogo</th>
-                        <th>{{form.Botafogo}}</th>
-                        <th>{{form.Palmeiras}}</th>
-                        <th>Palmeiras</th>
+                        <td>COR</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>{{form.Corinthians}}</td>
+                        <td>{{form.Cuiaba}}</td>
+                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="20" name="CUI"></td>
+                        <td>CUI</td>
                     </tr>
                     <tr>
-                        <th>São Paulo</th>
-                        <th>{{form.SaoPaulo}}</th>
-                        <th>{{form.Coritiba}}</th>
-                        <th>Coritiba</th>
+                        <td>BOT</td>
+                        <td><img src="{% static 'img/Botafogo.svg' %}" width="20" name="BOT"></td>
+                        <td>{{form.Botafogo}}</td>
+                        <td>{{form.Palmeiras}}</td>
+                        <td><img src="{% static 'img/Palmeiras.svg' %}" width="20" name="PAL"></td>
+                        <td>PAL</td>
+                    </tr>
+                    <tr>
+                        <td>SAO</td>
+                        <td><img src="{% static 'img/SaoPaulo.svg' %}" width="20" name="SAO"></td>
+                        <td>{{form.SaoPaulo}}</td>
+                        <td>{{form.Coritiba}}</td>
+                        <td><img src="{% static 'img/Coritiba.svg' %}" width="20" name="COR"></td>
+                        <td>COR</td>
                     </tr>
                 </table>
     <input type="submit" value="Salvar">
