@@ -30,7 +30,7 @@
 <h3 align="middle">BRASILEIRÃO</h3>
 <h4 align="middle">Rodada 29º</h4>
 
-                <table id="analise" align="center" cellpadding="5">
+                <table id="analise" align="center" cellpadding="10">
                     <tr>
                         <th colspan="15" style="font-size: 15px">  Resultados (Palpites)</th>
                     </tr>
@@ -103,7 +103,7 @@
                     </tr>
                     <tr>
                         <td>CUI</td>
-                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="16" name="CUI"></td>
+                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="20" name="CUI"></td>
                         <td>{{resultadoobj.Cuiaba}}</td>
                         <td style="color: {{cor7}}; font-size: 13.5px">({{palpiteobj.Cuiaba}})</td>
                         <td>x</td>
@@ -147,34 +147,11 @@
                         <td>BOT</td>
                     </tr>
                 </table>
+<br>
 <hr>
-
-    <table  align="center" border="1" class="table table-sm" cellpadding="5">
+    <table align="center" cellpadding="15">
         <tr>
-            <th style="font-size: 15px" colspan="2">Resultados</th>
-        </tr>
-        <tr>
-            <th align="right">RE:</th>
-            <td>{{exato}}</td>
-        </tr>
-        <tr>
-            <th align="right">RP:</th>
-            <td>{{igual}}</td>
-        </tr>
-
-        <tr>
-            <th align="right">RB:</th>
-            <td>{{bonus}}</td>
-        </tr>
-
-        <tr>
-            <th align="right">RE:</th>
-            <td>{{diferente}}</td>
-        </tr>
-
-        <tr>
-            <th align="right">PT:</th>
-            <td align="left">{{total}}</td>
+            <td>RE: {{exato}}; RP: {{igual}}; RB: {{bonus}}; RB: {{diferente}}; RB: {{total}}.</td>
         </tr>
     </table>
 
