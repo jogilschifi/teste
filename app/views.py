@@ -621,18 +621,18 @@ def calculadoradoispontozero(request):
     data['classificacao'] = PontuacaoBrasileirao.objects.all()
     data['rodada']= request.GET['rodada']
     resultado = ResultadosBrasileirao.objects.all()
-    resultado = resultado.filter(Rodada=request.GET['rodada'])
+    resultado = resultado.filter(Rodada=str(request.GET['rodada']))
     data['resultadoobj'] = resultado
     resultado = resultado.first()
 
     palpite = Brasileirao.objects.all()
-    palpite = palpite.filter(Rodada=request.GET['rodada'])
+    palpite = palpite.filter(Rodada=str(request.GET['rodada']))
     palpite = palpite.filter(user=request.GET['usuario'])
     data['palpiteobj'] = palpite
     palpite = palpite.first()
 
     ordem = OrdenacaoBrasileirao.objects.all()
-    ordem = ordem.filter(Rodada=request.GET['rodada'])
+    ordem = ordem.filter(Rodada=str(request.GET['rodada']))
     data['ordemobj'] = ordem
     if ordem:
         times = ordem.first()
