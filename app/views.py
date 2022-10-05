@@ -223,7 +223,7 @@ def classificacaodoispontozero(request):
 def resultado(request):
     current_user = request.user
     data = {}
-    data['rodada']= int(request.GET['rodada'])
+    data['rodada'] = int(request.GET['rodada'])
     resultado = ResultadosBrasileirao.objects.all()
     resultado = resultado.filter(Rodada=request.GET['rodada'])
     resultado = resultado.first()
@@ -325,8 +325,8 @@ def resultado(request):
     data['total'] = total
     while i < 19:
         if i % 2 == 0:
-            if resultado[ordem[i]]:
-                if resultado[ordem[i+1]]:
+            if resultado[ordem[i]] != None:
+                if resultado[ordem[i+1]] != None:
                     if resultado[ordem[i]] - resultado[ordem[i+1]] > 0:
                         if palpite[ordem[i]] - palpite[ordem[i+1]] > 0:
                             if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
