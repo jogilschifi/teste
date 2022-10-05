@@ -94,7 +94,7 @@ class ResultadosBrasileirao(models.Model):
         (37, 37),
         (38, 38),
     )
-    Rodada = models.CharField(max_length=2, choices=RODADAS)
+    Rodada = models.IntegerField(choices=RODADAS)
     AthleticoPR = models.IntegerField(null=True, blank=True)
     Palmeiras = models.IntegerField(null=True, blank=True)
     Corinthians = models.IntegerField(null=True, blank=True)
