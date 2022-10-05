@@ -15,6 +15,7 @@
             <th>Acertos exatos</th>
             <th>Acertos vencedor + bonus</th>
             <th>Acertos vencedor:</th>
+            <th>Erros:</th>
         </tr>
         {% for x in classificacao %}
             <tr align="center">
@@ -24,6 +25,7 @@
                 <td>{{x.RE}}</td>
                 <td>{{x.RB}}</td>
                 <td>{{x.RP}}</td>
+                <td>{{x.ER}}</td>
             </tr>
         {% endfor %}
     </table>

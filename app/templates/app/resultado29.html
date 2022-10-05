@@ -11,6 +11,7 @@
 <p>{{request.user}}</p>
 <hr>
 
+
         <style>
             td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4) {
               text-align: right ;
@@ -26,10 +27,8 @@
             border-collapse: collapse;
             }
         </style>
-{{rodada}}
-{% if 28 == rodada %}
 <h3 align="middle">BRASILEIRÃO</h3>
-<h4 align="middle">Rodada 28º</h4>
+<h4 align="middle">Rodada 29º</h4>
 
                 <table id="analise" align="center" cellpadding="10">
                     <tr>
@@ -148,123 +147,6 @@
                         <td>BOT</td>
                     </tr>
                 </table>
-{% elif rodada == 29 %}
-<h3 align="center">BRASILEIRÃO</h3>
-<h4 align="center">Rodada 29º </h4>
-                <table align="center" cellpadding="5">
-                    <tr>
-                        <td>CAM</td>
-                        <td><img src="{% static 'img/AtleticoMG.svg' %}" width="18" name="CAM"></td>
-                        <td>{{resultadoobj.AtleticoMG}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.AtleticoMG}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Fluminense}}</td>
-                        <td>{{resultadoobj.Fluminense}}</td>
-                        <td><img src="{% static 'img/Fluminense.svg' %}" width="20" name="FLU"></td>
-                        <td>FLU</td>
-                    </tr>
-                    <tr>
-                        <td>INT</td>
-                        <td><img src="{% static 'img/Internacional.svg' %}" width="20" name="INT"></td>
-                        <td>{{resultadoobj.Internacional}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Internacional}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Santos}}</td>
-                        <td>{{resultadoobj.Santos}}</td>
-                        <td><img src="{% static 'img/Santos.svg' %}" width="20" name="SAN"></td>
-                        <td>SAN</td>
-                    </tr>
-                    <tr>
-                        <td>CEA</td>
-                        <td><img src="{% static 'img/Ceara.svg' %}" width="18" name="CEA"></td>
-                        <td>{{resultadoobj.Ceara}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Ceara}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.AmericaMG}}</td>
-                        <td>{{resultadoobj.AmericaMG}}</td>
-                        <td><img src="{% static 'img/AmericaMG.svg' %}" width="20" name="AME"></td>
-                        <td>AME</td>
-                    </tr>
-                    <tr>
-                        <td>FLA</td>
-                        <td><img src="{% static 'img/Flamengo.svg' %}" width="20" name="FLA"></td>
-                        <td>{{resultadoobj.Flamengo}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Flamengo}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Bragantino}}</td>
-                        <td>{{resultadoobj.Bragantino}}</td>
-                        <td><img src="{% static 'img/Bragantino.svg' %}" width="20" name="BGT"></td>
-                        <td>BGT</td>
-                    </tr>
-                    <tr>
-                        <td>GOI</td>
-                        <td><img src="{% static 'img/Goias.svg' %}" width="20" name="GOI"></td>
-                        <td>{{resultadoobj.Goias}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Goias}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Fortaleza}}</td>
-                        <td>{{resultadoobj.Fortaleza}}</td>
-                        <td><img src="{% static 'img/Fortaleza.svg' %}" width="20" name="FOR"></td>
-                        <td>FOR</td>
-                    </tr>
-                    <tr>
-                        <td>AVA</td>
-                        <td><img src="{% static 'img/Avai.svg' %}" width="20" name="AVA"></td>
-                        <td>{{resultadoobj.Avai}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Avai}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.AtleticoGO}}</td>
-                        <td>{{resultadoobj.AtleticoGO}}</td>
-                        <td><img src="{% static 'img/AtleticoGO.svg' %}" width="20" name="ACG"></td>
-                        <td>ACG</td>
-                    </tr>
-                    <tr>
-                        <td>CAP</td>
-                        <td><img src="{% static 'img/AthleticoPR.svg' %}" width="16" name="CAP"></td>
-                        <td>{{resultadoobj.AthleticoPR}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.AthleticoPR}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Juventude}}</td>
-                        <td>{{resultadoobj.Juventude}}</td>
-                        <td><img src="{% static 'img/Juventude.svg' %}" width="20" name="JUV"></td>
-                        <td>JUV</td>
-                    </tr>
-                    <tr>
-                        <td>COR</td>
-                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
-                        <td>{{resultadoobj.Corinthians}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Corinthians}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Cuiaba}}</td>
-                        <td>{{resultadoobj.Cuiaba}}</td>
-                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="20" name="CUI"></td>
-                        <td>CUI</td>
-                    </tr>
-                    <tr>
-                        <td>BOT</td>
-                        <td><img src="{% static 'img/Botafogo.svg' %}" width="20" name="BOT"></td>
-                        <td>{{resultadoobj.Botafogo}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Botafogo}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Palmeiras}}</td>
-                        <td>{{resultadoobj.Palmeiras}}</td>
-                        <td><img src="{% static 'img/Palmeiras.svg' %}" width="20" name="PAL"></td>
-                        <td>PAL</td>
-                    </tr>
-                    <tr>
-                        <td>SAO</td>
-                        <td><img src="{% static 'img/SaoPaulo.svg' %}" width="20" name="SAO"></td>
-                        <td>{{resultadoobj.SaoPaulo}}</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.SaoPaulo}}</td>
-                        <td>x</td>
-                        <td style="color: {{cor10}}; font-size: 13.5px">{{palpiteobj.Coritiba}}</td>
-                        <td>{{resultadoobj.Coritiba}}</td>
-                        <td><img src="{% static 'img/Coritiba.svg' %}" width="20" name="COR"></td>
-                        <td>COR</td>
-                </table>
-{% endif %}
-
-
 <br>
 <hr>
     <table align="center" cellpadding="15">

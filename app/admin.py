@@ -4,7 +4,7 @@ from .models import Clubes, ResultadosBrasileirao, OrdenacaoBrasileirao, Brasile
 
 admin.site.register(Clubes)
 
-admin.site.register(ResultadosBrasileirao)
+admin.site.register(ResultadosBrasileirao, required=False)
 
 admin.site.register(OrdenacaoBrasileirao)
 
