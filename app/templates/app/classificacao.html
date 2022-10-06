@@ -8,28 +8,37 @@
 <p>{{request.user}}</p>
 <hr>
 
+<style>
+    td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+
+    }
+    tr {
+      border-bottom: 1px solid #ddd;
+    }
+    th:nth-child(2), th:nth-child(3) {
+      ;
+    }
+    table {
+    display:
+    border: 1px solid whitesmoke;
+    border-collapse: collapse;
+    }
+</style>
 
 <h4 align="middle">Classificação da rodada: {{rodada}}º</h4>
 
 
 
-    <table  border="1" class="table table-sm" cellpadding="5">
+    <table align="center" class="table table-sm" cellpadding="5">
         <tr>
-            <th>Posição</th>
-            <th>Time</th>
+            <th colspan="2">Classificação</th>
             <th>Pontos</th>
-            <th>Acertos exatos</th>
-            <th>Acertos vencedor + bonus</th>
-            <th>Acertos vencedor:</th>
         </tr>
         {% for x in cla %}
             <tr align="center">
                 <td>{{x.posicao}}</td>
                 <td align="left">{{x.user}}</td>
                 <td>{{x.PONTOS}}</td>
-                <td>{{x.RE}}</td>
-                <td>{{x.RB}}</td>
-                <td>{{x.RP}}</td>
             </tr>
         {% endfor %}
 
