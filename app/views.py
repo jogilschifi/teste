@@ -46,6 +46,22 @@ class RegisterPage(FormView):
             return redirect('palpites')
         return super(RegisterPage, self).get(*args, **kwargs)
 
+def perfilusuarios(request, pk, user):
+
+    data = {}
+    data['palpites'] = Brasileirao.objects.all()
+    data['palpites'] = data['palpites'].filter(user_id=pk)
+    data['palpites'] = data['palpites'].filter(Rodada=30)
+    data['palpites'] = data['palpites'].first()
+    data['rodada'] = ResultadosBrasileirao.objects.all()
+    data['pk'] = pk
+    data['user'] = user
+    if data['palpites']:
+        return render(request, 'app/perfilusuarios.html', data)
+    else:
+        data['palpites'] = 0
+    return render(request, 'app/perfilusuarios.html', data)
+
 
 class PalpiteList(LoginRequiredMixin, ListView):
     model = Brasileirao
@@ -220,8 +236,15 @@ def classificacaodoispontozero(request):
 
 
 def resultado(request):
-    current_user = request.user
     data = {}
+    verificacao = int(request.GET['verificacao'])
+    if 1 == verificacao:
+        data['verificacao'] = verificacao
+    data['verificacao'] = verificacao
+    current_user = request.GET['user_id']
+    data['requestuser'] = request.user
+    data['user_id'] = current_user
+    data['user'] = request.GET['user']
     data['rodada'] = int(request.GET['rodada'])
     resultado = ResultadosBrasileirao.objects.all()
     resultado = resultado.filter(Rodada=request.GET['rodada'])

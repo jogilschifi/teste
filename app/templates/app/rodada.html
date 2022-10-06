@@ -9,6 +9,9 @@
 <hr>
 
 <form id="formrodada" action="/resultado/" method="GET">
+    <input type="hidden" name="user_id" value="{{request.user.id}}">
+    <input type="hidden" name="user" value="{{request.user}}">
+    <input type="hidden" name="verificacao" value=0>
     {% csrf_token %}
     <label for="rodada">Rodada:</label>
     <select name="rodada" id="rodada" class="form-control">
@@ -20,6 +23,7 @@
     <input type="submit" class="btn btn-success" value="Verificar">
 </form>
 <br>
+
     <a href="/">voltar</a><br>
 
 {% endblock %}

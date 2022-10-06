@@ -273,8 +273,8 @@
     <table align="center" cellpadding="15">
         <tr>
             <td><span style="color: blue">RE: {{exato}};</span>
-                <span style="color: #993399">RP: {{igual}};</span>
-                <span style="color: orange">RB: {{bonus}};</span>
+                <span style="color: #993399">RB: {{bonus}};</span>
+                <span style="color: orange">RP: {{igual}};</span>
                 <span style="color: red">ER: {{diferente}};</span>
                 PT: {{total}}.
             </td>
@@ -284,11 +284,16 @@
     <p  style="font-size: 8px">
         LEGENDA:<br>
         RE: Resultado Exato;
-        RP: Resultado Parcial;
         RB: Resultado Parcial com Bônus;
+        RP: Resultado Parcial;
         ER: Resultado Errado;
+        PT: Pontuação.
     </p>
 <hr>
 
+{% if verificacao == 0 %}
     <a href="/rodada">voltar</a><br>
+{% else %}
+    <a href="/{{user_id}}/{{user}}/">voltar</a><br>
+{% endif %}
 {% endblock %}
