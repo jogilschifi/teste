@@ -139,7 +139,7 @@ def classificacao(request):
         cla = []
         for i in range(usuarios):
             classifnova = classificacao_sort[i]
-            cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "posicao":i+1})
+            cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1})
         data['cla'] = cla
         return render(request, 'app/classificacao.html', data)
     data = {}
@@ -166,8 +166,7 @@ def classificacaoporrodada(request):
     cla = []
     for i in range(usuarios):
         classifnova = classificacao_sort[i]
-        cla.append({"PONTOS": classifnova.PONTOS, "RE": classifnova.RE, "RB": classifnova.RB, "RP": classifnova.RP,
-                    "user": classifnova.user, "posicao": i + 1})
+        cla.append({"PONTOS": classifnova.PONTOS, "RE": classifnova.RE, "RB": classifnova.RB, "RP": classifnova.RP, "user": classifnova.user, "id":classifnova.user_id, "posicao": i + 1})
     data['cla'] = cla
 
     return render(request, 'app/classificacaoporrodada.html', data)
