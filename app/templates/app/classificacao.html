@@ -1,7 +1,7 @@
 {% extends 'app/main.html' %}
 
 {% block content %}
-{% if request.user.is_autdenticated %}
+{% if request.user.is_authenticated %}
     <a href="/logout/">Logout</a> {% else %}
     <a href="/login/">Login</a> {% endif %}
 
@@ -9,19 +9,20 @@
 <hr>
 
 <style>
-    td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+    td:nth-child(1) {
+        text-align: right
 
     }
     tr {
-      border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
     }
     th:nth-child(2), th:nth-child(3) {
-      ;
+        ;
     }
     table {
-    display:
-    border: 1px solid whitesmoke;
-    border-collapse: collapse;
+        display:
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
     }
 </style>
 
@@ -37,7 +38,7 @@
         {% for x in cla %}
             <tr align="center">
                 <td>{{x.posicao}}</td>
-                <td align="left">{{x.user}}</td>
+                <td align="left"><a href="/{{user_id}}">{{x.user}}</a></td>
                 <td>{{x.PONTOS}}</td>
             </tr>
         {% endfor %}

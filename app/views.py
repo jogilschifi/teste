@@ -336,25 +336,25 @@ def resultado(request):
                                     total += 18
                                     data['total'] = total
                                     if i == 0:
-                                        data['cor1'] = 'green'
+                                        data['cor1'] = 'blue'
                                     elif i == 2:
-                                        data['cor2'] = 'green'
+                                        data['cor2'] = 'blue'
                                     elif i == 4:
-                                        data['cor3'] = 'green'
+                                        data['cor3'] = 'blue'
                                     elif i == 6:
-                                        data['cor4'] = 'green'
+                                        data['cor4'] = 'blue'
                                     elif i == 8:
-                                        data['cor5'] = 'green'
+                                        data['cor5'] = 'blue'
                                     elif i == 10:
-                                        data['cor6'] = 'green'
+                                        data['cor6'] = 'blue'
                                     elif i == 12:
-                                        data['cor7'] = 'green'
+                                        data['cor7'] = 'blue'
                                     elif i == 14:
-                                        data['cor8'] = 'green'
+                                        data['cor8'] = 'blue'
                                     elif i == 16:
-                                        data['cor9'] = 'green'
+                                        data['cor9'] = 'blue'
                                     elif i == 18:
-                                        data['cor10'] = 'green'
+                                        data['cor10'] = 'blue'
                                 else:
                                     bonus += 1
                                     data['bonus'] = bonus
@@ -438,25 +438,25 @@ def resultado(request):
                                     total += 18
                                     data['total'] = total
                                     if i == 0:
-                                        data['cor1'] = 'green'
+                                        data['cor1'] = 'blue'
                                     elif i == 2:
-                                        data['cor2'] = 'green'
+                                        data['cor2'] = 'blue'
                                     elif i == 4:
-                                        data['cor3'] = 'green'
+                                        data['cor3'] = 'blue'
                                     elif i == 6:
-                                        data['cor4'] = 'green'
+                                        data['cor4'] = 'blue'
                                     elif i == 8:
-                                        data['cor5'] = 'green'
+                                        data['cor5'] = 'blue'
                                     elif i == 10:
-                                        data['cor6'] = 'green'
+                                        data['cor6'] = 'blue'
                                     elif i == 12:
-                                        data['cor7'] = 'green'
+                                        data['cor7'] = 'blue'
                                     elif i == 14:
-                                        data['cor8'] = 'green'
+                                        data['cor8'] = 'blue'
                                     elif i == 16:
-                                        data['cor9'] = 'green'
+                                        data['cor9'] = 'blue'
                                     elif i == 18:
-                                        data['cor10'] = 'green'
+                                        data['cor10'] = 'blue'
                                 else:
                                     bonus += 1
                                     data['bonus'] = bonus
@@ -537,25 +537,25 @@ def resultado(request):
                             total += 18
                             data['total'] = total
                             if i == 0:
-                                data['cor1'] = 'green'
+                                data['cor1'] = 'blue'
                             elif i == 2:
-                                data['cor2'] = 'green'
+                                data['cor2'] = 'blue'
                             elif i == 4:
-                                data['cor3'] = 'green'
+                                data['cor3'] = 'blue'
                             elif i == 6:
-                                data['cor4'] = 'green'
+                                data['cor4'] = 'blue'
                             elif i == 8:
-                                data['cor5'] = 'green'
+                                data['cor5'] = 'blue'
                             elif i == 10:
-                                data['cor6'] = 'green'
+                                data['cor6'] = 'blue'
                             elif i == 12:
-                                data['cor7'] = 'green'
+                                data['cor7'] = 'blue'
                             elif i == 14:
-                                data['cor8'] = 'green'
+                                data['cor8'] = 'blue'
                             elif i == 16:
-                                data['cor9'] = 'green'
+                                data['cor9'] = 'blue'
                             elif i == 18:
-                                data['cor10'] = 'green'
+                                data['cor10'] = 'blue'
                         else:
                             igual += 1
                             data['igual'] = igual
