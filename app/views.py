@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.db.models import Sum, Max
 
 from django.contrib.auth.views import LoginView
@@ -47,6 +47,7 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 def perfilusuarios(request, pk, user):
+
     horario = datetime.datetime.now()
     horalimite = datetime.datetime(2022, 10, 8, 19, 00)
     if horalimite > horario:
@@ -171,8 +172,11 @@ def classificacao(request):
     return render(request, 'app/classificacao.html', data)
 
 def classificacaoporrodada(request):
+
     classificacao = PontuacaoTotalBrasileirao.objects.all()
     rodada = request.GET['rodada']
+    if rodada == '0':
+        return redirect('/classificacao/')
     rodadas = ResultadosBrasileirao.objects.all()
     classificacao = classificacao.filter(Rodada=rodada)
 
@@ -244,13 +248,12 @@ def classificacaodoispontozero(request):
 def resultado(request):
     data = {}
     verificacao = int(request.GET['verificacao'])
-    if 1 == verificacao:
-        data['verificacao'] = verificacao
     data['verificacao'] = verificacao
     current_user = request.GET['user_id']
     data['requestuser'] = request.user
     data['user_id'] = current_user
-    data['user'] = request.GET['user']
+    user = request.GET['user']
+    data['user'] = user
     data['rodada'] = int(request.GET['rodada'])
     resultado = ResultadosBrasileirao.objects.all()
     resultado = resultado.filter(Rodada=request.GET['rodada'])
@@ -291,6 +294,8 @@ def resultado(request):
         ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13, time14, time15, time16, time17, time18, time19, time20]
         data['ordem'] = ordem
     else:
+        if data['verificacao'] == 1:
+            return redirect(reverse("perfilusuarios",kwargs={'pk':int(current_user), 'user':str(user)}))
         return redirect('/rodada/')
     if palpite:
         ttime1 = palpite.AthleticoPR
@@ -316,6 +321,8 @@ def resultado(request):
         palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3 , "Internacional": ttime4, "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8, "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12, "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16, "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20}
         data['palpite'] = palpite
     else:
+        if data['verificacao'] == 1:
+            return redirect(reverse("perfilusuarios",kwargs={'pk':int(current_user), 'user':str(user)}))
         return redirect('/rodada/')
     tttime1 = resultado.AthleticoPR
     tttime2 = resultado.Palmeiras

@@ -1,6 +1,7 @@
 {% extends 'app/main.html' %}
 
 {% block content %}
+
 {% if request.user.is_authenticated %}
     <a href="/logout/">Logout</a> {% else %}
     <a href="/login/">Login</a> {% endif %}
@@ -50,7 +51,7 @@
     {% csrf_token %}
     <label for="rodada">Veja a classificação da rodada:</label>
     <select name="rodada" id="rodada" class="form-control">
-        <option action="/caminhocalculadora/" value="0">Selecione</option>
+        <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
