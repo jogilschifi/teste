@@ -47,11 +47,17 @@ class RegisterPage(FormView):
         return super(RegisterPage, self).get(*args, **kwargs)
 
 def perfilusuarios(request, pk, user):
-
+    horario = datetime.datetime.now()
+    horalimite = datetime.datetime(2022, 10, 8, 19, 00)
+    if horalimite > horario:
+        rod = 30
+    else:
+        rod = 31
     data = {}
+    data['rod'] = rod
     data['palpites'] = Brasileirao.objects.all()
     data['palpites'] = data['palpites'].filter(user_id=pk)
-    data['palpites'] = data['palpites'].filter(Rodada=30)
+    data['palpites'] = data['palpites'].filter(Rodada=rod)
     data['palpites'] = data['palpites'].first()
     data['rodada'] = ResultadosBrasileirao.objects.all()
     data['pk'] = pk
@@ -70,9 +76,9 @@ class PalpiteList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['palpites'] = context['palpites'].filter(user=self.request.user)
-        context['palpites'] = context['palpites'].filter(Rodada=30)
+        context['palpites'] = context['palpites'].filter(Rodada=31)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 5, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 8, 19, 00)
         return context
 
     def filter(self, user):
@@ -98,9 +104,9 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
-        context['dados'] = context['dados'].filter(Rodada=30)
+        context['dados'] = context['dados'].filter(Rodada=31)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 5, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 8, 19, 00)
         return context
 
     def form_valid(self, form):
@@ -121,7 +127,7 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 5, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 8, 19, 00)
         return context
 
 class PalpiteDelete(DeleteView):
