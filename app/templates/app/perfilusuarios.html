@@ -29,7 +29,104 @@
 <p>Perfil de {{user}}</p>
     {% csrf_token %}
 
-
+{% if palpites != 0 %}
+        <h3 align="center">BRASILEIRÃO</h3>
+        <h4 align="center">Rodada 31º </h4>
+                <table align="center" cellpadding="5">
+                    <tr>
+                        <td>CUI</td>
+                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="18" name="CUI"></td>
+                        <td>{{palpites.Cuiaba}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Flamengo}}</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="20" name="FLA"></td>
+                        <td>FLA</td>
+                    </tr>
+                    <tr>
+                        <td>COR</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>{{palpites.Corinthians}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.AthleticoPR}}</td>
+                        <td><img src="{% static 'img/AthleticoPR.svg' %}" width="20" name="CAP"></td>
+                        <td>CAP</td>
+                    </tr>
+                    <tr>
+                        <td>INT</td>
+                        <td><img src="{% static 'img/Internacional.svg' %}" width="18" name="INT"></td>
+                        <td>{{palpites.Internacional}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Goias}}</td>
+                        <td><img src="{% static 'img/Goias.svg' %}" width="20" name="GOI"></td>
+                        <td>GOI</td>
+                    </tr>
+                    <tr>
+                        <td>SAO</td>
+                        <td><img src="{% static 'img/SaoPaulo.svg' %}" width="20" name="SAO"></td>
+                        <td>{{palpites.SaoPaulo}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Botafogo}}</td>
+                        <td><img src="{% static 'img/Botafogo.svg' %}" width="20" name="BOT"></td>
+                        <td>BOT</td>
+                    </tr>
+                    <tr>
+                        <td>FOR</td>
+                        <td><img src="{% static 'img/Fortaleza.svg' %}" width="20" name="FOR"></td>
+                        <td>{{palpites.Fortaleza}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Avai}}</td>
+                        <td><img src="{% static 'img/Avai.svg' %}" width="20" name="AVA"></td>
+                        <td>AVA</td>
+                    </tr>
+                    <tr>
+                        <td>CAM</td>
+                        <td><img src="{% static 'img/AtleticoMG.svg' %}" width="20" name="CAM"></td>
+                        <td>{{palpites.AtleticoMG}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Ceara}}</td>
+                        <td><img src="{% static 'img/Ceara.svg' %}" width="20" name="CEA"></td>
+                        <td>CEA</td>
+                    </tr>
+                    <tr>
+                        <td>FLU</td>
+                        <td><img src="{% static 'img/Fluminense.svg' %}" width="16" name="FLU"></td>
+                        <td>{{palpites.Fluminense}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.AmericaMG}}</td>
+                        <td><img src="{% static 'img/AmericaMG.svg' %}" width="20" name="AME"></td>
+                        <td>AME</td>
+                    </tr>
+                    <tr>
+                        <td>CFC</td>
+                        <td><img src="{% static 'img/Coritiba.svg' %}" width="20" name="CFC"></td>
+                        <td>{{palpites.Coritiba}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Bragantino}}</td>
+                        <td><img src="{% static 'img/Bragantino.svg' %}" width="20" name="BGT"></td>
+                        <td>BGT</td>
+                    </tr>
+                    <tr>
+                        <td>ACG</td>
+                        <td><img src="{% static 'img/AtleticoGO.svg' %}" width="20" name="ACG"></td>
+                        <td>{{palpites.AtleticoGO}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Palmeiras}}</td>
+                        <td><img src="{% static 'img/Palmeiras.svg' %}" width="20" name="PAL"></td>
+                        <td>PAL</td>
+                    </tr>
+                    <tr>
+                        <td>SAN</td>
+                        <td><img src="{% static 'img/Santos.svg' %}" width="20" name="SAN"></td>
+                        <td>{{palpites.Santos}}</td>
+                        <td align="center">x</td>
+                        <td>{{palpites.Juventude}}</td>
+                        <td><img src="{% static 'img/Juventude.svg' %}" width="20" name="JUV"></td>
+                        <td>JUV</td>
+                    </tr>
+                </table>
+{% else %}
+Usuário não palpitou esta rodada
+{% endif %}
 <form id="formrodadausuarios" action="/resultado/" method="GET">
     <input type="hidden" name="user_id" value="{{pk}}">
     <input type="hidden" name="user" value="{{user}}">
