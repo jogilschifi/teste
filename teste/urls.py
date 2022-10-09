@@ -29,7 +29,7 @@ urlpatterns = [
     path('palpite/<int:pk>/', PalpiteDetail.as_view(), name='palpitedetail'),
     path('palpitecreate/', PalpiteCreate.as_view(), name='palpitecreate'),
     path('palpiteupdate/<int:pk>/', PalpiteUpdate.as_view(), name='palpiteupdate'),
-    path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
+    #path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
     path('pontuacao/', pontuacao),
     path('rodada/', rodada),
     path('resultado/', resultado),

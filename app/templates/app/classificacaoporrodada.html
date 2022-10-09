@@ -25,10 +25,10 @@
     }
 </style>
 
-<h4 align="middle">Classificação da rodada: {{rodada}}º</h4>
+<h4 align="middle">Classificação da rodada: {{rodadamax}}º</h4>
 
-
-
+{{classificacaomin}}
+{{classificacaomax}}
     <table align="center" class="table table-sm" cellpadding="5">
         <tr>
             <th colspan="2">Classificação</th>
@@ -58,8 +58,8 @@
 {{cla.PONTOS}}
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
-    <label for="rodada">Veja a classificação da rodada:</label>
-    <select name="rodada" id="rodada" class="form-control">
+    <label for="rodadamax">Veja a classificação até a rodada:</label>
+    <select name="rodadamax" id="rodadamax" class="form-control">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>

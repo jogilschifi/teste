@@ -172,21 +172,20 @@ def classificacao(request):
     return render(request, 'app/classificacao.html', data)
 
 def classificacaoporrodada(request):
-
     classificacao = PontuacaoTotalBrasileirao.objects.all()
-    rodada = request.GET['rodada']
-    if rodada == '0':
+    rodadamax = request.GET['rodadamax']
+    if rodadamax == '0':
         return redirect('/classificacao/')
-    rodadas = ResultadosBrasileirao.objects.all()
-    classificacao = classificacao.filter(Rodada=rodada)
+    classificacao = classificacao.filter(Rodada=rodadamax)
 
     def classif_sort(clas):
         return clas.PONTOS, clas.RE, clas.RB, clas.id
 
+    rodadas = ResultadosBrasileirao.objects.all()
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
     data = {}
     data['rodadas'] = rodadas
-    data['rodada'] = rodada
+    data['rodadamax'] = rodadamax
     usuarios = len(classificacao)
 
     cla = []
@@ -295,7 +294,7 @@ def resultado(request):
         data['ordem'] = ordem
     else:
         if data['verificacao'] == 1:
-            return redirect(reverse("perfilusuarios",kwargs={'pk':int(current_user), 'user':str(user)}))
+            return redirect(reverse("perfilusuarios", kwargs={'pk':int(current_user), 'user':str(user)}))
         return redirect('/rodada/')
     if palpite:
         ttime1 = palpite.AthleticoPR
@@ -322,7 +321,7 @@ def resultado(request):
         data['palpite'] = palpite
     else:
         if data['verificacao'] == 1:
-            return redirect(reverse("perfilusuarios",kwargs={'pk':int(current_user), 'user':str(user)}))
+            return redirect(reverse("perfilusuarios", kwargs={'pk':int(current_user), 'user':str(user)}))
         return redirect('/rodada/')
     tttime1 = resultado.AthleticoPR
     tttime2 = resultado.Palmeiras
