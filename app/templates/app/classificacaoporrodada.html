@@ -25,10 +25,25 @@
     }
 </style>
 
-<h4 align="middle">Classificação da rodada: {{rodadamax}}º</h4>
+<h4 align="middle">{% if rodadamin == 0 %}
+    Classificação até a rodada: {{rodadamax}}º
+    {% else %}
+    {% if rodadamax == 0 %}
+    Classificação da rodada: {{rodadamin}}º
+    {% else %}
+    Classificação da rodada: {{rodadamin}}º até a rodada: {{rodadamax}}º
+    {% endif %}
+    {% endif %}
+
+</h4>
 
 {{classificacaomin}}
 {{classificacaomax}}
+
+{% for x in classificacao %}
+{{x.PONTOS}}
+{% endfor %}
+
     <table align="center" class="table table-sm" cellpadding="5">
         <tr>
             <th colspan="2">Classificação</th>
@@ -55,10 +70,19 @@
     </table>
 
 
-{{cla.PONTOS}}
+
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
-    <label for="rodadamax">Veja a classificação até a rodada:</label>
+    <!-- teste -->
+    <label >Veja a classificação da rodada:</label>
+    <select name="rodadamin" id="rodadamin" class="form-control">
+        <option value="0">Selecione</option>
+            {% for x in rodadas %}
+        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
+            {% endfor %}
+    </select>
+     <!-- teste -->
+    <label >até a rodada:</label>
     <select name="rodadamax" id="rodadamax" class="form-control">
         <option value="0">Selecione</option>
             {% for x in rodadas %}

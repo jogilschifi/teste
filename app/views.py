@@ -15,6 +15,8 @@ from django.contrib.auth import login
 
 import datetime
 
+from operator import itemgetter
+
 from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao
 
 
@@ -171,21 +173,98 @@ def classificacao(request):
 
     return render(request, 'app/classificacao.html', data)
 
-def classificacaoporrodada(request):
-    classificacao = PontuacaoTotalBrasileirao.objects.all()
-    rodadamax = request.GET['rodadamax']
-    if rodadamax == '0':
-        return redirect('/classificacao/')
-    classificacao = classificacao.filter(Rodada=rodadamax)
 
+
+
+def classificacaoporrodada(request):
+    rodadamin = request.GET['rodadamin']
+    rodadamax = request.GET['rodadamax']
+    if rodadamin != '0':
+        if rodadamax == '0':
+            classificacao = PontuacaoBrasileirao.objects.all()
+            classificacao = classificacao.filter(Rodada=rodadamin)
+        else:
+            if rodadamin == '15':
+                classificacao = PontuacaoTotalBrasileirao.objects.all()
+                classificacao = classificacao.filter(Rodada=rodadamax)
+            else:
+
+                classificacaomin = PontuacaoTotalBrasileirao.objects.all()
+                classificacaomin = classificacaomin.filter(Rodada=str(int(rodadamin)-1))
+                classificacaomax = PontuacaoTotalBrasileirao.objects.all()
+                classificacaomax = classificacaomax.filter(Rodada=rodadamax)
+                usuariosmax = len(classificacaomax)
+                usuariosmin = len(classificacaomin)
+                usuariosminver = usuariosmin - 1
+
+                classificacaomaxima = []
+                for i in range(usuariosmax):
+                    classificacaomaxima.append(classificacaomax[i])
+                classificacaominima = []
+                for i in range(usuariosmin):
+                    classificacaominima.append(classificacaomin[i])
+
+                count = -1
+                classificacao = []
+                for i in range(usuariosmax):
+                    usermax = classificacaomaxima[i].user_id
+                    for j in range(usuariosmin):
+                        usermin = classificacaominima[j].user_id
+                        if usermax == usermin:
+                            classificacao.append({"PONTOS": classificacaomaxima[i].PONTOS - classificacaominima[j].PONTOS,
+                                                                            "RE": classificacaomaxima[i].RE - classificacaominima[j].RE,
+                                                                        "RB": classificacaomaxima[i].RB - classificacaominima[j].RB,
+                                                                            "RP": classificacaomaxima[i].RP - classificacaominima[j].RP,
+                                                                            "user": classificacaomaxima[i].user, "user_id":classificacaomaxima[i].user_id})
+                            count += 1
+                            break
+                        else:
+                            if j == usuariosminver:
+                                if i == count:
+                                    classificacao.append({"PONTOS": classificacaomaxima[j].PONTOS, "RE": classificacaomaxima[j].RE,
+                                                                  "RB": classificacaomaxima[j].RB,"RP": classificacaomaxima[j].RP,
+                                                                  "user": classificacaomaxima[j].user, "user_id": classificacaomaxima[j].user_id})
+                                    count += 1
+
+                def classif_sort(clas):
+                    return clas["PONTOS"], clas["RE"], clas["RB"], clas["user_id"]
+                classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+                #itemgetter('PONTOS', 'RE', 'RB', 'RP', 'user_id')
+                cla = []
+                for i in range(usuariosmax):
+                    classifnova = classificacao_sort[i]
+                    cla.append(
+                        {"PONTOS": classifnova["PONTOS"], "RE": classifnova["RE"], "RB": classifnova["RB"], "RP": classifnova["RP"],
+                         "user": classifnova["user"], "id": classifnova["user_id"], "posicao": i + 1})
+                rodadas = ResultadosBrasileirao.objects.all()
+                data = {}
+                data['rodadas'] = rodadas
+                data['rodadamin'] = int(rodadamin)
+                data['rodadamax'] = int(rodadamax)
+                data['cla'] = cla
+                return render(request, 'app/classificacaoporrodada.html', data)
+    else:
+        if rodadamax != '0':
+            classificacao = PontuacaoTotalBrasileirao.objects.all()
+            classificacao = classificacao.filter(Rodada=rodadamax)
+        else:
+            return redirect('/classificacao/')
+    #data = {}
+    #data['cla'] = classificacao
+    #return render(request, 'app/classificacaoporrodada.html', data)
     def classif_sort(clas):
         return clas.PONTOS, clas.RE, clas.RB, clas.id
 
+    #classificacao = classificacao.first()
+    #data = {}
+    #data['classificacao'] = classificacao
+    #return render(request, 'app/classificacaoporrodada.html', data)
     rodadas = ResultadosBrasileirao.objects.all()
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
     data = {}
     data['rodadas'] = rodadas
-    data['rodadamax'] = rodadamax
+    data['rodadamin'] = int(rodadamin)
+    data['rodadamax'] = int(rodadamax)
     usuarios = len(classificacao)
 
     cla = []

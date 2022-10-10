@@ -49,7 +49,7 @@
 
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
-    <!--
+    <!-- teste -->
     <label >Veja a classificação da rodada:</label>
     <select name="rodadamin" id="rodadamin" class="form-control">
         <option value="0">Selecione</option>
@@ -57,8 +57,8 @@
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
     </select>
-     -->
-    <label >Veja a classificação até a rodada:</label>
+     <!-- teste -->
+    <label >até a rodada:</label>
     <select name="rodadamax" id="rodadamax" class="form-control">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
