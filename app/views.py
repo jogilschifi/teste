@@ -184,7 +184,7 @@ def classificacaoporrodada(request):
             classificacao = PontuacaoBrasileirao.objects.all()
             classificacao = classificacao.filter(Rodada=rodadamin)
         else:
-            if rodadamin == '15':
+            if rodadamin == '28':
                 classificacao = PontuacaoTotalBrasileirao.objects.all()
                 classificacao = classificacao.filter(Rodada=rodadamax)
             else:

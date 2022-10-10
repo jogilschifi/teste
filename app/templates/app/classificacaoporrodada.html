@@ -25,16 +25,20 @@
     }
 </style>
 
-<h4 align="middle">{% if rodadamin == 0 %}
-    Classificação até a rodada: {{rodadamax}}º
+<h4 align="middle">
+    {% if rodadamin == 0 %}
+        Classificação até a rodada: {{rodadamax}}º
     {% else %}
-    {% if rodadamax == 0 %}
-    Classificação da rodada: {{rodadamin}}º
-    {% else %}
-    Classificação da rodada: {{rodadamin}}º até a rodada: {{rodadamax}}º
+        {% if rodadamax == 0 %}
+            Classificação da rodada: {{rodadamin}}º
+        {% else %}
+            {% if rodadamin == 28 %}
+                Classificação até a rodada: {{rodadamax}}º
+            {% else %}
+                Classificação da rodada: {{rodadamin}}º até a rodada: {{rodadamax}}º
+            {% endif %}
+        {% endif %}
     {% endif %}
-    {% endif %}
-
 </h4>
 
 {{classificacaomin}}
