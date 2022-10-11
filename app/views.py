@@ -219,13 +219,12 @@ def classificacaoporrodada(request):
                             count += 1
                             break
                         else:
-                            if j == usuariosmin:
+                            if j == usuariosminver:
                                 if i == count:
-                                    classificacao.append({"PONTOS": classificacaomaxima[j].PONTOS, "RE": classificacaomaxima[j].RE,
-                                                                  "RB": classificacaomaxima[j].RB,"RP": classificacaomaxima[j].RP,
-                                                                  "user": classificacaomaxima[j].user, "user_id": classificacaomaxima[j].user_id})
+                                    classificacao.append({"PONTOS": classificacaomaxima[i].PONTOS, "RE": classificacaomaxima[i].RE,
+                                                                  "RB": classificacaomaxima[i].RB,"RP": classificacaomaxima[i].RP,
+                                                                  "user": classificacaomaxima[i].user, "user_id": classificacaomaxima[i].user_id})
                                     count += 1
-                                    break
                 def classif_sort(clas):
                     return clas["PONTOS"], clas["RE"], clas["RB"], clas["user_id"]
                 classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
