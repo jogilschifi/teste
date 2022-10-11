@@ -204,7 +204,7 @@ def classificacaoporrodada(request):
                 for i in range(usuariosmin):
                     classificacaominima.append(classificacaomin[i])
 
-                count = -1
+                count = 0
                 classificacao = []
                 for i in range(usuariosmax):
                     usermax = classificacaomaxima[i].user_id
