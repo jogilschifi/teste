@@ -58,7 +58,7 @@ class RegisterPage(FormView):
 def perfilusuarios(request, pk, user):
 
     horario = datetime.datetime.now()
-    horalimite = datetime.datetime(2022, 15, 8, 19, 00)
+    horalimite = datetime.datetime(2022, 10, 15, 19, 00)
     if horalimite > horario:
         rod = 31
     else:
@@ -88,7 +88,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['palpites'] = context['palpites'].filter(user=self.request.user)
         context['palpites'] = context['palpites'].filter(Rodada=32)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 15, 8, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 15, 19, 00)
         return context
 
     def filter(self, user):
@@ -116,7 +116,7 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context['dados'] = context['dados'].filter(user=self.request.user)
         context['dados'] = context['dados'].filter(Rodada=32)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 15, 8, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 15, 19, 00)
         return context
 
     def form_valid(self, form):
@@ -137,7 +137,7 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 15, 8, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 10, 15, 19, 00)
         return context
 
 class PalpiteDelete(LoginRequiredMixin, DeleteView):
