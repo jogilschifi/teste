@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado, classificacao, classificacaoporrodada, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios
+from app.views import bemvindo, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado, classificacao, classificacaoporrodada, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios
 from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PalpiteList.as_view(), name='palpites'),
+    path('', bemvindo),
+    path('home/', PalpiteList.as_view(), name='palpites'),
     path('<int:pk>/<user>/', perfilusuarios, name='perfilusuarios'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('register/', RegisterPage.as_view(), name='register'),

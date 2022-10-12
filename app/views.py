@@ -8,6 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import reverse_lazy, reverse
 from django.db.models import Sum, Max
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -21,6 +22,11 @@ from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBras
 
 
 # Create your views here.
+
+def bemvindo(request):
+    if request.user.is_authenticated:
+        return redirect('/home/')
+    return render(request, 'app/bemvindo.html')
 
 class CustomLoginView(LoginView):
     template_name = 'app/login.html'
@@ -48,6 +54,7 @@ class RegisterPage(FormView):
             return redirect('palpites')
         return super(RegisterPage, self).get(*args, **kwargs)
 
+@login_required
 def perfilusuarios(request, pk, user):
 
     horario = datetime.datetime.now()
@@ -137,15 +144,15 @@ class PalpiteDelete(DeleteView):
     model = Brasileirao
     success_url = reverse_lazy('palpites')
 
-
+@login_required
 def pontuacao(request):
     return render(request, 'app/pontuacao.html')
-
+@login_required
 def rodada(request):
     data = {}
     data['rodada'] = ResultadosBrasileirao.objects.all()
     return render(request, 'app/rodada.html', data)
-
+@login_required
 def classificacao(request):
     classificacao = PontuacaoTotalBrasileirao.objects.all()
     if classificacao:
@@ -175,7 +182,7 @@ def classificacao(request):
 
 
 
-
+@login_required
 def classificacaoporrodada(request):
     rodadamin = request.GET['rodadamin']
     rodadamax = request.GET['rodadamax']
@@ -274,6 +281,7 @@ def classificacaoporrodada(request):
 
     return render(request, 'app/classificacaoporrodada.html', data)
 
+@login_required
 def classificacaodoispontozero(request):
     pont = PontuacaoBrasileirao.objects.all()
     usuariomax = pont.aggregate(Max('user_id'))
@@ -321,7 +329,7 @@ def classificacaodoispontozero(request):
 
     return render(request, 'app/classificacaodoispontozero.html', data)
 
-
+@login_required
 def resultado(request):
     data = {}
     verificacao = int(request.GET['verificacao'])
@@ -719,7 +727,7 @@ def resultado(request):
         i += 1
 
     return render(request, 'app/resultado.html', data)
-
+@login_required
 def caminhocalculadora(request):
     data = {}
 
@@ -727,7 +735,7 @@ def caminhocalculadora(request):
     data['usuario'] = Brasileirao.objects.all()
     return render(request, 'app/caminhocalculadora.html', data)
 
-
+@login_required
 def calculadoradoispontozero(request):
     data = {}
     data['classificacao'] = PontuacaoBrasileirao.objects.all()
