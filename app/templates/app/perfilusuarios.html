@@ -26,9 +26,12 @@
         border-collapse: collapse;
         }
     </style>
-<p>Perfil de {{user}}</p>
+<p>Perfil de {{user}}
     {% csrf_token %}
-
+<br><br>
+Pontuação: {{classificacao.PONTOS}},
+Resultado Exato: {{classificacao.RE}}.<br>
+</p>
 {% if palpites != 0 %}
         <h3 align="center">BRASILEIRÃO</h3>
         <h4 align="center">Rodada 31º </h4>
@@ -133,13 +136,13 @@ Usuário não palpitou na 31ª rodada.
         <input type="hidden" name="verificacao" value=1>
     {% csrf_token %}
     <label for="rodadausuarios">Rodada:</label>
-    <select name="rodada" id="rodadausuarios" class="form-control">
+    <select name="rodada" id="rodadausuarios" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for rodadas in rodada %}
         <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
             {% endfor %}
     </select>
-    <input type="submit" class="btn-success" value="Verificar">
+    <input type="submit" class="btn-success btn-custom" value="Verificar">
 </form>
 
 <br>

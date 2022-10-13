@@ -7,6 +7,9 @@
     <a href="/login/">Login</a> {% endif %}
 <p>{{request.user}}</p>
 <hr>
+Pontuação: {{classificacao.PONTOS}},
+Resultado Exato: {{classificacao.RE}}.<br>
+
 {% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
