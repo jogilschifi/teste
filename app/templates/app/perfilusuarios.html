@@ -30,7 +30,10 @@
     {% csrf_token %}
 <br><br>
 Pontuação: {{classificacao.PONTOS}},
-Resultado Exato: {{classificacao.RE}}.<br>
+RE: {{classificacao.RE}},
+RB: {{classificacao.RB}},
+RP: {{classificacao.RB}}.<br>
+<br>
 </p>
 {% if palpites != 0 %}
         <h3 align="center">BRASILEIRÃO</h3>

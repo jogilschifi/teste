@@ -7,9 +7,12 @@
     <a href="/login/">Login</a> {% endif %}
 <p>{{request.user}}</p>
 <hr>
-Seus dadosPontuação: {{classificacao.PONTOS}},
-Resultado Exato: {{classificacao.RE}}.<br>
-
+Seus dados:<br>
+Pontuação: {{classificacao.PONTOS}},
+RE: {{classificacao.RE}},
+RB: {{classificacao.RB}},
+RP: {{classificacao.RB}}.<br>
+<br>
 {% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
