@@ -14,7 +14,7 @@
     <input type="hidden" name="verificacao" value=0>
     {% csrf_token %}
     <label for="rodada">Rodada:</label>
-    <select name="rodada" id="rodada" class="form-control">
+    <select name="rodada" id="rodada" class="form-select-padding">
         <option action="/rodada/" value="0">Selecione</option>
             {% for rodadas in rodada %}
         <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>

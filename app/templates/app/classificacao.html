@@ -51,7 +51,7 @@
     {% csrf_token %}
     <!-- teste -->
     <label >Veja a classificação da rodada:</label>
-    <select name="rodadamin" id="rodadamin" class="form-control">
+    <select name="rodadamin" id="rodadamin" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
@@ -59,7 +59,7 @@
     </select>
      <!-- teste -->
     <label >até a rodada:</label>
-    <select name="rodadamax" id="rodadamax" class="form-control">
+    <select name="rodadamax" id="rodadamax" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
