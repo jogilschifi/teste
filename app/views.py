@@ -75,6 +75,7 @@ def perfilusuarios(request, pk, user):
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
     data['classificacao'] = data['classificacao'].filter(user_id=pk)
     data['classificacao'] = data['classificacao'].filter(Rodada=31)
+    data['classificacao'] = data['classificacao'].first()
     if data['palpites']:
         return render(request, 'app/perfilusuarios.html', data)
     else:
@@ -95,6 +96,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
         context['classificacao'] = context['classificacao'].filter(Rodada=31)
+        context['classificacao'] = context['classificacao'].first()
         return context
 
     def filter(self, user):
