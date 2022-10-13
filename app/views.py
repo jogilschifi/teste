@@ -74,7 +74,7 @@ def perfilusuarios(request, pk, user):
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
     data['classificacao'] = data['classificacao'].filter(user_id=pk)
-    data['classificacao'] = data['classificacao'].filter(Rodada=rod)
+    data['classificacao'] = data['classificacao'].filter(Rodada=31)
     if data['palpites']:
         return render(request, 'app/perfilusuarios.html', data)
     else:
@@ -94,7 +94,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['horalimite'] = datetime.datetime(2022, 10, 15, 19, 00)
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
-        context['classificacao'] = context['classificacao'].filter(Rodada=32)
+        context['classificacao'] = context['classificacao'].filter(Rodada=31)
         return context
 
     def filter(self, user):
