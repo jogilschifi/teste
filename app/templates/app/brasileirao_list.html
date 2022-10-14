@@ -7,11 +7,13 @@
     <a href="/login/">Login</a> {% endif %}
 <p>{{request.user}}</p>
 <hr>
+{% if classificacao %}
 Seus dados:<br>
 Pontuação: {{classificacao.PONTOS}},
 RE: {{classificacao.RE}},
 RB: {{classificacao.RB}},
 RP: {{classificacao.RB}}.<br>
+{% endif %}
 <br>
 {% if horario < horalimite %}
 

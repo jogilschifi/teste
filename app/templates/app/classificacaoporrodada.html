@@ -48,15 +48,17 @@
 {{x.PONTOS}}
 {% endfor %}
 
-    <table align="center" class="table table-sm" cellpadding="5">
-        <tr>
-            <th colspan="2">Classificação</th>
-            <th>Pontos</th>
+    <table align="center" class="table table-striped">
+        <tr style="background-color: lightgray">
+            <th style="text-align:right">#</th>
+            <th style="text-align:left">Classificação</th>
+            <th style="text-align:center">Pontos</th>
             <th style="display:none;">Resultado Exato</th>
             <th style="display:none;">Resultado Parcial + bonus</th>
             <th style="display:none;">Resultado Parcial</th>
-
         </tr>
+
+
         {% for x in cla %}
             <tr align="center">
                 <td>{{x.posicao}}</td>
@@ -79,7 +81,7 @@
     {% csrf_token %}
     <!-- teste -->
     <label >Veja a classificação da rodada:</label>
-    <select name="rodadamin" id="rodadamin" class="form-control">
+    <select name="rodadamin" id="rodadamin" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
@@ -87,14 +89,14 @@
     </select>
      <!-- teste -->
     <label >até a rodada:</label>
-    <select name="rodadamax" id="rodadamax" class="form-control">
+    <select name="rodadamax" id="rodadamax" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
     </select>
 
-    <input type="submit" class="btn-success" value="Verificar">
+    <input type="submit" class="btn-success btn-custom" value="Verificar">
 
 </form>
 

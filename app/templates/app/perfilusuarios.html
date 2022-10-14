@@ -29,10 +29,12 @@
 <p>Perfil de {{user}}
     {% csrf_token %}
 <br><br>
+{% if classificacao %}
 Pontuação: {{classificacao.PONTOS}},
 RE: {{classificacao.RE}},
 RB: {{classificacao.RB}},
 RP: {{classificacao.RB}}.<br>
+{% endif %}
 <br>
 </p>
 {% if palpites != 0 %}
