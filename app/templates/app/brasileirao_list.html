@@ -25,24 +25,31 @@
 {% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
-        <a href="/rodada/">veja seus resultados</a><br>
-        <a href="/classificacao/">classificacao</a><br>
-        <a href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
+        <div class="d-flex justify-content-between">
+                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
+        </div>
 {% empty %}
-        <a href="/rodada/">veja seus resultados</a><br>
-        <a href="/classificacao/">classificacao</a><br>
+        <div class="d-flex justify-content-between">
+                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
         voce ainda não tem palpites para essa rodada
-        <a href="/palpitecreate/">palpitar</a><br>
-
+                <a class="btn btn-secondary" href="/palpitecreate/">palpitar</a><br>
+        </div>
 {% endfor %}
 {% else %}
 {% for brasileirao in palpites %}
-        <a href="/rodada/">veja seus resultados</a><br>
-        <a href="/classificacao/">classificacao</a><br>
-        <a href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
+        <div class="d-flex justify-content-between">
+                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
+        </div>
 {% empty %}
-        <a href="/rodada/">veja seus resultados</a><br>
-        <a href="/classificacao/">classificacao</a><br>
+        <div class="d-flex justify-content-between">
+                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
+        </div>
 {% endfor %}
 {% endif %}
 {% endblock %}
