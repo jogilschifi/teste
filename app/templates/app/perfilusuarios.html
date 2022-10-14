@@ -26,17 +26,22 @@
         border-collapse: collapse;
         }
     </style>
+
+<div class="card">
 <p>Perfil de {{user}}
-    {% csrf_token %}
-<br><br>
-{% if classificacao %}
-Pontuação: {{classificacao.PONTOS}},
-RE: {{classificacao.RE}},
-RB: {{classificacao.RB}},
-RP: {{classificacao.RB}}.<br>
-{% endif %}
-<br>
+{% csrf_token %}
 </p>
+        <div class="card-body" style="text-align:center">Resultados:</div>
+        {% if classificacao %}
+        <div style="float:left">Pontuação: {{classificacao.PONTOS}},</div>
+        <div style="float:right">RE: {{classificacao.RE}}, RB: {{classificacao.RB}}, RP: {{classificacao.RB}}.<br></div>
+        {% else %}
+        <div style="float:left">Pontuação: 0</div>
+        <div style="float:right">RE: 0, RB: 0, RP: 0.<br></div>
+        {% endif %}
+</div>
+<br>
+
 {% if palpites != 0 %}
         <h3 align="center">BRASILEIRÃO</h3>
         <h4 align="center">Rodada 31º </h4>

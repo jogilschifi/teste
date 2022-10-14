@@ -7,13 +7,16 @@
     <a href="/login/">Login</a> {% endif %}
 <p>{{request.user}}</p>
 <hr>
-{% if classificacao %}
-Seus dados:<br>
-Pontuação: {{classificacao.PONTOS}},
-RE: {{classificacao.RE}},
-RB: {{classificacao.RB}},
-RP: {{classificacao.RB}}.<br>
-{% endif %}
+<div class="card">
+        <div class="card-body" style="text-align:center">Resultados:</div>
+        {% if classificacao %}
+        <div style="float:left">Pontuação: {{classificacao.PONTOS}},</div>
+        <div style="float:right">RE: {{classificacao.RE}}, RB: {{classificacao.RB}}, RP: {{classificacao.RB}}.<br></div>
+        {% else %}
+        <div style="float:left">Pontuação: 0</div>
+        <div style="float:right">RE: 0, RB: 0, RP: 0.<br></div>
+        {% endif %}
+</div>
 <br>
 {% if horario < horalimite %}
 
