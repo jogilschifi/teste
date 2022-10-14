@@ -1,11 +1,19 @@
 {% extends 'app/index.html' %}
+{% load static %}
 
 {% block content %}
+<nav class="navbar navbar-expand-lg  fixed top">
+        <img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO">
+        <div class="absolute-top-right">
+                <b style="color: #4b5156">{{request.user}}</b><br>
+                <div class="absolute-right">
+                        {% if request.user.is_authenticated %}
+                        <a href="/logout/">Logout</a> {% else %}
+                        <a href="/login/">Login</a> {% endif %}
+                </div>
+        </div>
 
-{% if request.user.is_authenticated %}
-    <a href="/logout/">Logout</a> {% else %}
-    <a href="/login/">Login</a> {% endif %}
-<p>{{request.user}}</p>
+</nav>
 <hr>
 <div class="card">
         <div class="card" style="text-align:center; margin-top: 20px">Seus Resultados:</div>
@@ -25,13 +33,13 @@
 {% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
-        <div class="d-flex justify-content-between card-body" >
+        <div style="items-align center" class="d-flex justify-content-between">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
                 <a class="btn btn-secondary btn-modif" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
         </div>
 {% empty %}
-        <div class="d-flex justify-content-between card-body">
+        <div style="items-align center" class="d-flex justify-content-between">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
                 <a class="btn btn-secondary" href="/palpitecreate/">palpitar</a><br>
@@ -39,13 +47,13 @@
 {% endfor %}
 {% else %}
 {% for brasileirao in palpites %}
-        <div class="d-flex justify-content-between card-body">
+        <div style="items-align center" class="d-flex justify-content-between">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
                 <a class="btn btn-secondary btn-modif" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
         </div>
 {% empty %}
-        <div class="d-flex justify-content-between card-body">
+        <div style="items-align center" class="d-flex justify-content-between">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
         </div>
