@@ -25,28 +25,27 @@
 {% if horario < horalimite %}
 
 {% for brasileirao in palpites %}
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between card-body" >
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
                 <a class="btn btn-secondary btn-modif" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
         </div>
 {% empty %}
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between card-body">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
-        voce ainda não tem palpites para essa rodada
                 <a class="btn btn-secondary" href="/palpitecreate/">palpitar</a><br>
         </div>
 {% endfor %}
 {% else %}
 {% for brasileirao in palpites %}
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between card-body">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
                 <a class="btn btn-secondary btn-modif" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
         </div>
 {% empty %}
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between card-body">
                 <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
                 <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
         </div>
