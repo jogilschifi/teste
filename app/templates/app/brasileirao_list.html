@@ -26,14 +26,14 @@
 
 {% for brasileirao in palpites %}
         <div class="d-flex justify-content-between">
-                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
-                <a class="btn btn-secondary" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
+                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary btn-modif" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
         </div>
 {% empty %}
         <div class="d-flex justify-content-between">
-                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
         voce ainda não tem palpites para essa rodada
                 <a class="btn btn-secondary" href="/palpitecreate/">palpitar</a><br>
         </div>
@@ -41,14 +41,14 @@
 {% else %}
 {% for brasileirao in palpites %}
         <div class="d-flex justify-content-between">
-                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
-                <a class="btn btn-secondary" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
+                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary btn-modif" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
         </div>
 {% empty %}
         <div class="d-flex justify-content-between">
-                <a class="btn btn-secondary" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary" href="/classificacao/">classificacao</a><br>
+                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
+                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
         </div>
 {% endfor %}
 {% endif %}
