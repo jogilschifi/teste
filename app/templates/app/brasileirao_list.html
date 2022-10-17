@@ -15,6 +15,40 @@
 
 </nav>
 <hr>
+<div id="menu" class="dropdown" style="items-align: right">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Menu
+  </button>
+        {% if horario < horalimite %}
+{% for brasileirao in palpites %}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/rodada/">Resultados</a><br>
+                <a class="dropdown-item" href="/classificacao/">Classificação</a><br>
+                <a class="dropdown-item" href="/palpiteupdate/{{brasileirao.id}}">palpitar</a><br>
+        </div>
+{% empty %}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/rodada/">Resultados</a><br>
+                <a class="dropdown-item" href="/classificacao/">Classificação</a><br>
+                <a class="dropdown-item" href="/palpitecreate/">palpitar</a><br>
+        </div>
+{% endfor %}
+{% else %}
+{% for brasileirao in palpites %}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/rodada/">Resultados</a><br>
+                <a class="dropdown-item" href="/classificacao/">Classificação</a><br>
+                <a class="dropdown-item" href="/palpite/{{brasileirao.id}}">Palpite</a><br>
+        </div>
+{% empty %}
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/rodada/">Resultados</a><br>
+                <a class="dropdown-item" href="/classificacao/">Classificação</a><br>
+        </div>
+{% endfor %}
+{% endif %}
+</div>
+
 <div class="card">
         <div class="card" style="text-align:center; margin-top: 20px">Seus Resultados:</div>
         {% if classificacao %}
@@ -30,33 +64,4 @@
         {% endif %}
 </div>
 <br>
-{% if horario < horalimite %}
-
-{% for brasileirao in palpites %}
-        <div style="items-align center" class="d-flex justify-content-between">
-                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
-                <a class="btn btn-secondary btn-modif" href="/palpiteupdate/{{brasileirao.id}}">editar</a><br>
-        </div>
-{% empty %}
-        <div style="items-align center" class="d-flex justify-content-between">
-                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
-                <a class="btn btn-secondary" href="/palpitecreate/">palpitar</a><br>
-        </div>
-{% endfor %}
-{% else %}
-{% for brasileirao in palpites %}
-        <div style="items-align center" class="d-flex justify-content-between">
-                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
-                <a class="btn btn-secondary btn-modif" href="/palpite/{{brasileirao.id}}">verificar meu palpite</a><br>
-        </div>
-{% empty %}
-        <div style="items-align center" class="d-flex justify-content-between">
-                <a class="btn btn-secondary btn-modif" href="/rodada/">veja seus resultados</a><br>
-                <a class="btn btn-secondary btn-modif" href="/classificacao/">classificacao</a><br>
-        </div>
-{% endfor %}
-{% endif %}
 {% endblock %}
