@@ -36,8 +36,6 @@
     }
 </style>
 
-<h4 align="middle">Classificação da rodada: {{rodada}}º</h4>
-
 
 
     <table class="table table-striped">
@@ -63,16 +61,16 @@
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
     <!-- teste -->
-    <label >Veja a classificação da rodada:</label>
-    <select name="rodadamin" id="rodadamin" class="form-select-padding">
+    <label >Classificação:</label>
+    <select name="tipo" id="tipo" class="form-select-padding">
         <option value="0">Selecione</option>
-            {% for x in rodadas %}
-        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
-            {% endfor %}
+        <option value="1">acumulativa</option>
+        <option value="2">por rodada</option>
+
     </select>
      <!-- teste -->
-    <label >até a rodada:</label>
-    <select name="rodadamax" id="rodadamax" class="form-select-padding">
+    <label >rodada:</label>
+    <select name="rodada" id="rodada" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>

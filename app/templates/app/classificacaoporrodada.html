@@ -32,7 +32,7 @@
     border-collapse: collapse;
     }
 </style>
-
+    <!--
 <h4 align="middle">
     {% if rodadamin == 0 %}
         Classificação até a rodada: {{rodadamax}}º
@@ -47,19 +47,13 @@
             {% endif %}
         {% endif %}
     {% endif %}
-</h4>
+</h4> -->
 
-{{classificacaomin}}
-{{classificacaomax}}
-
-{% for x in classificacao %}
-{{x.PONTOS}}
-{% endfor %}
 
     <table align="center" class="table table-striped">
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>
-            <th style="text-align:left">Classificação</th>
+            <th style="text-align:left">Classificação {% if tipo == 1 %} até a rodada {{rodada}}ª {%else%}da rodada {{rodada}}ª{%endif%}</th>
             <th style="text-align:center">Pontos</th>
             <th style="display:none;">Resultado Exato</th>
             <th style="display:none;">Resultado Parcial + bonus</th>
@@ -90,24 +84,25 @@
 <form id="formrodada" action="/classificacaoporrodada/" method="GET">
     {% csrf_token %}
     <!-- teste -->
-    <label >Veja a classificação da rodada:</label>
-    <select name="rodadamin" id="rodadamin" class="form-select-padding">
+    <div>
+    <label >Classificação:</label>
+    <select name="tipo" id="tipo" class="form-select-padding">
         <option value="0">Selecione</option>
-            {% for x in rodadas %}
-        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
-            {% endfor %}
+        <option value="1">acumulativa</option>
+        <option value="2">por rodada</option>
     </select>
+    </div>
      <!-- teste -->
-    <label >até a rodada:</label>
-    <select name="rodadamax" id="rodadamax" class="form-select-padding">
+    <div >
+    <label >rodada:</label>
+    <select name="rodada" id="rodada" class="form-select-padding">
         <option value="0">Selecione</option>
             {% for x in rodadas %}
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
     </select>
-
     <input type="submit" class="btn-success btn-custom" value="Verificar">
-
+    </div>
 </form>
 
 
