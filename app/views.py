@@ -782,6 +782,8 @@ def calculadoradoispontozero(request):
     data['salvo1'] = 0
     data['salvo2'] = 0
     data['salvo3'] = 0
+    data['salvo4'] = 0
+    data['salvo5'] = 0
     for j in range(usuariomax):
         palpite = palpi.filter(user=j)
         if palpite:
@@ -964,8 +966,21 @@ def calculadoradoispontozero(request):
             user = usuarios.filter(user=j)
             if user:
                 data['salvo3'] += 1
-                pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=0, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
-                pontuacao.save()
+                verificacao = PontuacaoBrasileirao.objects.all()
+                verificacao = verificacao.filter(Rodada=request.GET['rodada'])
+                verificacao = verificacao.filter(user_id=j)
+                verificacao = verificacao.first()
+                if verificacao:
+                    pontos = verificacao.PONTOS
+                    erro = verificacao.ER
+                    if pontos == 0:
+                        if erro == 0:
+                            data['salvo4'] += 1
+                else:
+                    pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=32, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+                    pontuacao.save()
+                    data['salvo5'] += 1
+
     #verificacao = PontuacaoBrasileirao.objects.all()
     #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
     #verificacao = verificacao.filter(user=request.GET['usuario'])
