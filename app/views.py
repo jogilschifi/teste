@@ -770,10 +770,10 @@ def calculadoradoispontozero(request):
     palpi = Brasileirao.objects.all()
     palpi = palpi.filter(Rodada=str(request.GET['rodada']))
 
-    usuariomax = PontuacaoBrasileirao.objects.all()
+    usuarios = PontuacaoBrasileirao.objects.all()
     rodadaant = str(int(request.GET['rodada']) - 1)
-    usuariomax = usuariomax.filter(Rodada=rodadaant)
-    usuariomax = usuariomax.aggregate(Max('user_id'))
+    usuarios = usuarios.filter(Rodada=rodadaant)
+    usuariomax = usuarios.aggregate(Max('user_id'))
     usuariomax = usuariomax["user_id__max"]
     usuariomax = usuariomax + 1
 
@@ -781,6 +781,7 @@ def calculadoradoispontozero(request):
     data['salvo'] = 0
     data['salvo1'] = 0
     data['salvo2'] = 0
+    data['salvo3'] = 0
     for j in range(usuariomax):
         palpite = palpi.filter(user=j)
         if palpite:
@@ -958,9 +959,12 @@ def calculadoradoispontozero(request):
                     pontuacao.save()
             else:
                 pontuacao.save()
-
-        data['salvo'] += 1
-
+        else:
+            data['salvo'] += 1
+            user = usuarios.filter(user=j)
+            if user:
+                data['salvo3'] += 1
+                #pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=0, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
     #verificacao = PontuacaoBrasileirao.objects.all()
     #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
     #verificacao = verificacao.filter(user=request.GET['usuario'])
