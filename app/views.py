@@ -964,7 +964,8 @@ def calculadoradoispontozero(request):
             user = usuarios.filter(user=j)
             if user:
                 data['salvo3'] += 1
-                #pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=0, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+                pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=0, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+                pontuacao.save()
     #verificacao = PontuacaoBrasileirao.objects.all()
     #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
     #verificacao = verificacao.filter(user=request.GET['usuario'])
