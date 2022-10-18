@@ -1,7 +1,7 @@
 {% extends 'app/index.html' %}
 
 {% block content %}
-<palpites method="POST">
+<form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input class="button" type="submit" value="Login">

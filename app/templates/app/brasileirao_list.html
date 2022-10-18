@@ -17,7 +17,7 @@
 <hr>
 
 <div id="menu" class="dropdown" align="right">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
     Menu
   </button>
         {% if horario < horalimite %}
@@ -52,17 +52,17 @@
 <div class="card flexbox" align="center">
         {% if classificacao %}
         <div>
-            <a style="text-align:center; font-size: 20px" >PT: {{classificacao.PONTOS}}
+            <a style="text-align:center; font-size: 24px" >PT: {{classificacao.PONTOS}}
             </a>
         </div>
         <div>
-            <a style="text-align:center; font-size: 12px"><span style="color: blue">RE: {{classificacao.RE}};</span>
+            <a style="text-align:center; font-size: 16px"><span style="color: blue">RE: {{classificacao.RE}};</span>
                 <span style="color: #993399">RB: {{classificacao.RB}};</span>
-                <span style="color: orange">RP: {{classificacao.RB}};</span>
+                <span style="color: orange">RP: {{classificacao.RP}};</span>
             </a>
         </div>
         {% else %}
-        Bora Palpitar!
+        <span style="text-align:center; font-size: 18px">Bora Palpitar!</span>
         {% endif %}
 </div>
 <br>
