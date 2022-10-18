@@ -769,9 +769,14 @@ def calculadoradoispontozero(request):
 
     palpi = Brasileirao.objects.all()
     palpi = palpi.filter(Rodada=str(request.GET['rodada']))
-    usuariomax = palpi.aggregate(Max('user_id'))
+
+    usuariomax = PontuacaoBrasileirao.objects.all()
+    rodadaant = str(int(request.GET['rodada']) - 1)
+    usuariomax = usuariomax.filter(Rodada=rodadaant)
+    usuariomax = usuariomax.aggregate(Max('user_id'))
     usuariomax = usuariomax["user_id__max"]
     usuariomax = usuariomax + 1
+
     data['usuariomax'] = usuariomax
     data['salvo'] = 0
     data['salvo1'] = 0
