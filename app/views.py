@@ -341,6 +341,10 @@ def classificacaodoispontozero(request):
                         else:
                             ponttotalantigo.delete()
                             pontuacaototal.save()
+                else:
+                    if total == totalantigo:
+                        if rodada != rodadaantiga:
+                            pontuacaototal.save()
             else:
                 if pontuacaototal:
                     pontuacaototal.save()
