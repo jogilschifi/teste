@@ -124,7 +124,7 @@ class CopadoBrasilCreate(LoginRequiredMixin, CreateView):
         context['dados'] = CopadoBrasil.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 19, 21, 45)
+        context['horalimite'] = datetime.datetime(2022, 10, 19, 22, 00)
         return context
 
     def form_valid(self, form):
