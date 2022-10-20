@@ -144,7 +144,7 @@ class CopadoBrasilUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 19, 21, 45)
+        context['horalimite'] = datetime.datetime(2022, 10, 19, 22, 00)
         return context
 
 class PalpiteCreate(LoginRequiredMixin, CreateView):
