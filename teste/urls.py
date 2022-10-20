@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import bemvindo, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado, classificacao, classificacaoporrodada, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios
+from app.views import bemvindo, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, pontuacao, rodada, resultado, classificacao, classificacaoporrodada, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, CopadoBrasilCreate, CopadoBrasilUpdate
 from django.contrib.auth.views import LogoutView
 
 
@@ -30,6 +30,8 @@ urlpatterns = [
     path('palpite/<int:pk>/', PalpiteDetail.as_view(), name='palpitedetail'),
     path('palpitecreate/', PalpiteCreate.as_view(), name='palpitecreate'),
     path('palpiteupdate/<int:pk>/', PalpiteUpdate.as_view(), name='palpiteupdate'),
+    path('copadobrasilcreate/', CopadoBrasilCreate.as_view(), name='copadobrasilcreate'),
+    path('copadobrasilupdate/<int:pk>/', CopadoBrasilUpdate.as_view(), name='copadobrasilupdate'),
     #path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
     path('pontuacao/', pontuacao),
     path('rodada/', rodada),

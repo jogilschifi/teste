@@ -1,0 +1,94 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg  fixed top">
+        <img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO">
+        <div class="absolute-top-right">
+                <b style="color: #4b5156">{{request.user}}</b><br>
+                <div class="absolute-right">
+                        {% if request.user.is_authenticated %}
+                        <a href="/logout/">Logout</a> {% else %}
+                        <a href="/login/">Login</a> {% endif %}
+                </div>
+        </div>
+
+</nav>
+<hr>
+
+{% if horario > horalimite %}
+the time is over
+        <a href="/">voltar</a><br>
+{% else %}
+{% for dadoss in dados %}
+{% if dadoss.user == request.user %}
+voce já palpitou nessa rodada
+        <a href="/">voltar</a><br>
+{% endif %}
+{% empty %}
+
+    <style>
+        td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+          text-align: right ;
+        }
+        tr {
+          border-bottom: 1px solid #ddd;
+        }
+        th:nth-child(2), th:nth-child(3) {
+          background-color: white;
+        }
+        table {
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
+        }
+    </style>
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+
+<h4 align="middle">Tempo normal</h4>
+                <table align="center" cellpadding="5">
+                    <tr>
+                        <td>FLA</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
+                        <td>{{form.FlamengoTempoNormal}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.CorinthiansTempoNormal}}</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>COR</td>
+                    </tr>
+                    <tr>
+                        <td  style="text-align:center" colspan="7">Prorrogação?</td>
+                    </tr>
+                    <tr>
+                        <td>FLA</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
+                        <td>{{form.FlamengoProrrogacao}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.CorinthiansProrrogacao}}</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>COR</td>
+                    </tr>
+                    <tr>
+                        <td  style="text-align:center" colspan="7">Penalti? Escolha vencedor</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{form.Penalti}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+    <input type="submit" value="Salvar">
+</form>
+{% endfor %}
+{% endif %}
+<br>
+    <a href="/home/">voltar</a><br>
+{% endblock %}

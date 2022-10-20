@@ -18,7 +18,7 @@ import datetime
 
 from operator import itemgetter
 
-from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao
+from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil
 
 
 # Create your views here.
@@ -97,6 +97,8 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
         context['classificacao'] = context['classificacao'].filter(Rodada=31)
         context['classificacao'] = context['classificacao'].first()
+        context['copadobrasil'] = CopadoBrasil.objects.all()
+        context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
         return context
 
     def filter(self, user):
@@ -111,6 +113,39 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     model = Brasileirao
     context_object_name = 'palpites'
 
+class CopadoBrasilCreate(LoginRequiredMixin, CreateView):
+    model = CopadoBrasil
+    fields = '__all__'
+    context_object_name = 'copadobrasil'
+    success_url = reverse_lazy('palpites')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dados'] = CopadoBrasil.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 10, 19, 21, 45)
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CopadoBrasilCreate, self).form_valid(form)
+
+class CopadoBrasilUpdate(LoginRequiredMixin, UpdateView):
+    model = CopadoBrasil
+    fields = '__all__'
+    context_object_name = 'copadobrasil'
+    success_url = reverse_lazy('palpites')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CopadoBrasilUpdate, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 10, 19, 21, 45)
+        return context
 
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao
