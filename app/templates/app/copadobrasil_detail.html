@@ -17,17 +17,6 @@
 </nav>
 <hr>
 
-{% if horario > horalimite %}
-the time is over
-        <a href="/">voltar</a><br>
-{% else %}
-{% for dadoss in dados %}
-{% if dadoss.user == request.user %}
-voce já palpitou nessa rodada
-        <a href="/">voltar</a><br>
-{% endif %}
-{% empty %}
-
     <style>
         td:nth-child(1), td:nth-child(2), td:nth-child(3) {
           text-align: right ;
@@ -44,18 +33,15 @@ voce já palpitou nessa rodada
         }
     </style>
 
-
-<form method="POST" action="">
     {% csrf_token %}
-
 <h4 align="middle">Tempo normal</h4>
                 <table align="center">
                     <tr>
                         <td>FLA</td>
                         <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
-                        <td>{{form.FlamengoTempoNormal}}</td>
+                        <td>{{copadobrasil.FlamengoTempoNormal}}</td>
                         <td align="center">x</td>
-                        <td>{{form.CorinthiansTempoNormal}}</td>
+                        <td>{{copadobrasil.CorinthiansTempoNormal}}</td>
                         <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
                         <td>COR</td>
                     </tr>
@@ -65,9 +51,9 @@ voce já palpitou nessa rodada
                     <tr>
                         <td>FLA</td>
                         <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
-                        <td>{{form.FlamengoProrrogacao}}</td>
+                        <td>{{copadobrasil.FlamengoProrrogacao}}</td>
                         <td align="center">x</td>
-                        <td>{{form.CorinthiansProrrogacao}}</td>
+                        <td>{{copadobrasil.CorinthiansProrrogacao}}</td>
                         <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
                         <td>COR</td>
                     </tr>
@@ -78,16 +64,12 @@ voce já palpitou nessa rodada
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{{form.Penalti}}</td>
+                        <td>{{copadobrasil.Penalti}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 </table>
-    <input type="submit" value="Salvar">
-</form>
-{% endfor %}
-{% endif %}
-<br>
     <a href="/copadobrasil/">voltar</a><br>
+
 {% endblock %}

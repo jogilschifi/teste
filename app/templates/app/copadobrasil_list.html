@@ -50,24 +50,29 @@
 {% endif %}
 </div>
 <div class="card flexbox" align="center">
-        {% if classificacao %}
-        <div>
-            <a style="text-align:center; font-size: 24px" >PT: {{classificacao.PONTOS}}
-            </a>
-        </div>
-        <div>
-            <a style="text-align:center; font-size: 16px"><span style="color: blue">RE: {{classificacao.RE}};</span>
-                <span style="color: #993399">RB: {{classificacao.RB}};</span>
-                <span style="color: orange">RP: {{classificacao.RP}};</span>
-            </a>
-        </div>
-        {% else %}
-        <span style="text-align:center; font-size: 18px">Bora Palpitar!</span>
-        {% endif %}
+<span style="text-align:center; font-size: 18px">Bora Palpitar!</span>
 </div>
-
-
-
+{% if horario < horalimite %}
+{% for verificacao in copadobrasil %}
+<div class="box" align="center" style="margin-top:20px">
+    <a class="button" href="/copadobrasilupdate/{{verificacao.id}}">MEU PALPITE</a>
+</div>
+{% empty %}
+<div class="box" align="center" style="margin-top:20px">
+    <a class="button" href="/copadobrasilcreate/">PALPITAR</a>
+</div>
+{% endfor %}
+{% else %}
+{% for verificacao in copadobrasil %}
+<div class="box" align="center" style="margin-top:20px">
+    <a class="button" href="/copadobrasil/{{verificacao.id}}">MEU PALPITE</a>
+</div>
+{% empty %}
+<div class="box" align="center" style="margin-top:20px">
+    <span style="text-align:center; font-size: 18px">SEM PALPITE</span>
+</div>
+{% endfor %}
+{% endif %}
 <br>
-    <a href="/dashboard/">voltar</a><br>
+<a href="/brasileirao/">voltar</a><br>
 {% endblock %}
