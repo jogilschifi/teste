@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Clubes, ResultadosBrasileirao, OrdenacaoBrasileirao, Brasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil
+from .models import Clubes, ResultadosBrasileirao, OrdenacaoBrasileirao, Brasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
 # Register your models here.
 
 admin.site.register(Clubes)
@@ -15,3 +15,5 @@ admin.site.register(PontuacaoBrasileirao)
 admin.site.register(PontuacaoTotalBrasileirao)
 
 admin.site.register(CopadoBrasil)
+
+admin.site.register(ResultadosCopadoBrasil)

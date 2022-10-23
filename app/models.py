@@ -35,14 +35,6 @@ class CopadoBrasil(models.Model):
         (8, 8),
         (9, 9),
         (10, 10),
-        (12, 12),
-        (13, 13),
-        (14, 14),
-        (15, 15),
-        (16, 16),
-        (17, 17),
-        (18, 18),
-        (19, 19),
     )
     opcao = (
         ('corinthians', 'corinthians'),
@@ -53,9 +45,31 @@ class CopadoBrasil(models.Model):
     FlamengoTempoNormal = models.PositiveSmallIntegerField(choices=gols)
     CorinthiansProrrogacao = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
     FlamengoProrrogacao = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
-    Penalti = models.PositiveSmallIntegerField(choices=opcao, null=True, blank=True)
+    Penalti = models.CharField(max_length=15, choices=opcao, null=True, blank=True)
 
-
+class ResultadosCopadoBrasil(models.Model):
+    gols = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+    )
+    opcao = (
+        ('corinthians', 'corinthians'),
+        ('flamengo', 'flamengo'),
+    )
+    CorinthiansTempoNormal = models.PositiveSmallIntegerField(choices=gols)
+    FlamengoTempoNormal = models.PositiveSmallIntegerField(choices=gols)
+    CorinthiansProrrogacao = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
+    FlamengoProrrogacao = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
+    Penalti = models.CharField(max_length=15, choices=opcao, null=True, blank=True)
 
 class Brasileirao(models.Model):
     gols = (

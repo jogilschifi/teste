@@ -18,7 +18,7 @@ import datetime
 
 from operator import itemgetter
 
-from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil
+from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
 
 
 # Create your views here.
@@ -177,9 +177,16 @@ class CopadoBrasilUpdate(LoginRequiredMixin, UpdateView):
         context['horario'] = datetime.datetime.now()
         context['horalimite'] = datetime.datetime(2022, 10, 19, 22, 00)
         return context
+
 class CopadoBrasilDetail(LoginRequiredMixin, DetailView):
     model = CopadoBrasil
     context_object_name = 'copadobrasil'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['resultado'] = ResultadosCopadoBrasil.objects.all()
+        context['resultado'] = context['resultado'].first()
+        return context
+
 
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao

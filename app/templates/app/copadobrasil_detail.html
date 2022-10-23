@@ -39,32 +39,35 @@
                     <tr>
                         <td>FLA</td>
                         <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
-                        <td>{{copadobrasil.FlamengoTempoNormal}}</td>
+                        <td>{{resultado.FlamengoTempoNormal}}</td>
+                        <td style="color: {{cor1}}; font-size: 13.5px">({{copadobrasil.FlamengoTempoNormal}})</td>
                         <td align="center">x</td>
-                        <td>{{copadobrasil.CorinthiansTempoNormal}}</td>
+                        <td style="color: {{cor1}}; font-size: 13.5px">({{copadobrasil.CorinthiansTempoNormal}})</td>
+                        <td>{{resultado.CorinthiansTempoNormal}}</td>
                         <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
                         <td>COR</td>
                     </tr>
                     <tr>
-                        <td  style="text-align:center" colspan="7">Prorrogação?</td>
-                    </tr>
-                    <tr>
-                        <td>FLA</td>
-                        <td><img src="{% static 'img/Flamengo.svg' %}" width="18" name="FLA"></td>
-                        <td>{{copadobrasil.FlamengoProrrogacao}}</td>
-                        <td align="center">x</td>
-                        <td>{{copadobrasil.CorinthiansProrrogacao}}</td>
-                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
-                        <td>COR</td>
-                    </tr>
-                    <tr>
-                        <td  style="text-align:center" colspan="7">Penalti? Escolha vencedor</td>
+                        <td style="text-align:center; font-size: 14.5px" colspan="9">Pênaltis</td>
                     </tr>
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{{copadobrasil.Penalti}}</td>
+                        <td></td>
+                        <td style="text-align:center" >{{resultado.Penalti}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:center; color: {{cor1}}; font-size: 13.5px" >({{copadobrasil.Penalti}})</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
