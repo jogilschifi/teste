@@ -84,14 +84,6 @@ class Brasileirao(models.Model):
         (8, 8),
         (9, 9),
         (10, 10),
-        (12, 12),
-        (13, 13),
-        (14, 14),
-        (15, 15),
-        (16, 16),
-        (17, 17),
-        (18, 18),
-        (19, 19),
     )
     Rodada = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
