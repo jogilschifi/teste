@@ -25,7 +25,7 @@ from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBras
 
 def bemvindo(request):
     if request.user.is_authenticated:
-        return redirect('/dashboard/')
+        return redirect('/home/')
     return render(request, 'app/bemvindo.html')
 
 @login_required
@@ -51,14 +51,14 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('palpites')
+        return reverse_lazy('home')
 
 
 class RegisterPage(FormView):
     template_name = 'app/register.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('palpites')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         user = form.save()
@@ -68,7 +68,7 @@ class RegisterPage(FormView):
 
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('palpites')
+            return redirect('home')
         return super(RegisterPage, self).get(*args, **kwargs)
 
 @login_required
