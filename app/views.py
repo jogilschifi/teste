@@ -31,7 +31,7 @@ def bemvindo(request):
 @login_required
 def dashboard(request):
     current_user = request.user
-    group = GroupManager.id
+    group = Group.objects.all()
     data = {}
     data['group'] = group
     data['palpites'] = Brasileirao.objects.all()
