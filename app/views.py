@@ -77,11 +77,11 @@ class RegisterPage(FormView):
 def perfilusuarios(request, pk, user):
 
     horario = datetime.datetime.now()
-    horalimite = datetime.datetime(2022, 10, 22, 16, 30)
+    horalimite = datetime.datetime(2022, 10, 25, 21, 45)
     if horalimite > horario:
-        rod = 32
-    else:
         rod = 33
+    else:
+        rod = 34
     data = {}
     data['rod'] = rod
     data['palpites'] = Brasileirao.objects.all()
@@ -93,39 +93,13 @@ def perfilusuarios(request, pk, user):
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
     data['classificacao'] = data['classificacao'].filter(user_id=pk)
-    data['classificacao'] = data['classificacao'].filter(Rodada=32)
+    data['classificacao'] = data['classificacao'].filter(Rodada=33)
     data['classificacao'] = data['classificacao'].first()
     if data['palpites']:
         return render(request, 'app/perfilusuarios.html', data)
     else:
         data['palpites'] = 0
     return render(request, 'app/perfilusuarios.html', data)
-
-
-class PalpiteList(LoginRequiredMixin, ListView):
-    model = Brasileirao
-    context_object_name = 'palpites'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['palpites'] = context['palpites'].filter(user=self.request.user)
-        context['palpites'] = context['palpites'].filter(Rodada=33)
-        context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 22, 16, 30)
-        context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
-        context['classificacao'] = context['classificacao'].filter(user=self.request.user)
-        context['classificacao'] = context['classificacao'].filter(Rodada=32)
-        context['classificacao'] = context['classificacao'].first()
-        context['copadobrasil'] = CopadoBrasil.objects.all()
-        context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
-        return context
-
-    def filter(self, user):
-        pass
-
-    @classmethod
-    def user_id(cls):
-        pass
 
 
 class CopadoBrasilList(LoginRequiredMixin, ListView):
@@ -189,6 +163,31 @@ class CopadoBrasilDetail(LoginRequiredMixin, DetailView):
         context['resultado'] = context['resultado'].first()
         return context
 
+class PalpiteList(LoginRequiredMixin, ListView):
+    model = Brasileirao
+    context_object_name = 'palpites'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['palpites'] = context['palpites'].filter(user=self.request.user)
+        context['palpites'] = context['palpites'].filter(Rodada=34)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 10, 25, 21, 45)
+        context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
+        context['classificacao'] = context['classificacao'].filter(user=self.request.user)
+        context['classificacao'] = context['classificacao'].filter(Rodada=33)
+        context['classificacao'] = context['classificacao'].first()
+        context['copadobrasil'] = CopadoBrasil.objects.all()
+        context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
+        return context
+
+    def filter(self, user):
+        pass
+
+    @classmethod
+    def user_id(cls):
+        pass
+
 
 class PalpiteCreate(LoginRequiredMixin, CreateView):
     model = Brasileirao
@@ -200,9 +199,9 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
-        context['dados'] = context['dados'].filter(Rodada=33)
+        context['dados'] = context['dados'].filter(Rodada=34)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 22, 16, 30)
+        context['horalimite'] = datetime.datetime(2022, 10, 25, 21, 45)
         return context
 
     def form_valid(self, form):
@@ -223,12 +222,18 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 22, 16, 30)
+        context['horalimite'] = datetime.datetime(2022, 10, 25, 21, 45)
         return context
 
 class PalpiteDetail(LoginRequiredMixin, DetailView):
     model = Brasileirao
     context_object_name = 'palpites'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2022, 10, 25, 21, 45)
+        return context
+
 
 class PalpiteDelete(LoginRequiredMixin, DeleteView):
     model = Brasileirao
