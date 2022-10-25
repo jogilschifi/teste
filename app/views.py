@@ -19,7 +19,7 @@ import datetime
 from operator import itemgetter
 
 from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
-from django.contrib.auth.models import Group, GroupManager
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
