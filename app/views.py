@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy, reverse
-from django.db.models import Sum, Max, Min
+from django.db.models import Sum, Max
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -19,7 +19,7 @@ import datetime
 from operator import itemgetter
 
 from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
-
+from django.contrib.auth.models import Group, GroupManager
 
 # Create your views here.
 
@@ -31,7 +31,9 @@ def bemvindo(request):
 @login_required
 def dashboard(request):
     current_user = request.user
+    group = GroupManager.id
     data = {}
+    data['group'] = group
     data['palpites'] = Brasileirao.objects.all()
     data['palpites'] = data['palpites'].filter(user=current_user)
     data['palpites'] = data['palpites'].filter(Rodada=33)
@@ -1063,7 +1065,7 @@ def calculadoradoispontozero(request):
                         if erro == 0:
                             data['salvo4'] += 1
                 else:
-                    pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=32, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+                    pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=33, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
                     pontuacao.save()
                     data['salvo5'] += 1
 
