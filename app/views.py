@@ -31,19 +31,7 @@ def bemvindo(request):
 @login_required
 def dashboard(request):
     current_user = request.user
-    data = {}
-    data['palpites'] = Brasileirao.objects.all()
-    data['palpites'] = data['palpites'].filter(user=current_user)
-    data['palpites'] = data['palpites'].filter(Rodada=33)
-    data['horario'] = datetime.datetime.now()
-    data['horalimite'] = datetime.datetime(2022, 10, 22, 16, 30)
-    data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
-    data['classificacao'] = data['classificacao'].filter(user=current_user)
-    data['classificacao'] = data['classificacao'].filter(Rodada=32)
-    data['classificacao'] = data['classificacao'].first()
-    data['copadobrasil'] = CopadoBrasil.objects.all()
-    data['copadobrasil'] = data['copadobrasil'].filter(user=current_user)
-    return render(request, 'app/dashboard.html', data)
+    return render(request, 'app/dashboard.html')
 
 @login_required
 def grupos(request):
