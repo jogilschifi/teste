@@ -254,7 +254,7 @@ def classificacao(request):
         rodadas = ResultadosBrasileirao.objects.all()
         classificacao = classificacao.filter(Rodada=rodada)
         def classif_sort(clas):
-            return clas.PONTOS, clas.RE, clas.RB, -clas.id
+            return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
         classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
         data = {}
         data['rodadas'] = rodadas
@@ -368,7 +368,7 @@ def classificacaoporrodada(request):
     #return render(request, 'app/classificacaoporrodada.html', data)
 
     def classif_sort(clas):
-        return clas.PONTOS, clas.RE, clas.RB, -clas.id
+        return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
 
     #classificacao = classificacao.first()
     #data = {}
