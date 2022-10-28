@@ -872,7 +872,7 @@ def calculadoradoispontozero(request):
 
     usuarios = PontuacaoBrasileirao.objects.all()
     rodadaant = str(int(request.GET['rodada']) - 1)
-    rodadaatual = request.GET['rodada']
+    rodadaatual = str(request.GET['rodada'])
     usuarios_ant = usuarios.filter(Rodada=rodadaant)
     usuarios_atual = usuarios.filter(Rodada=rodadaatual)
     usuarios_atual = usuarios_atual.aggregate(Max('user_id'))
