@@ -1085,7 +1085,7 @@ def calculadoradoispontozero(request):
                         if erro == 0:
                             data['salvo4'] += 1
                 else:
-                    pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=33, RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+                    pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=int(request.GET['rodada']), RE=0, RB=0, RP=0, ER=0, PONTOS=0)
                     pontuacao.save()
                     data['salvo5'] += 1
 
