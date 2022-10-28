@@ -19,7 +19,7 @@ import datetime
 from operator import itemgetter
 
 from app.models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User, GroupManager
 
 # Create your views here.
 
@@ -31,9 +31,7 @@ def bemvindo(request):
 @login_required
 def dashboard(request):
     current_user = request.user
-    group = Group.objects.all()
     data = {}
-    data['group'] = group
     data['palpites'] = Brasileirao.objects.all()
     data['palpites'] = data['palpites'].filter(user=current_user)
     data['palpites'] = data['palpites'].filter(Rodada=33)
@@ -45,7 +43,16 @@ def dashboard(request):
     data['classificacao'] = data['classificacao'].first()
     data['copadobrasil'] = CopadoBrasil.objects.all()
     data['copadobrasil'] = data['copadobrasil'].filter(user=current_user)
-    return render(request, 'app/dashboard.html')
+    return render(request, 'app/dashboard.html', data)
+
+@login_required
+def grupos(request):
+    group = Group.objects.all()
+    permissoes = User.objects.all()
+    data = {}
+    data['permissoes'] = permissoes
+    data['group'] = group
+    return render(request, 'app/grupos.html', data)
 
 class CustomLoginView(LoginView):
     template_name = 'app/login.html'
@@ -865,10 +872,17 @@ def calculadoradoispontozero(request):
 
     usuarios = PontuacaoBrasileirao.objects.all()
     rodadaant = str(int(request.GET['rodada']) - 1)
+    rodadaatual = request.GET['rodada']
     usuarios = usuarios.filter(Rodada=rodadaant)
+    usuarios_atual = usuarios.filter(Rodada=rodadaatual)
+    usuarios_atual = usuarios_atual.aggregate(Max('user_id'))
+    usuarios_atual = usuarios_atual["user_id__max"]
+    usuarios_atual = usuarios_atual + 1
     usuariomax = usuarios.aggregate(Max('user_id'))
     usuariomax = usuariomax["user_id__max"]
     usuariomax = usuariomax + 1
+    if usuarios_atual > usuariomax:
+        usuariomax = usuarios_atual
 
     data['usuariomax'] = usuariomax
     data['salvo'] = 0
