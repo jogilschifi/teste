@@ -88,7 +88,7 @@ def perfilusuarios(request, pk, user):
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
     data['classificacao'] = data['classificacao'].filter(user_id=pk)
-    data['classificacao'] = data['classificacao'].filter(Rodada=33)
+    data['classificacao'] = data['classificacao'].filter(Rodada=34)
     data['classificacao'] = data['classificacao'].first()
     if data['palpites']:
         return render(request, 'app/perfilusuarios.html', data)
@@ -170,7 +170,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['horalimite'] = datetime.datetime(2022, 10, 25, 21, 45)
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
-        context['classificacao'] = context['classificacao'].filter(Rodada=33)
+        context['classificacao'] = context['classificacao'].filter(Rodada=34)
         context['classificacao'] = context['classificacao'].first()
         context['copadobrasil'] = CopadoBrasil.objects.all()
         context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
