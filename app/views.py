@@ -238,6 +238,9 @@ class PalpiteDelete(LoginRequiredMixin, DeleteView):
 def pontuacao(request):
     return render(request, 'app/pontuacao.html')
 @login_required
+def desempate(request):
+    return render(request, 'app/desempate.html')
+@login_required
 def rodada(request):
     data = {}
     data['rodada'] = ResultadosBrasileirao.objects.all()

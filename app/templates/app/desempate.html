@@ -1,0 +1,33 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg  fixed top">
+        <img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO">
+        <div class="absolute-top-right">
+                <b style="color: #4b5156">{{request.user}}</b><br>
+                <div class="absolute-right">
+                        {% if request.user.is_authenticated %}
+                        <a href="/logout/">Logout</a> {% else %}
+                        <a href="/login/">Login</a> {% endif %}
+                </div>
+        </div>
+
+</nav>
+<hr>
+<div class="card">
+        <div class="card-body">
+                <p><b>Critérios de desempate:</b></p>
+                - 1º Maior número de acertos exatos (RE);<br>
+                - 2º Maior número de acertos parciais com bônus (RB);<br>
+                - 3º Maior número de rodadas jogadas por usuário;<br>
+                - 4º Usuário que palpitou antes na última rodada.<br>
+        </div>
+</div>
+<br>
+
+    <a href="/brasileirao/">voltar</a><br>
+
+
+{% endblock %}
