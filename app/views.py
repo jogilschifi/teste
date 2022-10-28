@@ -871,10 +871,11 @@ def calculadoradoispontozero(request):
     palpi = palpi.filter(Rodada=str(request.GET['rodada']))
 
     usuarios = PontuacaoBrasileirao.objects.all()
+    usuarios_novos = Brasileirao.objects.all()
     rodadaant = str(int(request.GET['rodada']) - 1)
     rodadaatual = str(request.GET['rodada'])
     usuarios_ant = usuarios.filter(Rodada=rodadaant)
-    usuarios_atual = usuarios.filter(Rodada=rodadaatual)
+    usuarios_atual = usuarios_novos.filter(Rodada=rodadaatual)
     usuarios_atual = usuarios_atual.aggregate(Max('user_id'))
     usuarios_atual = usuarios_atual["user_id__max"]
     usuarios_atual = usuarios_atual + 1
