@@ -38,12 +38,10 @@
     }
 </style>
 
-
-
     <table class="table table-striped">
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>
-            <th style="text-align:left">Classificação</th>
+            <th style="text-align:left">Classificação {% if group %}da liga <b style="text-transform: uppercase">{{group}}</b> {% endif %} </th>
             <th style="text-align:center">Pontos</th>
         </tr>
         {% for x in cla %}

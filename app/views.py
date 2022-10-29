@@ -30,16 +30,22 @@ def bemvindo(request):
 
 @login_required
 def dashboard(request):
-    current_user = request.user
     return render(request, 'app/dashboard.html')
 
 @login_required
 def grupos(request):
     group = Group.objects.all()
-    permissoes = User.objects.all()
+    users = User.objects.all()
     data = {}
-    data['permissoes'] = permissoes
+    data['users'] = users
     data['group'] = group
+
+    #grupos = []
+    #for i in users:
+    #    groups = users.groups.all()
+    #    if groups:
+    #        grupos.append({"id": i, "groups": groups})
+    #data['grupos'] = grupos
     return render(request, 'app/grupos.html', data)
 
 class CustomLoginView(LoginView):
@@ -70,7 +76,6 @@ class RegisterPage(FormView):
 
 @login_required
 def perfilusuarios(request, pk, user):
-
     horario = datetime.datetime.now()
     horalimite = datetime.datetime(2022, 10, 25, 21, 45)
     if horalimite > horario:
@@ -247,6 +252,7 @@ def rodada(request):
     return render(request, 'app/rodada.html', data)
 @login_required
 def classificacao(request):
+    data = {}
     classificacao = PontuacaoTotalBrasileirao.objects.all()
     if classificacao:
         rodada = classificacao.aggregate(Max('Rodada'))
@@ -256,7 +262,7 @@ def classificacao(request):
         def classif_sort(clas):
             return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
         classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
-        data = {}
+
         data['rodadas'] = rodadas
         data['rodada'] = rodada
         usuarios = len(classificacao)
@@ -273,7 +279,51 @@ def classificacao(request):
 
     return render(request, 'app/classificacao.html', data)
 
+@login_required
+def classificacaogrupo(request, group):
+    data = {}
+    data['group'] = group
+    classificacao = PontuacaoTotalBrasileirao.objects.all()
+    if classificacao:
+        rodada = classificacao.aggregate(Max('Rodada'))
+        rodada = rodada["Rodada__max"]
+        rodadas = ResultadosBrasileirao.objects.all()
+        classificacao = classificacao.filter(Rodada=rodada)
+        def classif_sort(clas):
+            return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
+        classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
 
+        data['rodadas'] = rodadas
+        data['rodada'] = rodada
+        usuarios = len(classificacao)
+
+        users = User.objects.all()
+        usuariomax = users.aggregate(Max('id'))
+        usuariomax = usuariomax["id__max"]
+        usuariomax = usuariomax + 1
+
+        lista_liga = []
+        for i in range(usuariomax):
+            user_grupos = users.filter(id=i)
+            usuario = user_grupos.first()
+            if usuario:
+                user_grupos = usuario.groups.all()
+                user_grupos = user_grupos.filter(name=group)
+                if user_grupos:
+                    verificacao = classificacao.filter(user_id=i)
+                    if verificacao:
+                        lista_liga.append(i)
+        cla = []
+        for i in range(usuarios):
+            classifnova = classificacao_sort[i]
+            if classifnova.user_id in lista_liga:
+                cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1})
+        data['cla'] = cla
+        return render(request, 'app/classificacao.html', data)
+    data = {}
+    data['cla'] = Brasileirao.objects.all()
+
+    return render(request, 'app/classificacao.html', data)
 
 @login_required
 def classificacaoporrodada(request):
