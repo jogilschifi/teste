@@ -418,7 +418,7 @@ def classificacaoporrodada(request):
     #return render(request, 'app/classificacaoporrodada.html', data)
 
     def classif_sort(clas):
-        return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
+        return clas.PONTOS, clas.RE, clas.RB, -clas.id
 
     #classificacao = classificacao.first()
     #data = {}
