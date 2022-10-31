@@ -38,10 +38,11 @@
     }
 </style>
 
+<p style="text-align:center; color:black">{% if group %}Liga <b style="text-transform: uppercase">{{group}}</b> {% endif %} </p>
     <table class="table table-striped">
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>
-            <th style="text-align:left">Classificação {% if group %}da liga <b style="text-transform: uppercase">{{group}}</b> {% endif %} </th>
+            <th style="text-align:left">Classificação</th>
             <th style="text-align:center">Pontos</th>
         </tr>
         {% for x in cla %}
@@ -52,15 +53,19 @@
             </tr>
         {% endfor %}
 
-
+{{lista_liga}}
     </table>
 <div class="col-lg-12" style="text-align:right; font-size: 10px; margin-top: 0px">
 <a href="/desempate/">Critérios de desempate</a>
 </div>
 
-<form id="formrodada" action="/classificacaoporrodada/" method="GET">
+<form id="formrodada" action="{% if lista_liga %}/classificacaoporrodadagrupo/{% else %}/classificacaoporrodada/{% endif %}" method="GET">
     {% csrf_token %}
     <!-- teste -->
+    {% if lista_liga %}
+    <input type="hidden" name="lista_liga" value="{{lista_liga}}">
+    <input type="hidden" name="group" value="{{group}}">
+    {% endif %}
     <label >Classificação:</label>
     <select name="tipo" id="tipo" class="form-select-padding">
         <option value="0">Selecione</option>

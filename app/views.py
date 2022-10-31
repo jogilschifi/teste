@@ -273,12 +273,9 @@ def classificacao(request):
             cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1})
         data['cla'] = cla
         return render(request, 'app/classificacao.html', data)
-    data = {}
+
     data['cla'] = Brasileirao.objects.all()
-
-
     return render(request, 'app/classificacao.html', data)
-
 @login_required
 def classificacaogrupo(request, group):
     data = {}
@@ -313,17 +310,75 @@ def classificacaogrupo(request, group):
                     verificacao = classificacao.filter(user_id=i)
                     if verificacao:
                         lista_liga.append(i)
+        data['lista_liga'] = lista_liga
         cla = []
+        j = 0
         for i in range(usuarios):
             classifnova = classificacao_sort[i]
             if classifnova.user_id in lista_liga:
-                cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1})
+                cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1-j})
+            else:
+                j += 1
         data['cla'] = cla
         return render(request, 'app/classificacao.html', data)
     data = {}
     data['cla'] = Brasileirao.objects.all()
 
     return render(request, 'app/classificacao.html', data)
+
+@login_required
+def classificacaoporrodadagrupo(request):
+    tipo = request.GET['tipo']
+    rodada = request.GET['rodada']
+    lista_liga = request.GET['lista_liga']
+    group = request.GET['group']
+    global classificacao
+    if tipo == '0':
+        return redirect('/classificacao/')
+    else:
+        if rodada == '0':
+            return redirect('/classificacao/')
+        elif tipo == '1':
+            classificacao = PontuacaoTotalBrasileirao.objects.all()
+            classificacao = classificacao.filter(Rodada=rodada)
+        elif tipo == '2':
+            classificacao = PontuacaoBrasileirao.objects.all()
+            classificacao = classificacao.filter(Rodada=rodada)
+
+    def classif_sort(clas):
+        return clas.PONTOS, clas.RE, clas.RB, -clas.id
+
+    rodadas = ResultadosBrasileirao.objects.all()
+    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+    data = {}
+    data['group'] = group
+    data['lista_liga'] = lista_liga
+    data['rodadas'] = rodadas
+    data['rodada'] = int(rodada)
+    data['tipo'] = int(tipo)
+    usuarios = len(classificacao)
+
+    lista = []
+    for i in range(len(lista_liga)):
+        if lista_liga[i] != '[':
+            if lista_liga[i] != ']':
+                if lista_liga[i] != ',':
+                    if lista_liga[i] != ' ':
+                        lista.append(int(lista_liga[i]))
+    data['lista'] = lista
+
+    cla = []
+    j = 0
+    for i in range(usuarios):
+        classifnova = classificacao_sort[i]
+        if classifnova.user_id in lista:
+            cla.append({"PONTOS": classifnova.PONTOS, "RE": classifnova.RE, "RB": classifnova.RB, "RP": classifnova.RP,
+                        "user": classifnova.user, "id": classifnova.user_id, "posicao": i + 1 - j})
+        else:
+            j += 1
+    data['cla'] = cla
+
+    return render(request, 'app/classificacaoporrodada.html', data)
 
 @login_required
 def classificacaoporrodada(request):

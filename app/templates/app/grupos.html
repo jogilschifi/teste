@@ -39,22 +39,32 @@
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>
             <th style="text-align:left">Nome</th>
+            <th></th>
         </tr>
         {% for x in group %}
         <tr align="center">
             <td>{{x.id}}</td>
             <td align="left"><a href="/classificacao/{{x.name}}/">{{x.name}}</a></td>
+            <td></td>
         </tr>
         {% endfor %}
 </table>
-
-{% for x in users %}
-{{x.id}}
-{{x.username}}<br>
-{% for group in x.groups.all %}{{group}}{% if not forloop.last %},{% endif %}{% endfor %}<br>
-{% endfor %}
-{{groups}}
-{{grupos}}
+<!-- teste
+<table class="table table-striped">
+        <tr style="background-color: lightgray">
+            <th style="text-align:right">#</th>
+            <th style="text-align:left">Nome</th>
+            <th style="text-align:right">Ligas</th>
+        </tr>
+        {% for x in users %}
+        <tr align="center">
+            <td>{{x.id}}</td>
+            <td style="text-align:left">{{x.username}}</td>
+            <td style="text-align:right">{% for group in x.groups.all %}{{group}}{% if not forloop.last %},{% endif %}{% endfor %}</td>
+        </tr>
+        {% endfor %}
+</table>
+-->
 <a href="/classificacao/">voltar</a><br>
 
 {% endblock %}
