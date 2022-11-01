@@ -367,6 +367,9 @@ def classificacaoporrodadagrupo(request):
                         if lista_liga[i+1] == ',':
                             if lista_liga[i-1] == ' ':
                                 lista.append(int(lista_liga[i]))
+                            else:
+                                if lista_liga[i - 1] == ']':
+                                    lista.append(int(lista_liga[i]))
                         else:
                             if lista_liga[i+1] != ']':
                                 if lista_liga[i+2] == ',':
