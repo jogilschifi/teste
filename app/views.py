@@ -373,7 +373,8 @@ def classificacaoporrodadagrupo(request):
                                 else:
                                     lista.append(10 * int(lista_liga[i]) + int(lista_liga[i + 1]))
                             else:
-                                lista.append(int(lista_liga[i]))
+                                if lista_liga[i-1] == ' ':
+                                    lista.append(int(lista_liga[i]))
     data['lista'] = lista
 
     cla = []
