@@ -278,52 +278,90 @@ def classificacao(request):
     return render(request, 'app/classificacao.html', data)
 @login_required
 def classificacaogrupo(request, group):
+    #Início ligas
+    if group == 'Bem Amigos':
+        rodadamin = 34
+    elif group == 'Uefa League':
+        rodadamin = 35
+    elif group == 'Pokemens':
+        rodadamin = 28
+
+    classificacaomin = PontuacaoTotalBrasileirao.objects.all()
+    classificacaomin = classificacaomin.filter(Rodada=str(int(rodadamin)-1))
+    classificacaomax = PontuacaoTotalBrasileirao.objects.all()
+    rodada = classificacaomax.aggregate(Max('Rodada'))
+    rodada = rodada["Rodada__max"]
+    classificacaomax = classificacaomax.filter(Rodada=rodada)
+    usuariosmax = len(classificacaomax)
+    usuariosmin = len(classificacaomin)
+    usuariosminver = usuariosmin - 1
+
+    classificacaomaxima = []
+    for i in range(usuariosmax):
+        classificacaomaxima.append(classificacaomax[i])
+    classificacaominima = []
+    for i in range(usuariosmin):
+        classificacaominima.append(classificacaomin[i])
+
+    count = 0
+    classificacao = []
+    for i in range(usuariosmax):
+        usermax = classificacaomaxima[i].user_id
+        for j in range(usuariosmin):
+            usermin = classificacaominima[j].user_id
+            if usermax == usermin:
+                classificacao.append({"PONTOS": classificacaomaxima[i].PONTOS - classificacaominima[j].PONTOS,
+                                                                "RE": classificacaomaxima[i].RE - classificacaominima[j].RE,
+                                                            "RB": classificacaomaxima[i].RB - classificacaominima[j].RB,
+                                                                "RP": classificacaomaxima[i].RP - classificacaominima[j].RP,
+                                                                "user": classificacaomaxima[i].user, "user_id":classificacaomaxima[i].user_id})
+                count += 1
+                break
+            else:
+                if j == usuariosminver:
+                    if i == count:
+                        classificacao.append({"PONTOS": classificacaomaxima[i].PONTOS, "RE": classificacaomaxima[i].RE,
+                                                      "RB": classificacaomaxima[i].RB,"RP": classificacaomaxima[i].RP,
+                                                      "user": classificacaomaxima[i].user, "user_id": classificacaomaxima[i].user_id})
+                        count += 1
+
     data = {}
     data['group'] = group
-    classificacao = PontuacaoTotalBrasileirao.objects.all()
-    if classificacao:
-        rodada = classificacao.aggregate(Max('Rodada'))
-        rodada = rodada["Rodada__max"]
-        rodadas = ResultadosBrasileirao.objects.all()
-        classificacao = classificacao.filter(Rodada=rodada)
-        def classif_sort(clas):
-            return clas.PONTOS, clas.RE, clas.RB, -clas.ER, -clas.id
-        classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+    def classif_sort(clas):
+        return clas["PONTOS"], clas["RE"], clas["RB"], -clas["user_id"]
+    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
 
-        data['rodadas'] = rodadas
-        data['rodada'] = rodada
-        usuarios = len(classificacao)
+    rodadas = ResultadosBrasileirao.objects.all()
+    data['rodadas'] = rodadas
+    data['rodada'] = rodada
+    usuarios = len(classificacao)
 
-        users = User.objects.all()
-        usuariomax = users.aggregate(Max('id'))
-        usuariomax = usuariomax["id__max"]
-        usuariomax = usuariomax + 1
+    users = User.objects.all()
+    usuariomax = users.aggregate(Max('id'))
+    usuariomax = usuariomax["id__max"]
+    usuariomax = usuariomax + 1
 
-        lista_liga = []
-        for i in range(usuariomax):
-            user_grupos = users.filter(id=i)
-            usuario = user_grupos.first()
-            if usuario:
-                user_grupos = usuario.groups.all()
-                user_grupos = user_grupos.filter(name=group)
-                if user_grupos:
-                    verificacao = classificacao.filter(user_id=i)
-                    if verificacao:
-                        lista_liga.append(i)
-        data['lista_liga'] = lista_liga
-        cla = []
-        j = 0
-        for i in range(usuarios):
-            classifnova = classificacao_sort[i]
-            if classifnova.user_id in lista_liga:
-                cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1-j})
-            else:
-                j += 1
-        data['cla'] = cla
-        return render(request, 'app/classificacao.html', data)
-    data = {}
-    data['cla'] = Brasileirao.objects.all()
-
+    lista_liga = []
+    for i in range(usuariomax):
+        user_grupos = users.filter(id=i)
+        usuario = user_grupos.first()
+        if usuario:
+            user_grupos = usuario.groups.all()
+            user_grupos = user_grupos.filter(name=group)
+            if user_grupos:
+                verificacao = classificacaomax.filter(user_id=i)
+                if verificacao:
+                    lista_liga.append(i)
+    data['lista_liga'] = lista_liga
+    cla = []
+    j = 0
+    for i in range(usuarios):
+        classifnova = classificacao_sort[i]
+        if classifnova.user_id in lista_liga:
+            cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1-j})
+        else:
+            j += 1
+    data['cla'] = cla
     return render(request, 'app/classificacao.html', data)
 
 @login_required
