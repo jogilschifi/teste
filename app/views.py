@@ -79,9 +79,9 @@ def perfilusuarios(request, pk, user):
     horario = datetime.datetime.now()
     horalimite = datetime.datetime(2022, 11, 1, 19, 00)
     if horalimite > horario:
-        rod = 33
-    else:
         rod = 34
+    else:
+        rod = 35
     data = {}
     data['rod'] = rod
     data['palpites'] = Brasileirao.objects.all()
