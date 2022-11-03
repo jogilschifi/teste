@@ -511,7 +511,7 @@ def classificacaoporrodadagrupo(request, group):
                             if verificacao:
                                 lista_liga.append(i)
                 data['membros'] = len(lista_liga)
-                data['rodadamin'] = 28
+                data['rodadamin'] = rodadamin
                 cla = []
                 j = 0
                 for i in range(usuarios):
