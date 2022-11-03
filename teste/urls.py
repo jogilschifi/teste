@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', bemvindo),
     path('ligas/', grupos, name='ligas'),
-    path('classificacao/<group>/', classificacaogrupo, name='classificacao'),
+    path('classificacao/<group>/', classificacaogrupo, name='classificacaogrupo'),
     path('home/', dashboard, name='home'),
     path('brasileirao/', PalpiteList.as_view(), name='palpites'),
     path('<int:pk>/<user>/', perfilusuarios, name='perfilusuarios'),

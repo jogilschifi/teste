@@ -429,10 +429,10 @@ def classificacaoporrodadagrupo(request, group):
 
     global classificacao
     if tipo == '0':
-        return redirect('/classificacao/')
+        return redirect(reverse("classificacaogrupo", kwargs={'group':group}))
     else:
         if rodada == '0':
-            return redirect('/classificacao/')
+            return redirect(reverse("classificacaogrupo", kwargs={'group':group}))
 
         elif tipo == '1':
             if not rodadamin == 'geral':
@@ -522,6 +522,7 @@ def classificacaoporrodadagrupo(request, group):
                 return render(request, 'app/classificacaoporrodada.html', data)
             else:
                 classificacao = PontuacaoTotalBrasileirao.objects.all()
+                classificacao = classificacao.filter(Rodada=rodada)
         elif tipo == '2':
             classificacao = PontuacaoBrasileirao.objects.all()
             classificacao = classificacao.filter(Rodada=rodada)
