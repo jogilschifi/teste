@@ -287,12 +287,16 @@ def classificacaogrupo(request, group):
         rodadamin = 35
     else:
         classificacao = PontuacaoTotalBrasileirao.objects.all()
+        rodada = classificacao.aggregate(Max('Rodada'))
+        rodada = rodada["Rodada__max"]
+        rodadas = ResultadosBrasileirao.objects.all()
+        classificacao = classificacao.filter(Rodada=rodada)
         def classif_sort(clas):
             return clas.PONTOS, clas.RE, clas.RB, -clas.id
         classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
         data = {}
         data['group'] = group
-        data['rodada'] = int(rodada)
+        data['rodadas'] = rodadas
         usuarios = len(classificacao)
 
         users = User.objects.all()
