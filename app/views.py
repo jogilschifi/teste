@@ -286,8 +286,43 @@ def classificacaogrupo(request, group):
     elif group == 'Uefa League':
         rodadamin = 35
     else:
-        rodadamin = 'geral'
+        classificacao = PontuacaoTotalBrasileirao.objects.all()
+        def classif_sort(clas):
+            return clas.PONTOS, clas.RE, clas.RB, -clas.id
+        classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+        data = {}
+        data['group'] = group
+        data['rodada'] = int(rodada)
+        usuarios = len(classificacao)
 
+        users = User.objects.all()
+        usuariomax = users.aggregate(Max('id'))
+        usuariomax = usuariomax["id__max"]
+        usuariomax = usuariomax + 1
+
+        lista_liga = []
+        for i in range(usuariomax):
+            user_grupos = users.filter(id=i)
+            usuario = user_grupos.first()
+            if usuario:
+                user_grupos = usuario.groups.all()
+                user_grupos = user_grupos.filter(name=group)
+                if user_grupos:
+                    verificacao = classificacao.filter(user_id=i)
+                    if verificacao:
+                        lista_liga.append(i)
+        cla = []
+        j = 0
+        for i in range(usuarios):
+            classifnova = classificacao_sort[i]
+            if classifnova.user_id in lista_liga:
+                cla.append(
+                    {"PONTOS": classifnova.PONTOS, "RE": classifnova.RE, "RB": classifnova.RB, "RP": classifnova.RP,
+                     "user": classifnova.user, "id": classifnova.user_id, "posicao": i + 1 - j})
+            else:
+                j += 1
+        data['cla'] = cla
+        return render(request, 'app/classificacaoporrodada.html', data)
 
     classificacaomin = PontuacaoTotalBrasileirao.objects.all()
     classificacaomin = classificacaomin.filter(Rodada=str(int(rodadamin)-1))
