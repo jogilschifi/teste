@@ -286,9 +286,11 @@ def classificacaogrupo(request, group):
     elif group == 'Uefa League':
         rodadamin = 35
     elif group == 'Pokemens':
-        rodadamin = 28
+        rodadamin = 29
     else:
         rodadamin = 28
+
+
     classificacaomin = PontuacaoTotalBrasileirao.objects.all()
     classificacaomin = classificacaomin.filter(Rodada=str(int(rodadamin)-1))
     classificacaomax = PontuacaoTotalBrasileirao.objects.all()
@@ -335,6 +337,7 @@ def classificacaogrupo(request, group):
         return clas["PONTOS"], clas["RE"], clas["RB"], -clas["user_id"]
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
 
+    #Rodadas apartir do início das ligas
     rodadasobj = ResultadosBrasileirao.objects.all()
     rodadas = []
     for i in range(len(rodadasobj)):
@@ -446,6 +449,7 @@ def classificacaoporrodadagrupo(request, group):
                 if int(rodadasobj[i].Rodada) >= rodadamin:
                     rodadas.append({"Rodada": x})
             data = {}
+            data['group'] = group
             data['rodadas'] = rodadas
             data['rodada'] = rodada
             usuarios = len(classificacao)
@@ -487,16 +491,16 @@ def classificacaoporrodadagrupo(request, group):
     def classif_sort(clas):
         return clas.PONTOS, clas.RE, clas.RB, -clas.id
 
-
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
-    data = {}
 
+    #Rodadas apartir do início das ligas
     rodadasobj = ResultadosBrasileirao.objects.all()
     rodadas = []
     for i in range(len(rodadasobj)):
         x = rodadasobj[i].Rodada
         if int(rodadasobj[i].Rodada) >= rodadamin:
             rodadas.append({"Rodada": x})
+
     data = {}
     data['rodadas'] = rodadas
     data['group'] = group
