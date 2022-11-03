@@ -33,7 +33,7 @@
     </style>
 
 <div class="card">
-        <div class="card" style="text-align:center; margin-top: 20px">Perfil de <b>{{user}}</b></div>
+        <div  style="text-align:center; color:black; margin-top:20px">Perfil de <b style="text-transform: uppercase">{{user}}</b></div>
         {% if classificacao %}
         <div class="d-flex justify-content-between">
         <div class="card-body" style="text-align:right">Pontuação: {{classificacao.PONTOS}}</div>
@@ -46,8 +46,7 @@
         </div>
         {% endif %}
 </div>
-<br>
-
+<hr>
 {% if palpites != 0 %}
         <h3 align="center">BRASILEIRÃO</h3>
         <h4 align="center">Rodada 35º </h4>
