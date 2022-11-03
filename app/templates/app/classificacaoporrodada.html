@@ -16,9 +16,20 @@
 
 </nav>
 <hr>
+{% if group %}
+    <div class="card">
+        <div class="card" style="text-align:center; margin-top: 20px"><b style="text-transform: uppercase">{{group}}</b></div>
+        <div class="d-flex justify-content-between">
+        <div class="card-body" style="text-align:right">Início: rodada {{rodadamin}}ª</div>
+        <div class="card-body">Participantes: {{membros}}</div>
+        </div>
+    </div>
+<hr>
+{% else %}
 <div align="right" style="font-size: 20px; margin-bottom: 25px" >
     <a class="button" href="/ligas/">LIGAS</a>
 </div>
+{% endif %}
 <style>
     td:nth-child(1) {
       text-align: right ;
@@ -50,7 +61,6 @@
         {% endif %}
     {% endif %}
 </h4> -->
-<p style="text-align:center; color:black">{% if group %}Liga <b style="text-transform: uppercase">{{group}}</b> {% endif %} </p>
     <table align="center" class="table table-striped">
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>

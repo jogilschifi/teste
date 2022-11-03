@@ -510,7 +510,8 @@ def classificacaoporrodadagrupo(request, group):
                             verificacao = classificacaomax.filter(user_id=i)
                             if verificacao:
                                 lista_liga.append(i)
-                data['lista_liga'] = lista_liga
+                data['membros'] = len(lista_liga)
+                data['rodadamin'] = 28
                 cla = []
                 j = 0
                 for i in range(usuarios):
@@ -534,18 +535,19 @@ def classificacaoporrodadagrupo(request, group):
         return clas.PONTOS, clas.RE, clas.RB, -clas.id
 
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
-
+    data = {}
     #Rodadas apartir do início das ligas
     rodadasobj = ResultadosBrasileirao.objects.all()
     if rodadamin == 'geral':
         rodadas = rodadasobj
+        data['rodadamin'] = 28
     else:
+        data['rodadamin'] = rodadamin
         rodadas = []
         for i in range(len(rodadasobj)):
             x = rodadasobj[i].Rodada
             if int(rodadasobj[i].Rodada) >= rodadamin:
                 rodadas.append({"Rodada": x})
-    data = {}
     data['rodadas'] = rodadas
     data['group'] = group
     data['rodada'] = int(rodada)
