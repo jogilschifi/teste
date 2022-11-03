@@ -40,7 +40,7 @@ urlpatterns = [
     #path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
     path('pontuacao/', pontuacao),
     path('desempate/', desempate),
-    path('rodada/', rodada),
+    path('rodada/<int:pk>/', rodada, name='rodada'),
     path('resultado/', resultado),
     path('classificacao/', classificacao),
     path('classificacaoporrodada/', classificacaoporrodada),

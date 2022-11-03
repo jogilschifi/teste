@@ -24,7 +24,7 @@
     {% csrf_token %}
     <label for="rodada">Rodada:</label>
     <select name="rodada" id="rodada" class="form-select-padding">
-        <option action="/rodada/" value="0">Selecione</option>
+        <option action="/rodada/{{request.user.id}}" value="0">Selecione</option>
             {% for rodadas in rodada %}
         <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
             {% endfor %}

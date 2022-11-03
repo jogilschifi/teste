@@ -88,7 +88,8 @@ def perfilusuarios(request, pk, user):
     data['palpites'] = data['palpites'].filter(user_id=pk)
     data['palpites'] = data['palpites'].filter(Rodada=rod)
     data['palpites'] = data['palpites'].first()
-    data['rodada'] = ResultadosBrasileirao.objects.all()
+    data['rodada'] = Brasileirao.objects.all()
+    data['rodada'] = data['rodada'].filter(user_id=pk)
     data['pk'] = pk
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
@@ -177,8 +178,6 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
         context['classificacao'] = context['classificacao'].filter(Rodada=34)
         context['classificacao'] = context['classificacao'].first()
-        context['copadobrasil'] = CopadoBrasil.objects.all()
-        context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
         return context
 
     def filter(self, user):
@@ -246,9 +245,10 @@ def pontuacao(request):
 def desempate(request):
     return render(request, 'app/desempate.html')
 @login_required
-def rodada(request):
+def rodada(request,pk):
     data = {}
-    data['rodada'] = ResultadosBrasileirao.objects.all()
+    data['rodada'] = Brasileirao.objects.all()
+    data['rodada'] = data['rodada'].filter(user_id=pk)
     return render(request, 'app/rodada.html', data)
 @login_required
 def classificacao(request):
@@ -655,7 +655,7 @@ def resultado(request):
     else:
         if data['verificacao'] == 1:
             return redirect(reverse("perfilusuarios", kwargs={'pk':int(current_user), 'user':str(user)}))
-        return redirect('/rodada/')
+        return redirect(reverse("rodada", kwargs={'pk':int(current_user)}))
     if palpite:
         ttime1 = palpite.AthleticoPR
         ttime2 = palpite.Palmeiras
@@ -682,7 +682,7 @@ def resultado(request):
     else:
         if data['verificacao'] == 1:
             return redirect(reverse("perfilusuarios", kwargs={'pk':int(current_user), 'user':str(user)}))
-        return redirect('/rodada/')
+        return redirect(reverse("rodada", kwargs={'pk':int(current_user)}))
     tttime1 = resultado.AthleticoPR
     tttime2 = resultado.Palmeiras
     tttime3 = resultado.Corinthians
