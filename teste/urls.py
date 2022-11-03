@@ -44,7 +44,7 @@ urlpatterns = [
     path('resultado/', resultado),
     path('classificacao/', classificacao),
     path('classificacaoporrodada/', classificacaoporrodada),
-    path('classificacaoporrodadagrupo/', classificacaoporrodadagrupo),
+    path('classificacaoporrodadagrupo/<group>/', classificacaoporrodadagrupo),
     path('classificacaodoispontozero/', classificacaodoispontozero),
     path('caminhocalculadora/', caminhocalculadora),
     path('calculadoradoispontozero/', calculadoradoispontozero),
