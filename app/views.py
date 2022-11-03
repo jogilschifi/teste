@@ -285,10 +285,8 @@ def classificacaogrupo(request, group):
         rodadamin = 34
     elif group == 'Uefa League':
         rodadamin = 35
-    elif group == 'Pokemens':
-        rodadamin = 29
     else:
-        rodadamin = 28
+        rodadamin = 'geral'
 
 
     classificacaomin = PontuacaoTotalBrasileirao.objects.all()
@@ -496,12 +494,14 @@ def classificacaoporrodadagrupo(request, group):
 
     #Rodadas apartir do início das ligas
     rodadasobj = ResultadosBrasileirao.objects.all()
-    rodadas = []
-    for i in range(len(rodadasobj)):
-        x = rodadasobj[i].Rodada
-        if int(rodadasobj[i].Rodada) >= rodadamin:
-            rodadas.append({"Rodada": x})
-
+    if rodadamin == 'geral':
+        rodadas = rodadasobj
+    else:
+        rodadas = []
+        for i in range(len(rodadasobj)):
+            x = rodadasobj[i].Rodada
+            if int(rodadasobj[i].Rodada) >= rodadamin:
+                rodadas.append({"Rodada": x})
     data = {}
     data['rodadas'] = rodadas
     data['group'] = group
