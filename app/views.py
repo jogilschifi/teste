@@ -570,7 +570,7 @@ def classificacaoporrodadagrupo(request, group):
                 verificacao = classificacao.filter(user_id=i)
                 if verificacao:
                     lista_liga.append(i)
-    data['lista_liga'] = lista_liga
+    data['membros'] = len(lista_liga)
 
     #Maneira burra de converter string em lista
     #lista = []
