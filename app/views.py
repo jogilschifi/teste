@@ -357,8 +357,8 @@ def classificacaogrupo(request, group):
     j = 0
     for i in range(usuarios):
         classifnova = classificacao_sort[i]
-        if classifnova.user_id in lista_liga:
-            cla.append({"PONTOS":classifnova.PONTOS, "RE":classifnova.RE, "RB":classifnova.RB, "RP":classifnova.RP, "user":classifnova.user, "id":classifnova.user_id, "posicao":i+1-j})
+        if classifnova["user_id"] in lista_liga:
+            cla.append({"PONTOS":classifnova["PONTOS"], "RE":classifnova["RE"], "RB":classifnova["RB"], "RP":classifnova["RP"], "user":classifnova["user"], "id":classifnova["user_id"], "posicao":i+1-j})
         else:
             j += 1
     data['cla'] = cla
