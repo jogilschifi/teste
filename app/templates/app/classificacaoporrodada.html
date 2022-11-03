@@ -82,11 +82,10 @@
 <a href="/desempate/">Critérios de desempate</a>
 </div>
 
-<form id="formrodada" action="{% if lista_liga %}/classificacaoporrodadagrupo/{{group}}/{% else %}/classificacaoporrodada/{% endif %}" method="GET">
+<form id="formrodada" action="{% if group %}/classificacaoporrodadagrupo/{{group}}/{% else %}/classificacaoporrodada/{% endif %}" method="GET">
     {% csrf_token %}
     <!-- teste -->
-    {% if lista_liga %}
-    <input type="hidden" name="lista_liga" value="{{lista_liga}}">
+    {% if group %}
     <input type="hidden" name="group" value="{{group}}">
     {% endif %}
     <div>

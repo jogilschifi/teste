@@ -40,7 +40,7 @@ def grupos(request):
     data['users'] = users
     def group_sort(clas):
         return clas.id
-    group = sorted(grupos, key=group_sort, reverse=True)
+    group = sorted(grupos, key=group_sort)
     data['group'] = group
     #grupos = []
     #for i in users:
