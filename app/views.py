@@ -315,6 +315,8 @@ def classificacaogrupo(request, group):
                     verificacao = classificacao.filter(user_id=i)
                     if verificacao:
                         lista_liga.append(i)
+        data['membros'] = len(lista_liga)
+        data['rodadamin'] = 28
         cla = []
         j = 0
         for i in range(usuarios):
@@ -403,6 +405,7 @@ def classificacaogrupo(request, group):
                 if verificacao:
                     lista_liga.append(i)
     data['lista_liga'] = lista_liga
+    data['membros'] = len(lista_liga)
     cla = []
     j = 0
     for i in range(usuarios):
