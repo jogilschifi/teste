@@ -33,10 +33,10 @@
     </style>
 
 <div class="card">
-        <div  style="text-align:center; color:black; margin-top:20px">Perfil de <b>{{user}}</b></div>
+        <div  style="text-align:center; color:black; margin-top:20px; font-size: 20px">Perfil de <b>{{user}}</b></div>
         {% if classificacao %}
         <div class="d-flex justify-content-between">
-        <div class="card-body" style="text-align:right">Pontuação: {{classificacao.PONTOS}}</div>
+        <div class="card-body" style="text-align:right">Pontuação: <b>{{classificacao.PONTOS}}</b></div>
         <div class="card-body"><a style="text-align:center; font-size: 16px"><span style="color: blue">RE: {{classificacao.RE}};</span>
                 <span style="color: #993399">RB: {{classificacao.RB}};</span>
                 <span style="color: orange">RP: {{classificacao.RP}}.</span>
