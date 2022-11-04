@@ -523,6 +523,7 @@ def classificacaoporrodadagrupo(request, group):
                     else:
                         j += 1
                 data['cla'] = cla
+                data['tipo'] = int(tipo)
                 return render(request, 'app/classificacaoporrodada.html', data)
             else:
                 classificacao = PontuacaoTotalBrasileirao.objects.all()

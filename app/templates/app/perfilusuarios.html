@@ -37,7 +37,10 @@
         {% if classificacao %}
         <div class="d-flex justify-content-between">
         <div class="card-body" style="text-align:right">Pontuação: {{classificacao.PONTOS}}</div>
-        <div class="card-body">RE: {{classificacao.RE}}, RB: {{classificacao.RB}}, RP: {{classificacao.RB}}.<br></div>
+        <div class="card-body"><a style="text-align:center; font-size: 16px"><span style="color: blue">RE: {{classificacao.RE}};</span>
+                <span style="color: #993399">RB: {{classificacao.RB}};</span>
+                <span style="color: orange">RP: {{classificacao.RP}}.</span>
+            </a></div>
         </div>
         {% else %}
         <div class="d-flex justify-content-between">
