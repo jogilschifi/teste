@@ -154,8 +154,8 @@ Usuário não palpitou na última rodada.
     <label for="rodadausuarios">Rodada:</label>
     <select name="rodada" id="rodadausuarios" class="form-select-padding">
         <option value="0">Selecione</option>
-            {% for rodadas in rodada %}
-        <option value="{{ rodadas.Rodada }}">{{ rodadas.Rodada }}</option>
+            {% for x in rodadas %}
+        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
     </select>
     <input type="submit" class="btn-success btn-custom" value="Verificar">

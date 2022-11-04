@@ -90,8 +90,13 @@ def perfilusuarios(request, pk, user):
     data['palpites'] = data['palpites'].filter(user_id=pk)
     data['palpites'] = data['palpites'].filter(Rodada=rod)
     data['palpites'] = data['palpites'].first()
-    data['rodada'] = Brasileirao.objects.all()
-    data['rodada'] = data['rodada'].filter(user_id=pk)
+    rodadas = Brasileirao.objects.all()
+    rodadas = rodadas.filter(user_id=pk)
+    if rodadas:
+        def rodadas_sort(clas):
+            return clas.Rodada
+        rodadas = sorted(rodadas, key=rodadas_sort)
+        data['rodadas'] = rodadas
     data['pk'] = pk
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
@@ -253,8 +258,14 @@ def desempate(request):
 @login_required
 def rodada(request,pk):
     data = {}
-    data['rodada'] = Brasileirao.objects.all()
-    data['rodada'] = data['rodada'].filter(user_id=pk)
+    rodadas = Brasileirao.objects.all()
+    rodadas = rodadas.filter(user_id=pk)
+    if rodadas:
+        def rodadas_sort(clas):
+            return clas.Rodada
+
+        rodadas = sorted(rodadas, key=rodadas_sort)
+        data['rodadas'] = rodadas
     return render(request, 'app/rodada.html', data)
 @login_required
 def classificacao(request):
