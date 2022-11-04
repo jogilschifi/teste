@@ -79,11 +79,11 @@ class RegisterPage(FormView):
 @login_required
 def perfilusuarios(request, pk, user):
     horario = datetime.datetime.now()
-    horalimite = datetime.datetime(2022, 11, 1, 19, 00)
+    horalimite = datetime.datetime(2022, 11, 5, 16, 30)
     if horalimite > horario:
-        rod = 34
-    else:
         rod = 35
+    else:
+        rod = 36
     data = {}
     data['rod'] = rod
     data['palpites'] = Brasileirao.objects.all()
@@ -96,7 +96,9 @@ def perfilusuarios(request, pk, user):
     data['user'] = user
     data['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
     data['classificacao'] = data['classificacao'].filter(user_id=pk)
-    data['classificacao'] = data['classificacao'].filter(Rodada=35)
+    rodada = data['classificacao'].aggregate(Max('Rodada'))
+    rodada = rodada["Rodada__max"]
+    data['classificacao'] = data['classificacao'].filter(Rodada=rodada)
     data['classificacao'] = data['classificacao'].first()
     if data['palpites']:
         return render(request, 'app/perfilusuarios.html', data)
@@ -173,12 +175,14 @@ class PalpiteList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['palpites'] = context['palpites'].filter(user=self.request.user)
-        context['palpites'] = context['palpites'].filter(Rodada=35)
+        context['palpites'] = context['palpites'].filter(Rodada=36)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 1, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 11, 5, 16, 30)
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
-        context['classificacao'] = context['classificacao'].filter(Rodada=35)
+        rodada = context['classificacao'].aggregate(Max('Rodada'))
+        rodada = rodada["Rodada__max"]
+        context['classificacao'] = context['classificacao'].filter(Rodada=rodada)
         context['classificacao'] = context['classificacao'].first()
         return context
 
@@ -200,9 +204,9 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
-        context['dados'] = context['dados'].filter(Rodada=35)
+        context['dados'] = context['dados'].filter(Rodada=36)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 1, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 11, 5, 16, 30)
         return context
 
     def form_valid(self, form):
@@ -223,7 +227,7 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 1, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 11, 5, 16, 30)
         return context
 
 class PalpiteDetail(LoginRequiredMixin, DetailView):
@@ -232,7 +236,7 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 1, 19, 00)
+        context['horalimite'] = datetime.datetime(2022, 11, 5, 16, 30)
         return context
 
 

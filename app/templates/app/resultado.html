@@ -47,13 +47,9 @@
         </div>
 </div>
 
-<p  style="font-size: 8px; text-align:center; margin-top:10px">
-            RE: Resultado Exato;
-            RB: Resultado Parcial com Bônus;
-            RP: Resultado Parcial;
-            ER: Resultado Errado;
-            PT: Pontuação.
-</p>
+<div class="col-lg-12" style="text-align:right; font-size: 10px; margin-top: 20px">
+<a href="/pontuacao/">Critério de pontuação</a>
+</div>
 <hr>
 {% if 28 == rodada %}
                 <table  class="border" id="analise" align="center" cellpadding="10">
@@ -984,13 +980,7 @@
                 </table>
 
 {% endif %}
-<div class="col-lg-12" style="text-align:right; font-size: 10px; margin-top: 20px">
-<a href="/pontuacao/">Critério de pontuação</a>
-</div>
 <br>
-<hr>
-
-
 {% if verificacao == 0 %}
     <a href="/rodada/{{request.user.id}}">voltar</a><br>
 {% else %}
