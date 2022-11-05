@@ -35,6 +35,27 @@ def dashboard(request):
     return render(request, 'app/dashboard.html')
 
 @login_required
+def liga(request, group):
+    users = User.objects.all()
+    todos_usuarios = len(users)
+    count = 0
+    lista_liga = []
+    for i in range(todos_usuarios):
+        user_grupos = users.filter(id=i)
+        usuario = user_grupos.first()
+        if usuario:
+            user_grupos = usuario.groups.all()
+            user_grupos = user_grupos.filter(name=group)
+            if user_grupos:
+                lista_liga.append({"id": i, "user": usuario.username, "posição": i + 1 - count})
+        count += 1
+    data = {}
+    data['membros'] = lista_liga
+
+    data['group'] = group
+    return render(request, 'app/grupos.html',data)
+
+@login_required
 def grupos(request):
     grupos = Group.objects.all()
     users = User.objects.all()
@@ -337,12 +358,10 @@ def classificacaogrupo(request, group):
         usuarios = len(classificacao)
 
         users = User.objects.all()
-        usuariomax = users.aggregate(Max('id'))
-        usuariomax = usuariomax["id__max"]
-        usuariomax = usuariomax + 1
+        todos_usuarios = len(users)
 
         lista_liga = []
-        for i in range(usuariomax):
+        for i in range(todos_usuarios):
             user_grupos = users.filter(id=i)
             usuario = user_grupos.first()
             if usuario:
@@ -426,12 +445,10 @@ def classificacaogrupo(request, group):
     usuarios = len(classificacao)
 
     users = User.objects.all()
-    usuariomax = users.aggregate(Max('id'))
-    usuariomax = usuariomax["id__max"]
-    usuariomax = usuariomax + 1
+    todos_usuarios = len(users)
 
     lista_liga = []
-    for i in range(usuariomax):
+    for i in range(todos_usuarios):
         user_grupos = users.filter(id=i)
         usuario = user_grupos.first()
         if usuario:
@@ -532,12 +549,10 @@ def classificacaoporrodadagrupo(request, group):
                 usuarios = len(classificacao)
 
                 users = User.objects.all()
-                usuariomax = users.aggregate(Max('id'))
-                usuariomax = usuariomax["id__max"]
-                usuariomax = usuariomax + 1
+                todos_usuarios = len(users)
 
                 lista_liga = []
-                for i in range(usuariomax):
+                for i in range(todos_usuarios):
                     user_grupos = users.filter(id=i)
                     usuario = user_grupos.first()
                     if usuario:
@@ -593,12 +608,10 @@ def classificacaoporrodadagrupo(request, group):
     usuarios = len(classificacao)
 
     users = User.objects.all()
-    usuariomax = users.aggregate(Max('id'))
-    usuariomax = usuariomax["id__max"]
-    usuariomax = usuariomax + 1
+    todos_usuarios = len(users)
 
     lista_liga = []
-    for i in range(usuariomax):
+    for i in range(todos_usuarios):
         user_grupos = users.filter(id=i)
         usuario = user_grupos.first()
         if usuario:
