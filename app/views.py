@@ -345,7 +345,7 @@ def classificacaogrupo(request, group):
     if group == 'Bem Amigos':
         rodadamin = 34
     elif group == 'Uefa League':
-        rodadamin = 35
+        rodadamin = 36
     else:
         classificacao = PontuacaoTotalBrasileirao.objects.all()
         rodada = classificacao.aggregate(Max('Rodada'))
@@ -364,6 +364,7 @@ def classificacaogrupo(request, group):
         ultimo_id = users.last()
         ultimo_id = ultimo_id.id + 1
 
+        count = 0
         lista_liga = []
         for i in range(ultimo_id):
             user_grupos = users.filter(id=i)
@@ -375,7 +376,9 @@ def classificacaogrupo(request, group):
                     verificacao = classificacao.filter(user_id=i)
                     if verificacao:
                         lista_liga.append(i)
-        data['membros'] = len(lista_liga)
+                    else:
+                        count += 1
+        data['membros'] = len(lista_liga) + count
         data['rodadamin'] = 28
         cla = []
         j = 0
@@ -452,6 +455,7 @@ def classificacaogrupo(request, group):
     ultimo_id = users.last()
     ultimo_id = ultimo_id.id + 1
 
+    count = 0
     lista_liga = []
     for i in range(ultimo_id):
         user_grupos = users.filter(id=i)
@@ -463,8 +467,10 @@ def classificacaogrupo(request, group):
                 verificacao = classificacaomax.filter(user_id=i)
                 if verificacao:
                     lista_liga.append(i)
+                else:
+                    count += 1
     data['lista_liga'] = lista_liga
-    data['membros'] = len(lista_liga)
+    data['membros'] = len(lista_liga) + count
     cla = []
     j = 0
     for i in range(usuarios):
@@ -482,7 +488,7 @@ def classificacaoporrodadagrupo(request, group):
     if group == 'Bem Amigos':
         rodadamin = 34
     elif group == 'Uefa League':
-        rodadamin = 35
+        rodadamin = 36
     else:
         rodadamin = 'geral'
 
@@ -557,6 +563,7 @@ def classificacaoporrodadagrupo(request, group):
                 ultimo_id = users.last()
                 ultimo_id = ultimo_id.id + 1
 
+                count = 0
                 lista_liga = []
                 for i in range(ultimo_id):
                     user_grupos = users.filter(id=i)
@@ -568,7 +575,9 @@ def classificacaoporrodadagrupo(request, group):
                             verificacao = classificacaomax.filter(user_id=i)
                             if verificacao:
                                 lista_liga.append(i)
-                data['membros'] = len(lista_liga)
+                            else:
+                                count += 1
+                data['membros'] = len(lista_liga) + count
                 data['rodadamin'] = rodadamin
                 cla = []
                 j = 0
@@ -617,6 +626,7 @@ def classificacaoporrodadagrupo(request, group):
     ultimo_id = users.last()
     ultimo_id = ultimo_id.id + 1
 
+    count = 0
     lista_liga = []
     for i in range(ultimo_id):
         user_grupos = users.filter(id=i)
@@ -628,9 +638,11 @@ def classificacaoporrodadagrupo(request, group):
                 verificacao = classificacao.filter(user_id=i)
                 if verificacao:
                     lista_liga.append(i)
-    data['membros'] = len(lista_liga)
+                else:
+                    count += 1
+    data['membros'] = len(lista_liga) + count
 
-    #Maneira burra de converter string em lista
+    #Maneira burra de converter lista_string em lista
     #lista = []
     #for i in range(len(lista_liga)):
     #    if lista_liga[i] != '[':
