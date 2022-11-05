@@ -38,7 +38,7 @@ def dashboard(request):
 def liga(request, group):
     users = User.objects.all()
     ultimo_id = users.last()
-    ultimo_id = ultimo_id.id
+    ultimo_id = ultimo_id.id + 1
     count = 0
     lista_liga = []
     for i in range(ultimo_id):
@@ -55,7 +55,6 @@ def liga(request, group):
             count += 1
     data = {}
     data['membros'] = lista_liga
-    data['todos'] = len(users)
     data['group'] = group
     return render(request, 'app/grupos.html',data)
 
@@ -363,7 +362,7 @@ def classificacaogrupo(request, group):
 
         users = User.objects.all()
         ultimo_id = users.last()
-        ultimo_id = ultimo_id.id
+        ultimo_id = ultimo_id.id + 1
 
         lista_liga = []
         for i in range(ultimo_id):
@@ -451,7 +450,7 @@ def classificacaogrupo(request, group):
 
     users = User.objects.all()
     ultimo_id = users.last()
-    ultimo_id = ultimo_id.id
+    ultimo_id = ultimo_id.id + 1
 
     lista_liga = []
     for i in range(ultimo_id):
@@ -556,7 +555,7 @@ def classificacaoporrodadagrupo(request, group):
 
                 users = User.objects.all()
                 ultimo_id = users.last()
-                ultimo_id = ultimo_id.id
+                ultimo_id = ultimo_id.id + 1
 
                 lista_liga = []
                 for i in range(ultimo_id):
@@ -616,7 +615,7 @@ def classificacaoporrodadagrupo(request, group):
 
     users = User.objects.all()
     ultimo_id = users.last()
-    ultimo_id = ultimo_id.id
+    ultimo_id = ultimo_id.id + 1
 
     lista_liga = []
     for i in range(ultimo_id):
