@@ -37,10 +37,11 @@ def dashboard(request):
 @login_required
 def liga(request, group):
     users = User.objects.all()
-    todos_usuarios = len(users)
+    ultimo_id = users.last()
+    ultimo_id = ultimo_id.id
     count = 0
     lista_liga = []
-    for i in range(todos_usuarios):
+    for i in range(ultimo_id):
         user_grupos = users.filter(id=i)
         usuario = user_grupos.first()
         if usuario:
@@ -361,10 +362,11 @@ def classificacaogrupo(request, group):
         usuarios = len(classificacao)
 
         users = User.objects.all()
-        todos_usuarios = len(users)
+        ultimo_id = users.last()
+        ultimo_id = ultimo_id.id
 
         lista_liga = []
-        for i in range(todos_usuarios):
+        for i in range(ultimo_id):
             user_grupos = users.filter(id=i)
             usuario = user_grupos.first()
             if usuario:
@@ -448,10 +450,11 @@ def classificacaogrupo(request, group):
     usuarios = len(classificacao)
 
     users = User.objects.all()
-    todos_usuarios = len(users)
+    ultimo_id = users.last()
+    ultimo_id = ultimo_id.id
 
     lista_liga = []
-    for i in range(todos_usuarios):
+    for i in range(ultimo_id):
         user_grupos = users.filter(id=i)
         usuario = user_grupos.first()
         if usuario:
@@ -552,10 +555,11 @@ def classificacaoporrodadagrupo(request, group):
                 usuarios = len(classificacao)
 
                 users = User.objects.all()
-                todos_usuarios = len(users)
+                ultimo_id = users.last()
+                ultimo_id = ultimo_id.id
 
                 lista_liga = []
-                for i in range(todos_usuarios):
+                for i in range(ultimo_id):
                     user_grupos = users.filter(id=i)
                     usuario = user_grupos.first()
                     if usuario:
@@ -611,10 +615,11 @@ def classificacaoporrodadagrupo(request, group):
     usuarios = len(classificacao)
 
     users = User.objects.all()
-    todos_usuarios = len(users)
+    ultimo_id = users.last()
+    ultimo_id = ultimo_id.id
 
     lista_liga = []
-    for i in range(todos_usuarios):
+    for i in range(ultimo_id):
         user_grupos = users.filter(id=i)
         usuario = user_grupos.first()
         if usuario:
