@@ -54,7 +54,7 @@ def liga(request, group):
             count += 1
     data = {}
     data['membros'] = lista_liga
-
+    data['todos'] = len(users)
     data['group'] = group
     return render(request, 'app/grupos.html',data)
 
