@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg  fixed top">
         <img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO">
         <div class="absolute-top-right">
-                <b style="color: #4b5156">{{request.user}}</b><br>
+                <b style="color: #4b5156"><a href="/profile/">{{request.user}}</a></b><br>
                 <div class="absolute-right">
                         {% if request.user.is_authenticated %}
                         <a href="/logout/">Logout</a> {% else %}
@@ -30,8 +30,8 @@
         <div class="card-body">
 <p style="font-size: 14px" ><b>Observações:</b></p>
 <b  style="font-size: 10px">
-        *Resultado Parcial é quando o usuário acerta o vencedor da partida.<br>
-        **Resultado Parcial com bônus é quando o usuário, além de acertar o vencedor da partida, acerta a diferença de gols entre os times.<br>
+        **Resultado Parcial é quando o usuário acerta o vencedor da partida.<br>
+        *Resultado Parcial com bônus é quando o usuário, além de acertar o vencedor da partida, acerta a diferença de gols entre os times.<br>
 
 </b>
                         </div>

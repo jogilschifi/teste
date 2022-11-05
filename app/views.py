@@ -8,12 +8,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import reverse_lazy, reverse
 from django.db.models import Sum, Max
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm
 
 import datetime
 
@@ -76,6 +77,26 @@ class RegisterPage(FormView):
         if self.request.user.is_authenticated:
             return redirect('home')
         return super(RegisterPage, self).get(*args, **kwargs)
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+
+        if u_form.is_valid():
+            u_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('home')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+
+
+    context = {
+        'u_form': u_form,
+    }
+
+    return render(request, 'app/profile.html', context)
 
 @login_required
 def perfilusuarios(request, pk, user):
