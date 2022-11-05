@@ -48,7 +48,10 @@ def liga(request, group):
             user_grupos = user_grupos.filter(name=group)
             if user_grupos:
                 lista_liga.append({"id": i, "user": usuario.username, "posição": i + 1 - count})
-        count += 1
+            else:
+                count += 1
+        else:
+            count += 1
     data = {}
     data['membros'] = lista_liga
 
