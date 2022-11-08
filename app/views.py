@@ -230,6 +230,7 @@ class PalpiteList(LoginRequiredMixin, ListView):
         # Verficacao se usuario pode palpitar/atualizar palpite ou visualizar palpite
         context['horario'] = datetime.datetime.now()
         context['horalimite'] = datetime.datetime(2022, 11, 8, 21, 30)
+        context['temporestante'] = context['horalimite'] - context['horario']
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
         rodada = context['classificacao'].aggregate(Max('Rodada'))
