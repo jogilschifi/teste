@@ -255,6 +255,7 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Verificacao se usuario já palpitou (acessando pela URL)
+        context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
         context['dados'] = context['dados'].filter(Rodada=37)
         # Verficacao se já passou do horario para palpitar (acessando pela URL)
