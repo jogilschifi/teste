@@ -61,7 +61,7 @@
             {% endfor %}
         {% endif %}
 </table>
-
+{% if request.user.id == 2 %}
 <table class="table table-striped">
         <tr style="background-color: lightgray">
             <th style="text-align:right">#</th>
@@ -78,5 +78,5 @@
 </table>
 
 <a href="/classificacao/">voltar</a><br>
--->
+{% endif %}
 {% endblock %}

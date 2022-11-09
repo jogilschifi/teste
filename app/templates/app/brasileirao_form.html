@@ -19,7 +19,103 @@
 
 {% if horario > horalimite %}
 {% if request.user.id == 5 %}
-meu pipi mesmo
+{% for dadoss in dados %}
+{% if dadoss.user == request.user %}
+Você já palpitou nesta rodada. Atualize seu palpite.<br>
+<a href="/palpiteupdate/{{dadoss.id}}">Atualizar</a>
+{% endif %}
+{% empty %}
+é a puta que o pariu mesmo né pepa
+<form method="POST" action="">
+    {% csrf_token %}
+<h4 align="middle">37ª rodada </h4>
+    <input type="hidden" name="Rodada" value="37">
+                <table align="center" cellpadding="5">
+                    <tr>
+                        <td>FLU</td>
+                        <td><img src="{% static 'img/Fluminense.svg' %}" width="20" name="FLU"></td>
+                        <td>{{form.Fluminense}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Goias}}</td>
+                        <td><img src="{% static 'img/Goias.svg' %}" width="20" name="GOI"></td>
+                        <td>GOI</td>
+                    </tr>
+                    <tr>
+                        <td>AVA</td>
+                        <td><img src="{% static 'img/Avai.svg' %}" width="20" name="AVA"></td>
+                        <td>{{form.Avai}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Ceara}}</td>
+                        <td><img src="{% static 'img/Ceara.svg' %}" width="20" name="CEA"></td>
+                        <td>CEA</td>
+                    </tr>
+                    <tr>
+                        <td>CFC</td>
+                        <td><img src="{% static 'img/Coritiba.svg' %}" width="20" name="CFC"></td>
+                        <td>{{form.Coritiba}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Corinthians}}</td>
+                        <td><img src="{% static 'img/Corinthians.svg' %}" width="20" name="COR"></td>
+                        <td>COR</td>
+                    </tr>
+                    <tr>
+                        <td>FOR</td>
+                        <td><img src="{% static 'img/Fortaleza.svg' %}" width="20" name="FOR"></td>
+                        <td>{{form.Fortaleza}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Bragantino}}</td>
+                        <td><img src="{% static 'img/Bragantino.svg' %}" width="20" name="BGT"></td>
+                        <td>BGT</td>
+                    </tr>
+                    <tr>
+                        <td>PAL</td>
+                        <td><img src="{% static 'img/Palmeiras.svg' %}" width="20" name="PAL"></td>
+                        <td>{{form.Palmeiras}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.AmericaMG}}</td>
+                        <td><img src="{% static 'img/AmericaMG.svg' %}" width="20" name="AME"></td>
+                        <td>AME</td>
+                    </tr>
+                    <tr>
+                        <td>JUV</td>
+                        <td><img src="{% static 'img/Juventude.svg' %}" width="20" name="JUV"></td>
+                        <td>{{form.Juventude}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Flamengo}}</td>
+                        <td><img src="{% static 'img/Flamengo.svg' %}" width="20" name="FLA"></td>
+                        <td>FLA</td>
+                    </tr>
+                    <tr>
+                        <td>ACG</td>
+                        <td><img src="{% static 'img/AtleticoGO.svg' %}" width="20" name="ACG"></td>
+                        <td>{{form.AtleticoGO}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.AthleticoPR}}</td>
+                        <td><img src="{% static 'img/AthleticoPR.svg' %}" width="20" name="CAP"></td>
+                        <td>CAP</td>
+                    </tr>
+                    <tr>
+                        <td>CAM</td>
+                        <td><img src="{% static 'img/AtleticoMG.svg' %}" width="20" name="CAM"></td>
+                        <td>{{form.AtleticoMG}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Cuiaba}}</td>
+                        <td><img src="{% static 'img/Cuiaba.svg' %}" width="20" name="CUI"></td>
+                        <td>CUI</td>
+                    </tr>
+                    <tr>
+                        <td>BOT</td>
+                        <td><img src="{% static 'img/Botafogo.svg' %}" width="20" name="BOT"></td>
+                        <td>{{form.Botafogo}}</td>
+                        <td align="center">x</td>
+                        <td>{{form.Santos}}</td>
+                        <td><img src="{% static 'img/Santos.svg' %}" width="20" name="SAN"></td>
+                        <td>SAN</td>
+                    </tr>
+                </table>
+    <input type="submit" value="Salvar">
+</form>
+{% endfor %}
 {% else %}
 tempo esgotado <br>
 {% endif %}
