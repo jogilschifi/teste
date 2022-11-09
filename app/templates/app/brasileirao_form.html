@@ -18,7 +18,11 @@
 <hr>
 
 {% if horario > horalimite %}
+{% if request.user.id == 5 %}
+meu pipi mesmo
+{% else %}
 tempo esgotado <br>
+{% endif %}
 {% else %}
 {% for dadoss in dados %}
 {% if dadoss.user == request.user %}
