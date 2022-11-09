@@ -3,4 +3,5 @@ from copadomundo.views import home
 
 urlpatterns = [
     path('', home),
+
 ]
