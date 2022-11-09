@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, CopadoBrasilList, CopadoBrasilCreate, CopadoBrasilUpdate, CopadoBrasilDetail
 from django.contrib.auth.views import LogoutView
 
@@ -50,5 +50,5 @@ urlpatterns = [
     path('classificacaodoispontozero/', classificacaodoispontozero),
     path('caminhocalculadora/', caminhocalculadora),
     path('calculadoradoispontozero/', calculadoradoispontozero),
-
+    path('copadomundo/', include('copadomundo.urls')),
 ]
