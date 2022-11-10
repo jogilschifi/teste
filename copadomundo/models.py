@@ -120,7 +120,7 @@ class Resultados(models.Model):
     POR = models.PositiveSmallIntegerField(null=True, blank=True)
     URU = models.PositiveSmallIntegerField(null=True, blank=True)
 
-class OrdenacaoBrasileirao(models.Model):
+class Ordenacao(models.Model):
     RODADAS = (
         ('1', '1'),
         ('2', '2'),

@@ -1,20 +1,9 @@
 {% extends 'app/index.html' %}
+
 {% load static %}
 
 {% block content %}
-<nav class="navbar navbar-expand-lg  fixed top">
-        <a href="/home/"><img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO"></a>
-        <div class="absolute-top-right">
-                <b style="color: #4b5156"><a href="/profile/">{{request.user}}</a></b><br>
-                <div class="absolute-right">
-                        {% if request.user.is_authenticated %}
-                        <a href="/logout/">Logout</a> {% else %}
-                        <a href="/login/">Login</a> {% endif %}
-                </div>
-        </div>
 
-</nav>
-<hr>
 <!--
 <div id="menu" class="dropdown" align="right">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px">

@@ -2,6 +2,12 @@
 {% load static %}
 
 {% block content %}
-<hr>
 
+<main class="glb-grid grid-24" itemscope itemtype="http://schema.org/webpage"> <div class="row"> <div class="publicidade publicidade-banner_slb_topo"> <div id="banner_slb_topo"> <div class="glb-skeleton-box" style="--skeleton-width: 970px; --skeleton-height: 100%;"></div> </div> </div> </div> <div class="row medium-collapse large-uncollapse"> <div class="column small-24 medium-centered medium-20 large-22 tabela-body"> <script type="text/javascript" id="scriptReact">
+{% for x in jogos %}
+{{x.Jogo1}}
+{% endfor %}
+{{palpites}}
+</script> </div> </div>
+</main>
 {% endblock %}
