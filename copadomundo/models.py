@@ -59,23 +59,49 @@ class Palpites(models.Model):
     GAN = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
 
 class Horarios(models.Model):
+    GRUPOS = (
+        ('Grupo A', 'Grupo A'),
+        ('Grupo B', 'Grupo B'),
+        ('Grupo C', 'Grupo C'),
+        ('Grupo D', 'Grupo D'),
+        ('Grupo E', 'Grupo E'),
+        ('Grupo F', 'Grupo F'),
+        ('Grupo G', 'Grupo G'),
+        ('Grupo H', 'Grupo H'),
+    )
     Rodada = models.IntegerField()
     Jogo1 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ1 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo2 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ2 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo3 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ3 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo4 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ4 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo5 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ5 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo6 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ6 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo7 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ7 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo8 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ8 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo9 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ9 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo10 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ10 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo11 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ11 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo12 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ12 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo13 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ13 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo14 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ14 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo15 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ15 = models.CharField(max_length=8, choices=GRUPOS)
     Jogo16 = models.DateTimeField('data/hora', null=True, blank=True)
+    GrupoJ16 = models.CharField(max_length=8, choices=GRUPOS)
 
 class Resultados(models.Model):
     RODADAS = (

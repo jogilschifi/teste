@@ -2,8 +2,26 @@
 {% load static %}
 
 {% block content %}
-<div class="grid">One</div>
-<div class="grid">Two</div>
+<div align="center"><button onclick="showPrev()"> <</button>
+<button onclick="showNext()"> > </button></div>
+<div class="grid">
+    {% for x in jogos %}
+        {{x.Jogo1}}
+    {% endfor %}
+    CAT
+    <img src="{% static 'img/Catar.svg' %}" width="20" name="CAT">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU">
+    EQU
+
+</div>
+<div class="grid">
+    {% for x in jogos %}
+        {{x.Jogo2}}
+    {% endfor %}
+</div>
 <div class="grid">Three</div>
 <div class="grid">Four</div>
 <div class="grid">Five</div>
@@ -22,8 +40,8 @@
     <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU"><br>
 {{palpites}}
 </div>-->
-<button onclick="showPrev()"> Show Prev</button>
-<button onclick="showNext()"> Show Next</button>
+
+
 
 
 {% endblock %}

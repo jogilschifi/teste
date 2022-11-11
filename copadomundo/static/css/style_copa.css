@@ -276,7 +276,7 @@
             padding: 20px;
         }
         .grid {
-            width: 80%; height: 200px; background-color: red; display: inline-block;
+            width: 90%; height: 200px; background-color: whitesmoke; display: inline-block;
             font-size: 25px; margin: 22px;
-            padding: 22px; color: #FFF; text-align: center; display: none;
+            padding: 22px; text-align: center; display: None;
         }
