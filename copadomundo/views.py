@@ -17,6 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Palpites, Horarios, Resultados, Ordenacao, Pontuacao, PontuacaoTotal
 from django.contrib.auth.models import Group, User, GroupManager
 
+import datetime
 # Create your views here.
 
 @login_required
@@ -30,7 +31,7 @@ def home(request):
 class PalpiteList(LoginRequiredMixin, ListView):
     model = Palpites
     context_object_name = 'palpites'
-    template_name = 'copadomundo/home.html'
+    template_name = 'palpites_list.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 # Create your models here.
 
 class Palpites(models.Model):
@@ -238,3 +239,8 @@ class PontuacaoTotal(models.Model):
     GP = models.IntegerField(null=True)
     ER = models.IntegerField(null=True)
     PONTOS = models.IntegerField()
+
+class Ligas(models.Model):
+    title = models.CharField(max_length=30)
+    users = models.ManyToManyField(User, blank=True)
+    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)

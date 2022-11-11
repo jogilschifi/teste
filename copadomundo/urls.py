@@ -3,5 +3,5 @@ from copadomundo.views import home, PalpiteList
 
 urlpatterns = [
     path('', home),
-    path('pedro/', PalpiteList.as_view(), name='palpites'),
+    path('jogos/', PalpiteList.as_view(), name='palpites'),
 ]

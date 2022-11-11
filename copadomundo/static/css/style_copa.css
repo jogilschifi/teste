@@ -2,7 +2,7 @@
             font-family: Arial;
         }
         body {
-            background-color: #FAFAFA;
+            background-color: white;
             font-family: 'Nunito', sans-serif;
             padding-top: 50px;
         }
@@ -272,9 +272,11 @@
         .btn-custom {
             border-radius: 50px;
         }
-
-
-
         .card-body {
             padding: 20px;
+        }
+        .grid {
+            height: 200px; background-color: red; display: inline-block;
+            font-size: 25px; margin: 22px;
+            padding: 22px; color: #FFF; text-align: center;
         }
