@@ -69,39 +69,65 @@ class Horarios(models.Model):
         ('Grupo G', 'Grupo G'),
         ('Grupo H', 'Grupo H'),
     )
+    ESTADIOS = (
+        ('Khalifa International, Doha', 'Khalifa International, Doha'),
+        ('Al Bayt, Al Khor', 'Al Bayt, Al Khor'),
+        ('Al Janoub, Al-Wakrah', 'Al Janoub, Al-Wakrah'),
+        ('Ahmad Bin Ali, Al Rayyan', 'Ahmad Bin Ali, Al Rayyan'),
+        ('Al Thumama', 'Al Thumama'),
+        ('Education City, Doha', 'Education City, Doha'),
+        ('974, Doha', '974, Doha'),
+        ('Lusail Iconic Stadium, Lusail', 'Lusail Iconic Stadium, Lusail'),
+    )
     Rodada = models.IntegerField()
     Jogo1 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ1 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ1 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo2 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ2 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ2 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo3 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ3 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ3 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo4 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ4 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ4 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo5 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ5 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ5 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo6 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ6 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ6 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo7 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ7 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ7 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo8 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ8 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ8 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo9 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ9 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ9 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo10 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ10 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ10 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo11 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ11 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ11 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo12 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ12 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ12 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo13 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ13 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ13 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo14 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ14 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ14 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo15 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ15 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ15 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
     Jogo16 = models.DateTimeField('data/hora', null=True, blank=True)
     GrupoJ16 = models.CharField(max_length=8, null=True, blank=True, choices=GRUPOS)
+    LocalJ16 = models.CharField(max_length=30, null=True, blank=True, choices=ESTADIOS)
 
 class Resultados(models.Model):
     RODADAS = (
