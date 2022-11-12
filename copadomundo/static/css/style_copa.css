@@ -277,6 +277,6 @@
         }
         .grid {
             width: 90%; height: 200px; background-color: whitesmoke; display: inline-block;
-            font-size: 25px; margin: 22px;
+            font-size: 20px; margin: 22px;
             padding: 22px; text-align: center; display: None;
         }

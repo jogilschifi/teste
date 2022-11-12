@@ -127,13 +127,13 @@ def perfilusuarios(request, pk, user):
     data = {}
     # Verificacao se outros usuários vao poder ver palpite da ultima ou da atual rodada
     horario = datetime.datetime.now()
-    horalimite = datetime.datetime(2022, 11, 8, 21, 30)
+    horalimite = datetime.datetime(2022, 11, 13, 16, 00)
     data['horario'] = horario
     data['horalimite'] = horalimite
     if horalimite > horario:
-        rod = 36
-    else:
         rod = 37
+    else:
+        rod = 38
     data['rod'] = rod
     data['palpites'] = Brasileirao.objects.all()
     data['palpites'] = data['palpites'].filter(user_id=pk)
@@ -226,10 +226,10 @@ class PalpiteList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         # Verficacao se usuario irá palpitar ou atualizar palpite
         context['palpites'] = context['palpites'].filter(user=self.request.user)
-        context['palpites'] = context['palpites'].filter(Rodada=37)
+        context['palpites'] = context['palpites'].filter(Rodada=38)
         # Verficacao se usuario pode palpitar/atualizar palpite ou visualizar palpite
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 8, 21, 30)
+        context['horalimite'] = datetime.datetime(2022, 11, 13, 16, 00)
         context['temporestante'] = context['horalimite'] - context['horario']
         context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
         context['classificacao'] = context['classificacao'].filter(user=self.request.user)
@@ -258,10 +258,10 @@ class PalpiteCreate(LoginRequiredMixin, CreateView):
         # Verificacao se usuario já palpitou (acessando pela URL)
         context['dados'] = Brasileirao.objects.all()
         context['dados'] = context['dados'].filter(user=self.request.user)
-        context['dados'] = context['dados'].filter(Rodada=37)
+        context['dados'] = context['dados'].filter(Rodada=38)
         # Verficacao se já passou do horario para palpitar (acessando pela URL)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 8, 21, 30)
+        context['horalimite'] = datetime.datetime(2022, 11, 13, 16, 00)
         return context
 
     def form_valid(self, form):
@@ -283,7 +283,7 @@ class PalpiteUpdate(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         # Verficacao se já passou do horario para atualizar palpite (acessando pela URL)
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 8, 21, 30)
+        context['horalimite'] = datetime.datetime(2022, 11, 13, 16, 00)
         return context
 
 class PalpiteDetail(LoginRequiredMixin, DetailView):
@@ -293,7 +293,7 @@ class PalpiteDetail(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         # Verficacao se já passou do horario para visualizar o palpite
         context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 11, 8, 21, 30)
+        context['horalimite'] = datetime.datetime(2022, 11, 13, 16, 00)
         return context
 
 

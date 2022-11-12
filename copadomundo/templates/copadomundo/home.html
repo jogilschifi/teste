@@ -4,9 +4,10 @@
 {% block content %}
 <div align="center"><button onclick="showPrev()"> <</button>
 <button onclick="showNext()"> > </button></div>
-<div class="grid">
+<div class="grid" style="font-size: 20px;">
     {% for x in jogos %}
-        {{x.Jogo1}}
+        <b>{{x.GrupoJ1}}</b><br>
+        {{x.Jogo1}}<br>
     {% endfor %}
     CAT
     <img src="{% static 'img/Catar.svg' %}" width="20" name="CAT">
@@ -15,12 +16,20 @@
     {{form.Internacional}}
     <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU">
     EQU
-
 </div>
-<div class="grid">
+
+<div class="grid" >
     {% for x in jogos %}
-        {{x.Jogo2}}
+        <b>{{x.GrupoJ2}}</b><br>
+        {{x.Jogo2}}<br>
     {% endfor %}
+    CAT
+    <img src="{% static 'img/Catar.svg' %}" width="20" name="CAT">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}<button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+    <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU">
+    EQU
 </div>
 <div class="grid">Three</div>
 <div class="grid">Four</div>
