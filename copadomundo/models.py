@@ -82,9 +82,9 @@ class Horarios(models.Model):
     SELECOES = (
         ('Catar', 'Catar'),
         ('Ecuador', 'Ecuador'),
-        ('Holanda', 'Al Janoub, Al-Wakrah'),
-        ('Senegal', 'Ahmad Bin Ali, Al Rayyan'),
-        ('Estados Unidos', 'Al Thumama'),
+        ('Holanda', 'Holanda'),
+        ('Senegal', 'Senegal'),
+        ('Estados Unidos', 'Estados Unidos'),
         ('Inglaterra', 'Inglaterra'),
         ('Irã', 'Irã'),
         ('País de Gales', 'País de Gales'),
