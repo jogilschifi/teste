@@ -81,7 +81,7 @@ class Horarios(models.Model):
     )
     SELECOES = (
         ('Catar', 'Catar'),
-        ('Ecuador', 'Ecuador'),
+        ('Equador', 'Equador'),
         ('Holanda', 'Holanda'),
         ('Senegal', 'Senegal'),
         ('Estados Unidos', 'Estados Unidos'),
