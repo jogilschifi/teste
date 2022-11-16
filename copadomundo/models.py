@@ -80,7 +80,7 @@ class Horarios(models.Model):
         ('Lusail Iconic Stadium, Lusail', 'Lusail Iconic Stadium, Lusail'),
     )
     SELECOES = (
-        ('Catar', 'Catar'),
+        ('Catar', 'CAT'),
         ('Equador', 'Equador'),
         ('Holanda', 'Holanda'),
         ('Senegal', 'Senegal'),
