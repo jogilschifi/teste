@@ -195,6 +195,88 @@ class Horarios(models.Model):
     Time1J16 = models.CharField(max_length=30, null=True, blank=True, choices=SELECOES)
     Time2J16 = models.CharField(max_length=30, null=True, blank=True, choices=SELECOES)
 
+class Jogos(models.Model):
+    JOGOS = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (11, 11),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+        (16, 16),
+    )
+    GRUPOS = (
+        ('Grupo A', 'Grupo A'),
+        ('Grupo B', 'Grupo B'),
+        ('Grupo C', 'Grupo C'),
+        ('Grupo D', 'Grupo D'),
+        ('Grupo E', 'Grupo E'),
+        ('Grupo F', 'Grupo F'),
+        ('Grupo G', 'Grupo G'),
+        ('Grupo H', 'Grupo H'),
+    )
+    ESTADIOS = (
+        ('Khalifa International, Doha', 'Khalifa International, Doha'),
+        ('Al Bayt, Al Khor', 'Al Bayt, Al Khor'),
+        ('Al Janoub, Al-Wakrah', 'Al Janoub, Al-Wakrah'),
+        ('Ahmad Bin Ali, Al Rayyan', 'Ahmad Bin Ali, Al Rayyan'),
+        ('Al Thumama', 'Al Thumama'),
+        ('Education City, Doha', 'Education City, Doha'),
+        ('974, Doha', '974, Doha'),
+        ('Lusail Iconic Stadium, Lusail', 'Lusail Iconic Stadium, Lusail'),
+    )
+    SELECOES = (
+        ('CAT', 'Catar'),
+        ('EQU', 'Equador'),
+        ('HOL', 'Holanda'),
+        ('SEN', 'Senegal'),
+        ('EUA', 'Estados Unidos'),
+        ('ING', 'Inglaterra'),
+        ('IRA', 'Irã'),
+        ('GAL', 'País de Gales'),
+        ('ARG', 'Argentina'),
+        ('ARA', 'Arábia Saudita'),
+        ('MEX', 'México'),
+        ('POL', 'Polônia'),
+        ('AUS', 'Austrália'),
+        ('DIN', 'Dinamarca'),
+        ('FRA', 'França'),
+        ('TUN', 'Tunísia'),
+        ('ALE', 'Alemanha'),
+        ('CRC', 'Costa Rica'),
+        ('ESP', 'Espanha'),
+        ('JAP', 'Japão'),
+        ('BEL', 'Bélgica'),
+        ('CAN', 'Canadá'),
+        ('CRO', 'Croácia'),
+        ('MAR', 'Marrocos'),
+        ('BRA', 'Brasil'),
+        ('CAM', 'Camarões'),
+        ('SUI', 'Suíça'),
+        ('SER', 'Sérvia'),
+        ('COR', 'Coreia do Sul'),
+        ('GAN', 'Gana'),
+        ('POR', 'Portugal'),
+        ('URU', 'Uruguai'),
+    )
+    Rodada = models.IntegerField()
+    Jogo = models.IntegerField(max_length=2, choices=JOGOS)
+    Horario = models.DateTimeField('data/hora')
+    Grupo = models.CharField(max_length=8, choices=GRUPOS)
+    Local = models.CharField(max_length=30, choices=ESTADIOS)
+    Time1 = models.CharField(max_length=30, choices=SELECOES)
+    Time2 = models.CharField(max_length=30, choices=SELECOES)
+
 class Resultados(models.Model):
     RODADAS = (
         ('1', '1'),

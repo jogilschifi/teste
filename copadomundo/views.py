@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -14,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Palpites, Horarios, Resultados, Ordenacao, Pontuacao, PontuacaoTotal
+from .models import Palpites, Horarios, Resultados, Ordenacao, Pontuacao, PontuacaoTotal, Jogos
 from django.contrib.auth.models import Group, User, GroupManager
 
 import datetime
@@ -22,11 +23,22 @@ import datetime
 
 @login_required
 def home(request):
+    jogos = Jogos.objects.all()
+    p = Paginator(jogos, 1)
+    page_num = request.GET.get('page', 1)
+    page = p.page(page_num)
     data = {}
-    data['jogos'] = Horarios.objects.all()
+    data['pages'] = p
+    data['page'] = page
     data['palpites'] = Palpites.objects.all()
     data['palpites'] = data['palpites'].filter(user=request.user)
     return render(request, 'copadomundo/home.html', data)
+
+@login_required
+def salvar(request):
+
+
+    return render(request, 'copadomundo/save.html')
 
 class PalpiteList(LoginRequiredMixin, ListView):
     model = Palpites

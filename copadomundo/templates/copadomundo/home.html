@@ -2,8 +2,145 @@
 {% load static %}
 
 {% block content %}
+<ul class="pagination">
+        {% for x in pages.page_range %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{x}}">{{x}}</a>
+            </li>
+        {% endfor %}
+</ul>
+<div class="grid">
+    {% for x in page %}
+    <b>{{x.Grupo}}</b><br>
+    <d style="font-size: 15px;">({{x.Local}})</d><br>
+    <d style="font-size: 18px;">{{x.Horario}}</d><br>
+    <br>
+    {{x.Time1}}
+    {% if 'CAT' == x.Time1 %}
+    <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
+    {% elif 'EQU' == x.Time1%}
+    <img src="{% static 'img/EQU.svg' %}" width="20" name="CAT">
+    {% elif 'ING' == x.Time1%}
+    <img src="{% static 'img/ING.svg' %}" width="20" name="CAT">
+    {% elif 'IRA' == x.Time1%}
+    <img src="{% static 'img/IRA.svg' %}" width="20" name="CAT">
+    {% elif 'SEN' == x.Time1%}
+    <img src="{% static 'img/SEN.svg' %}" width="20" name="CAT">
+    {% elif 'HOL' == x.Time1%}
+    <img src="{% static 'img/HOL.svg' %}" width="20" name="CAT">
+    {% elif 'EUA' == x.Time1%}
+    <img src="{% static 'img/EUA.svg' %}" width="20" name="CAT">
+    {% elif 'GAL' == x.Time1%}
+    <img src="{% static 'img/GAL.svg' %}" width="20" name="CAT">
+    {% elif 'ARG' == x.Time1%}
+    <img src="{% static 'img/ARG.svg' %}" width="20" name="CAT">
+    {% elif 'ARA' == x.Time1%}
+    <img src="{% static 'img/ARA.svg' %}" width="20" name="CAT">
+    {% elif 'MEX' == x.Time1%}
+    <img src="{% static 'img/MEX.svg' %}" width="20" name="CAT">
+    {% elif 'POL' == x.Time1%}
+    <img src="{% static 'img/POL.svg' %}" width="20" name="CAT">
+    {% elif 'DIN' == x.Time1%}
+    <img src="{% static 'img/DIN.svg' %}" width="20" name="CAT">
+    {% elif 'TUN' == x.Time1%}
+    <img src="{% static 'img/TUN.svg' %}" width="20" name="CAT">
+    {% elif 'FRA' == x.Time1%}
+    <img src="{% static 'img/FRA.svg' %}" width="20" name="CAT">
+    {% elif 'ALE' == x.Time1%}
+    <img src="{% static 'img/ALE.svg' %}" width="20" name="CAT">
+    {% elif 'JAP' == x.Time1%}
+    <img src="{% static 'img/JAP.svg' %}" width="20" name="CAT">
+    {% elif 'ESP' == x.Time1%}
+    <img src="{% static 'img/ESP.svg' %}" width="20" name="CAT">
+    {% elif 'CRC' == x.Time1%}
+    <img src="{% static 'img/CRC.svg' %}" width="20" name="CAT">
+    {% elif 'MAR' == x.Time1%}
+    <img src="{% static 'img/MAR.svg' %}" width="20" name="CAT">
+    {% elif 'CRO' == x.Time1%}
+    <img src="{% static 'img/CRO.svg' %}" width="20" name="CAT">
+    {% elif 'BEL' == x.Time1%}
+    <img src="{% static 'img/BEL.svg' %}" width="20" name="CAT">
+    {% elif 'CAN' == x.Time1%}
+    <img src="{% static 'img/CAN.svg' %}" width="20" name="CAT">
+    {% elif 'SUI' == x.Time1%}
+    <img src="{% static 'img/SUI.svg' %}" width="20" name="CAT">
+    {% elif 'CAM' == x.Time1%}
+    <img src="{% static 'img/CAM.svg' %}" width="20" name="CAT">
+    {% elif 'BRA' == x.Time1%}
+    <img src="{% static 'img/BRA.svg' %}" width="20" name="CAT">
+    {% elif 'SER' == x.Time1%}
+    <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
+    {% endif%}
+
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    {% if 'CAT' == x.Time2 %}
+    <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
+    {% elif 'EQU' == x.Time2%}
+    <img src="{% static 'img/EQU.svg' %}" width="20" name="CAT">
+    {% elif 'ING' == x.Time2%}
+    <img src="{% static 'img/ING.svg' %}" width="20" name="CAT">
+    {% elif 'IRA' == x.Time2%}
+    <img src="{% static 'img/IRA.svg' %}" width="20" name="CAT">
+    {% elif 'SEN' == x.Time2%}
+    <img src="{% static 'img/SEN.svg' %}" width="20" name="CAT">
+    {% elif 'HOL' == x.Time2%}
+    <img src="{% static 'img/HOL.svg' %}" width="20" name="CAT">
+    {% elif 'EUA' == x.Time2%}
+    <img src="{% static 'img/EUA.svg' %}" width="20" name="CAT">
+    {% elif 'GAL' == x.Time2%}
+    <img src="{% static 'img/GAL.svg' %}" width="20" name="CAT">
+    {% elif 'ARG' == x.Time2%}
+    <img src="{% static 'img/ARG.svg' %}" width="20" name="CAT">
+    {% elif 'ARA' == x.Time2%}
+    <img src="{% static 'img/ARA.svg' %}" width="20" name="CAT">
+    {% elif 'MEX' == x.Time2%}
+    <img src="{% static 'img/MEX.svg' %}" width="20" name="CAT">
+    {% elif 'POL' == x.Time2%}
+    <img src="{% static 'img/POL.svg' %}" width="20" name="CAT">
+    {% elif 'DIN' == x.Time2%}
+    <img src="{% static 'img/DIN.svg' %}" width="20" name="CAT">
+    {% elif 'TUN' == x.Time2%}
+    <img src="{% static 'img/TUN.svg' %}" width="20" name="CAT">
+    {% elif 'FRA' == x.Time2%}
+    <img src="{% static 'img/FRA.svg' %}" width="20" name="CAT">
+    {% elif 'ALE' == x.Time2%}
+    <img src="{% static 'img/ALE.svg' %}" width="20" name="CAT">
+    {% elif 'JAP' == x.Time2%}
+    <img src="{% static 'img/JAP.svg' %}" width="20" name="CAT">
+    {% elif 'ESP' == x.Time2%}
+    <img src="{% static 'img/ESP.svg' %}" width="20" name="CAT">
+    {% elif 'CRC' == x.Time2%}
+    <img src="{% static 'img/CRC.svg' %}" width="20" name="CAT">
+    {% elif 'MAR' == x.Time2%}
+    <img src="{% static 'img/MAR.svg' %}" width="20" name="CAT">
+    {% elif 'CRO' == x.Time2%}
+    <img src="{% static 'img/CRO.svg' %}" width="20" name="CAT">
+    {% elif 'BEL' == x.Time2%}
+    <img src="{% static 'img/BEL.svg' %}" width="20" name="CAT">
+    {% elif 'CAN' == x.Time2%}
+    <img src="{% static 'img/CAN.svg' %}" width="20" name="CAT">
+    {% elif 'SUI' == x.Time2%}
+    <img src="{% static 'img/SUI.svg' %}" width="20" name="CAT">
+    {% elif 'CAM' == x.Time2%}
+    <img src="{% static 'img/CAM.svg' %}" width="20" name="CAT">
+    {% elif 'BRA' == x.Time2%}
+    <img src="{% static 'img/BRA.svg' %}" width="20" name="CAT">
+    {% elif 'SER' == x.Time2%}
+    <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
+    {% endif%}
+    {{x.Time2}}<br>
+    {% endfor %}
+    <br>
+    <a class="button" href="/copadomundo/save/{{x.Time2}}/{{x.Time2}}/">palpitar</a>
+</div>
+
+
+<!--
 <div align="center"><button onclick="showPrev()"> <</button>
 <button onclick="showNext()"> > </button></div>
+
 {% for x in jogos %}
 <div class="grid" style="font-size: 20px;">
     <b>{{x.GrupoJ1}}</b><br>
@@ -11,11 +148,11 @@
     <d style="font-size: 18px;">{{x.Jogo1}}</d><br>
     <br>
     {{x.Time1J1}}
-    <img src="{% static 'img/Catar.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU">
+    <img src="{% static 'img/EQU.svg' %}" width="20" name="EQU">
     {{x.Time2J1}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -25,11 +162,11 @@
     <d style="font-size: 18px;">{{x.Jogo2}}</d><br>
     <br>
     {{x.Time1J2}}
-    <img src="{% static 'img/Inglaterra.svg' %}" width="20" name="ING">
+    <img src="{% static 'img/ING.svg' %}" width="20" name="ING">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Irã.svg' %}" width="20" name="IRA">
+    <img src="{% static 'img/IRA.svg' %}" width="20" name="IRA">
     {{x.Time2J2}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -40,11 +177,11 @@
     <d style="font-size: 18px;">{{x.Jogo3}}</d><br>
     <br>
     {{x.Time1J3}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/SEN.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/HOL.svg' %}" width="20" name="HOL">
     {{x.Time2J3}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -54,11 +191,11 @@
     <d style="font-size: 18px;">{{x.Jogo4}}</d><br>
     <br>
     {{x.Time1J4}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/EUA.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/GAL.svg' %}" width="20" name="HOL">
     {{x.Time2J4}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -68,11 +205,11 @@
     <d style="font-size: 18px;">{{x.Jogo5}}</d><br>
     <br>
     {{x.Time1J5}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/ARG.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/ARA.svg' %}" width="20" name="HOL">
     {{x.Time2J5}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -82,11 +219,11 @@
     <d style="font-size: 18px;">{{x.Jogo6}}</d><br>
     <br>
     {{x.Time1J6}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/DIN.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/TUN.svg' %}" width="20" name="HOL">
     {{x.Time2J6}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -96,11 +233,11 @@
     <d style="font-size: 18px;">{{x.Jogo7}}</d><br>
     <br>
     {{x.Time1J7}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/MEX.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/POL.svg' %}" width="20" name="HOL">
     {{x.Time2J7}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -110,11 +247,11 @@
     <d style="font-size: 18px;">{{x.Jogo8}}</d><br>
     <br>
     {{x.Time1J8}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/FRA.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/AUS.svg' %}" width="20" name="HOL">
     {{x.Time2J8}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -124,11 +261,11 @@
     <d style="font-size: 18px;">{{x.Jogo9}}</d><br>
     <br>
     {{x.Time1J9}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/MAR.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/CRO.svg' %}" width="20" name="HOL">
     {{x.Time2J9}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -138,11 +275,11 @@
     <d style="font-size: 18px;">{{x.Jogo10}}</d><br>
     <br>
     {{x.Time1J10}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/ALE.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/JAP.svg' %}" width="20" name="HOL">
     {{x.Time2J10}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -152,11 +289,11 @@
     <d style="font-size: 18px;">{{x.Jogo11}}</d><br>
     <br>
     {{x.Time1J11}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/ESP.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/CRC.svg' %}" width="20" name="HOL">
     {{x.Time2J11}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -166,11 +303,11 @@
     <d style="font-size: 18px;">{{x.Jogo12}}</d><br>
     <br>
     {{x.Time1J12}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/BEL.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/CAN.svg' %}" width="20" name="HOL">
     {{x.Time2J12}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -180,11 +317,11 @@
     <d style="font-size: 18px;">{{x.Jogo13}}</d><br>
     <br>
     {{x.Time1J13}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/SUI.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/CAM.svg' %}" width="20" name="HOL">
     {{x.Time2J13}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -194,11 +331,11 @@
     <d style="font-size: 18px;">{{x.Jogo14}}</d><br>
     <br>
     {{x.Time1J14}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/URU.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/COR.svg' %}" width="20" name="HOL">
     {{x.Time2J14}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
@@ -208,13 +345,17 @@
     <d style="font-size: 18px;">{{x.Jogo15}}</d><br>
     <br>
     {{x.Time1J15}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/POR.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/GAN.svg' %}" width="20" name="HOL">
     {{x.Time2J15}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+    <span ng-show="showMyPrediction">
+    <input data-role="none" type="number" ng-model="match.new_prediction.user_prediction.score_home_team" step="1" min="0" max="15" style="width: 40px;" /> x <input data-role="none" type="number" ng-model="match.new_prediction.user_prediction.score_away_team" step="1" min="0" max="15" style="width: 40px;" />
+    <button data-icon="check" data-inline="true" ng-click="saveIndividualPrediction(match); showMyPrediction=false">Enviar palpite</button>
+    </span>
 </div>
 <div class="grid" style="font-size: 20px;">
     <b>{{x.GrupoJ16}}</b><br>
@@ -222,16 +363,16 @@
     <d style="font-size: 18px;">{{x.Jogo16}}</d><br>
     <br>
     {{x.Time1J16}}
-    <img src="{% static 'img/Senegal.svg' %}" width="20" name="SEN">
+    <img src="{% static 'img/BRA.svg' %}" width="20" name="SEN">
     {{form.Catar}}
     x
     {{form.Internacional}}
-    <img src="{% static 'img/Holanda.svg' %}" width="20" name="HOL">
+    <img src="{% static 'img/SER.svg' %}" width="20" name="HOL">
     {{x.Time2J16}}<br>
     <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
 </div>
 {% endfor %}
-<!--
+
 <div class="grid">
 {% for x in jogos %}
 {{x.Jogo1}}
