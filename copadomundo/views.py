@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib.auth.decorators import login_required
@@ -17,6 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Palpites, Horarios, Resultados, Ordenacao, Pontuacao, PontuacaoTotal, Jogos
 from django.contrib.auth.models import Group, User, GroupManager
+from .forms import PalpitesForm
 
 import datetime
 # Create your views here.
@@ -35,10 +36,33 @@ def home(request):
     return render(request, 'copadomundo/home.html', data)
 
 @login_required
-def salvar(request):
+def palpite(request, Rodada, Jogo):
+    jogo = Jogos.objects.all()
+    jogo = jogo.filter(Rodada=Rodada)
+    data = {}
+    data['jogo'] = jogo.filter(Jogo=Jogo)
+    data['Rodada'] = Rodada
+    data['Jogo'] = Jogo
+    return render(request, 'copadomundo/save.html', data)
 
-
-    return render(request, 'copadomundo/save.html')
+@login_required
+def save(request):
+    if not request.GET['home']:
+        return redirect(reverse("palpite", kwargs={'Rodada':request.GET['Rodada'], 'Jogo':request.GET['Jogo']}))
+    if not request.GET['away']:
+        return redirect(reverse("palpite", kwargs={'Rodada':request.GET['Rodada'], 'Jogo':request.GET['Jogo']}))
+    jogo = Jogos.abjects.all()
+    jogo = jogo.filter(Jogo=int(request.GET['Jogo']))
+    jogo = jogo.first()
+    time1 = jogo.Time1
+    time2 = jogo.Time2
+    palpite = Palpites(Rodada=request.GET['Rodada'], user=request.user)
+    data = {}
+    data['home'] = request.GET['home']
+    data['away'] = request.GET['away']
+    data['Rodada'] = request.GET['Rodada']
+    data['Jogo'] = request.GET['Jogo']
+    return render(request, 'copadomundo/home.html', data)
 
 class PalpiteList(LoginRequiredMixin, ListView):
     model = Palpites
