@@ -10,7 +10,7 @@
         {% endfor %}
 </ul>
 <div class="grid">
-    {{home}}{{away}}{{Rodada}}{{Jogo}}
+    {{home}}{{away}}{{Rodada}}{{Jogo}}{{mensagem}}{{page_num}}
     {% for x in page %}
     <b>{{x.Grupo}}</b><br>
     <d style="font-size: 15px;">({{x.Local}})</d><br>
@@ -132,8 +132,16 @@
     <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
     {% endif%}
     {{x.Time2}}<br>
-    <br>
+    <div style="margin-top:10px">
+    {% if meu_palpite %}
+    {% for x in meu_palpite %}
+    Meu Palpite:{{x.time1}}x{{x.time2}}<br>
+    <a class="button" href="/copadomundo/update/{{x.id}}/">atualizar</a>
+    {% endfor %}
+    {% else %}
     <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
+    {% endif %}
+    </div>
     {% endfor %}
 </div>
 

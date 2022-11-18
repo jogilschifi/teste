@@ -26,8 +26,8 @@ class Palpites(models.Model):
     Rodada = models.IntegerField()
     Jogo = models.IntegerField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    time1 = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
-    time2 = models.PositiveSmallIntegerField(choices=gols, null=True, blank=True)
+    time1 = models.PositiveSmallIntegerField(choices=gols)
+    time2 = models.PositiveSmallIntegerField(choices=gols)
 
 
 class Horarios(models.Model):
