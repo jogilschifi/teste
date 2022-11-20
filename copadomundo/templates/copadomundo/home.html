@@ -3,14 +3,24 @@
 
 {% block content %}
 <ul class="pagination">
+    {{pages.has_previous}}
+        {% if page.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page.previous_page_number}}"><</a>
+        </li>
+        {% endif %}
         {% for x in pages.page_range %}
             <li class="page-item">
                 <a class="page-link" href="?page={{x}}">{{x}}</a>
             </li>
         {% endfor %}
+        {% if page.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page.next_page_number}}">></a>
+        </li>
+        {% endif %}
 </ul>
 <div class="grid">
-    {{home}}{{away}}{{Rodada}}{{Jogo}}{{mensagem}}{{page_num}}
     {% for x in page %}
     <b>{{x.Grupo}}</b><br>
     <d style="font-size: 15px;">({{x.Local}})</d><br>
@@ -73,9 +83,9 @@
     <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
     {% endif%}
 
-    {{form.Catar}}
+
     x
-    {{form.Internacional}}
+
     {% if 'CAT' == x.Time2 %}
     <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
     {% elif 'EQU' == x.Time2%}
@@ -130,16 +140,18 @@
     <img src="{% static 'img/BRA.svg' %}" width="20" name="CAT">
     {% elif 'SER' == x.Time2%}
     <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
-    {% endif%}
+    {% endif %}
     {{x.Time2}}<br>
     <div style="margin-top:10px">
-    {% if meu_palpite %}
-    {% for x in meu_palpite %}
-    Meu Palpite:{{x.time1}}x{{x.time2}}<br>
-    <a class="button" href="/copadomundo/update/{{x.id}}/">atualizar</a>
-    {% endfor %}
+    {% if hora < horalimite %}
+        {% for i in meu_palpite %}
+            Meu Palpite:{{i.time1}}x{{i.time2}}<br>
+            <a class="button" href="/copadomundo/update/{{i.id}}/">atualizar</a>
+        {% empty %}
+            <a class="button" href="/copadomundo/palpite/{{i.Rodada}}/{{i.Jogo}}/">palpitar</a>
+        {% endfor %}
     {% else %}
-    <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
+        Tempo Esgotado.
     {% endif %}
     </div>
     {% endfor %}

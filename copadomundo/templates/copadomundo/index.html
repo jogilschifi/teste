@@ -21,6 +21,7 @@
         <div class="card-body">
           <nav class="navbar navbar-expand-lg  fixed top">
             <a href="/copadomundo/"><img src="{% static 'img/LogoCopa.png' %}" width="40" name="LOGO"></a>
+              {% if request.user.is_authenticated %}
               <div class="absolute-top-right">
                 <b style="color: #4b5156"><a href="/profile/">{{request.user}}</a></b><br>
                   <div class="absolute-right">
@@ -29,6 +30,7 @@
                           <a href="/login/">Login</a> {% endif %}
                   </div>
               </div>
+              {% endif %}
           </nav>
             <hr>
         {% block content %}
