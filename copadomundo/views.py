@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Palpites, Horarios, Resultados, Ordenacao, Pontuacao, PontuacaoTotal, Jogos
+from .models import Palpites, Horarios, Resultado, Ordenacao, Pontuacao, PontuacaoTotal, Jogos
 from django.contrib.auth.models import Group, User, GroupManager
 from .forms import PalpitesForm
 
@@ -155,5 +155,199 @@ def update(request, pk):
     data['form'] = form
     return render(request, 'copadomundo/save.html', data)
 
-def classificacao(request):
-    pirirpororo
+@login_required
+def caminhocalculadora(request):
+    data = {}
+    data['rodada'] = Resultado.objects.all()
+    data['usuario'] = Palpites.objects.all()
+    return render(request, 'copadomundo/caminhocalculadora.html', data)
+
+#@login_required
+#def calculadora(request):
+    #data = {}
+    #data['classificacao'] = Pontuacao.objects.all()
+    #data['rodada']= request.GET['rodada']
+    #data['jogo'] = request.GET['jogo']
+    #resul = Resultado.objects.all()
+    #resul = resul.filter(Rodada=str(request.GET['rodada']))
+    #resul = resul.filter(Rodada=str(request.GET['jogo']))
+    #data['resultadoobj'] = resul
+    #resul = resul.first()
+
+    #palpi = Palpites.objects.all()
+    #palpi = palpi.filter(Rodada=str(request.GET['rodada']))
+    #palpi = palpi.filter(Rodada=str(request.GET['jogo']))
+
+    #usuarios = Pontuacao.objects.all()
+    #usuarios_novos = Palpites.objects.all()
+    #rodadaant = str(int(request.GET['rodada']) - 1)
+    #rodadaatual = str(request.GET['rodada'])
+    #usuarios_ant = usuarios.filter(Rodada=rodadaant)
+    #usuarios_atual = usuarios_novos.filter(Rodada=rodadaatual)
+    #usuarios_atual = usuarios_atual.aggregate(Max('user_id'))
+    #usuarios_atual = usuarios_atual["user_id__max"]
+    #usuarios_atual = usuarios_atual + 1
+    #usuariomax = usuarios_ant.aggregate(Max('user_id'))
+    #usuariomax = usuariomax["user_id__max"]
+    #usuariomax = usuariomax + 1
+    #if usuarios_atual > usuariomax:
+        #usuariomax = usuarios_atual
+    #data['usuariomax'] = usuariomax
+    #data['salvo'] = 0
+    #data['salvo1'] = 0
+    #data['salvo2'] = 0
+    #data['salvo3'] = 0
+    #data['salvo4'] = 0
+    #data['salvo5'] = 0
+    #for j in range(usuariomax):
+        #palpite = palpi.filter(user=j)
+        #if palpite:
+            #data['salvo1'] += 1
+            #data['palpiteobj'] = palpite
+            #palpite = palpite.first()
+            #ttime1 = palpite.AthleticoPR
+            #ttime2 = palpite.Palmeiras
+            #user = palpite.user
+            #palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3, "Internacional": ttime4,
+               #        "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8,
+              #         "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12,
+             #          "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16,
+            #           "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20, "user": user}
+            #data['palpite'] = palpite
+            #ordem = OrdenacaoBrasileirao.objects.all()
+            #ordem = ordem.filter(Rodada=str(request.GET['rodada']))
+            #data['ordemobj'] = ordem
+            #if ordem:
+            #    times = ordem.first()
+            #    time1 = times.AthleticoPR
+            #    time2 = times.Palmeiras
+
+            #    ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13,
+            #             time14, time15, time16, time17, time18, time19, time20]
+            #    data['ordem'] = ordem
+            #else:
+            #    return redirect('/caminhocalculadora/')
+            #tttime1 = resul.AthleticoPR
+            #tttime2 = resul.Palmeiras
+
+            #resultado = {"AthleticoPR": tttime1, "Palmeiras": tttime2, "Corinthians": tttime3, "Internacional": tttime4,
+              #           "AtleticoMG": tttime5, "Fluminense": tttime6, "Santos": tttime7, "SaoPaulo": tttime8,
+             #            "Flamengo": tttime9, "Botafogo": tttime10, "Avai": tttime11, "Bragantino": tttime12,
+            #             "AtleticoGO": tttime13, "Goias": tttime14, "Ceara": tttime15, "Coritiba": tttime16,
+            #             "AmericaMG": tttime17, "Cuiaba": tttime18, "Juventude": tttime19, "Fortaleza": tttime20}
+            #data['resultado'] = resultado
+            #i = 0
+            #igual = 0
+            #exato = 0
+            #bonus = 0
+            #diferente = 0
+            #total = 0
+            #while i < 19:
+                #if i % 2 == 0:
+                    #if resultado[ordem[i]] != None:
+                        #if resultado[ordem[i + 1]] != None:
+                            #if palpite[ordem[i]] != None:
+                                #if palpite[ordem[i + 1]] != None:
+                                    #if resultado[ordem[i]] - resultado[ordem[i + 1]] > 0:
+                                        #if palpite[ordem[i]] - palpite[ordem[i + 1]] > 0:
+                                            #if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
+                                                #if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                                                #    exato += 1
+                                                #    data['exato'] = exato
+                                                #    total += 18
+                                                #    data['total'] = total
+                                                #else:
+                                                #    bonus += 1
+                                               #     data['bonus'] = bonus
+                                              #      total += 12
+                                             #       data['total'] = total
+                                            #else:
+                                           #     igual += 1
+                                          #      data['igual'] = igual
+                                         #       total += 9
+                                        #        data['total'] = total
+                                       # else:
+                                      #      diferente += 1
+                                     #       data['diferente'] = diferente
+                                    #elif resultado[ordem[i]] - resultado[ordem[i + 1]] < 0:
+                                        #if palpite[ordem[i]] - palpite[ordem[i + 1]] < 0:
+                                            #if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
+                                                #if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                                                #    exato += 1
+                                               #     data['exato'] = exato
+                                              #      total += 18
+                                             #       data['total'] = total
+                                            #    else:
+                                           #         bonus += 1
+                                          #          data['bonus'] = bonus
+                                         #           total += 12
+                                        #            data['total'] = total
+                                       #     else:
+                                      #          igual += 1
+                                     #           data['igual'] = igual
+                                    #            total += 9
+                                   #             data['total'] = total
+                                  #      else:
+                                 #           diferente += 1
+                                #            data['diferente'] = diferente
+                               #     elif resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[
+                              #          ordem[i + 1]]:
+                             #           if resultado[ordem[i]] - palpite[ordem[i]] == 0:
+                            #                exato += 1
+                           #                 data['exato'] = exato
+                          #                  total += 18
+                         #                   data['total'] = total
+                        #                else:
+                       #                     igual += 1
+                      #                      data['igual'] = igual
+                     #                       total += 9
+                    #                        data['total'] = total
+                   #                 else:
+                  #                      diferente += 1
+                 #                       data['diferente'] = diferente
+                #i += 1
+
+            #userid = palpite["user"]
+            #rodada = request.GET['rodada']
+            #pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=rodada, RE=exato, RB=bonus, RP=igual, ER=diferente, PONTOS=total)
+            #Verificacao
+            #verificacao = PontuacaoBrasileirao.objects.all()
+            #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
+            #verificacao = verificacao.filter(user_id=j)
+            #verificacao = verificacao.first()
+            #if verificacao:
+                #pontos = verificacao.PONTOS
+                #erro = verificacao.ER
+                #if pontos == total:
+               #     if erro == diferente:
+              #          data['salvo2'] += 1
+             #   else:
+            #        verificacao.delete()
+           #         pontuacao.save()
+          #  else:
+         #       pontuacao.save()
+        #else:
+            #data['salvo'] += 1
+            #user = usuarios.filter(user=j)
+            #if user:
+                #data['salvo3'] += 1
+                #verificacao = PontuacaoBrasileirao.objects.all()
+                #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
+                #verificacao = verificacao.filter(user_id=j)
+               # verificacao = verificacao.first()
+              #  if verificacao:
+             #       pontos = verificacao.PONTOS
+            #        erro = verificacao.ER
+           #         if pontos == 0:
+          #              if erro == 0:
+         #                   data['salvo4'] += 1
+        #        else:
+       #             pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=int(request.GET['rodada']), RE=0, RB=0, RP=0, ER=0, PONTOS=0)
+      #              pontuacao.save()
+     #               data['salvo5'] += 1
+
+    #return render(request, 'app/tabelapontuacao.html', data)
+
+#@login_required
+#def classificacao(request):
+#    pirirpororo

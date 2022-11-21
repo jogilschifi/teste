@@ -2,21 +2,26 @@
 {% load static %}
 
 {% block content %}
-<div align="right" style="font-size: 20px; margin-bottom: 25px" >
+<!-- <div align="right" style="font-size: 20px; margin-bottom: 25px" >
     <a class="btn"  style="border: solid;"href="/copadomundo/classificacao/">CLASSIFICAÇÃO</a>
-</div>
+</div> -->
 
 <ul class="pagination">
-    {{pages.has_previous}}
         {% if page.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{page.previous_page_number}}"><</a>
         </li>
         {% endif %}
         {% for x in pages.page_range %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{x}}">{{x}}</a>
-            </li>
+            {% if page.number == x %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{x}}">{{x}}</a>
+                </li>
+            {% elif x > page.number|add:'-2' and x < page.number|add:'-2' %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{x}}">{{x}}</a>
+                </li>
+            {% endif %}
         {% endfor %}
         {% if page.has_next %}
         <li class="page-item">
