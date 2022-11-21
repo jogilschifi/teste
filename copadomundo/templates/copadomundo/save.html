@@ -75,6 +75,7 @@
     <img src="{% static 'img/SER.svg' %}" width="30" name="SER">
     {% endif%}
     x
+    {% if 'CAT' == x.Time1 %}
     <img src="{% static 'img/CAT.svg' %}" width="30" name="CAT">
     {% elif 'EQU' == x.Time2%}
     <img src="{% static 'img/EQU.svg' %}" width="30" name="EQU">
