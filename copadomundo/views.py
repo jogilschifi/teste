@@ -89,7 +89,7 @@ def palpite(request, Rodada, Jogo):
     verificacao = verificacao.filter(Rodada=Rodada)
     verificacao = verificacao.filter(Jogo=Jogo)
     if verificacao:
-        return redirect(reverse("homecopa"))
+        return redirect(reverse("homecopa", kwargs={'page':Jogo}))
     form = PalpitesForm()
     if request.method == 'POST':
         form = PalpitesForm(request.POST)
