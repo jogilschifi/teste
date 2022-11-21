@@ -1,5 +1,5 @@
 from django.urls import path
-from copadomundo.views import home, palpite, update, classificacao, caminhocalculadora, calculadora
+from copadomundo.views import home, palpite, update, caminhocalculadora
 
 urlpatterns = [
     path('', home, name='homecopa'),
