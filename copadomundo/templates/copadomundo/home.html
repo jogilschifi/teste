@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block content %}
+<div align="right" style="font-size: 20px; margin-bottom: 25px" >
+    <a class="btn"  style="border: solid;"href="/copadomundo/classificacao/">CLASSIFICAÇÃO</a>
+</div>
+
 <ul class="pagination">
     {{pages.has_previous}}
         {% if page.has_previous %}
@@ -89,69 +93,73 @@
     {% if 'CAT' == x.Time2 %}
     <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
     {% elif 'EQU' == x.Time2%}
-    <img src="{% static 'img/EQU.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/EQU.svg' %}" width="20" name="EQU">
     {% elif 'ING' == x.Time2%}
-    <img src="{% static 'img/ING.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/ING.svg' %}" width="20" name="ING">
     {% elif 'IRA' == x.Time2%}
-    <img src="{% static 'img/IRA.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/IRA.svg' %}" width="20" name="IRA">
     {% elif 'SEN' == x.Time2%}
-    <img src="{% static 'img/SEN.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/SEN.svg' %}" width="20" name="SEN">
     {% elif 'HOL' == x.Time2%}
-    <img src="{% static 'img/HOL.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/HOL.svg' %}" width="20" name="HOL">
     {% elif 'EUA' == x.Time2%}
-    <img src="{% static 'img/EUA.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/EUA.svg' %}" width="20" name="EUA">
     {% elif 'GAL' == x.Time2%}
-    <img src="{% static 'img/GAL.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/GAL.svg' %}" width="20" name="GAL">
     {% elif 'ARG' == x.Time2%}
-    <img src="{% static 'img/ARG.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/ARG.svg' %}" width="20" name="ARG">
     {% elif 'ARA' == x.Time2%}
-    <img src="{% static 'img/ARA.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/ARA.svg' %}" width="20" name="ARA">
     {% elif 'MEX' == x.Time2%}
-    <img src="{% static 'img/MEX.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/MEX.svg' %}" width="20" name="MEX">
     {% elif 'POL' == x.Time2%}
-    <img src="{% static 'img/POL.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/POL.svg' %}" width="20" name="POL">
     {% elif 'DIN' == x.Time2%}
-    <img src="{% static 'img/DIN.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/DIN.svg' %}" width="20" name="DIN">
     {% elif 'TUN' == x.Time2%}
-    <img src="{% static 'img/TUN.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/TUN.svg' %}" width="20" name="TUN">
     {% elif 'FRA' == x.Time2%}
-    <img src="{% static 'img/FRA.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/FRA.svg' %}" width="20" name="FRA">
     {% elif 'ALE' == x.Time2%}
-    <img src="{% static 'img/ALE.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/ALE.svg' %}" width="20" name="ALE">
     {% elif 'JAP' == x.Time2%}
-    <img src="{% static 'img/JAP.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/JAP.svg' %}" width="20" name="JAP">
     {% elif 'ESP' == x.Time2%}
-    <img src="{% static 'img/ESP.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/ESP.svg' %}" width="20" name="ESP">
     {% elif 'CRC' == x.Time2%}
-    <img src="{% static 'img/CRC.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/CRC.svg' %}" width="20" name="CRC">
     {% elif 'MAR' == x.Time2%}
-    <img src="{% static 'img/MAR.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/MAR.svg' %}" width="20" name="MAR">
     {% elif 'CRO' == x.Time2%}
-    <img src="{% static 'img/CRO.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/CRO.svg' %}" width="20" name="CRO">
     {% elif 'BEL' == x.Time2%}
-    <img src="{% static 'img/BEL.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/BEL.svg' %}" width="20" name="BEL">
     {% elif 'CAN' == x.Time2%}
-    <img src="{% static 'img/CAN.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/CAN.svg' %}" width="20" name="CAN">
     {% elif 'SUI' == x.Time2%}
-    <img src="{% static 'img/SUI.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/SUI.svg' %}" width="20" name="SUI">
     {% elif 'CAM' == x.Time2%}
-    <img src="{% static 'img/CAM.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/CAM.svg' %}" width="20" name="CAM">
     {% elif 'BRA' == x.Time2%}
-    <img src="{% static 'img/BRA.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/BRA.svg' %}" width="20" name="BRA">
     {% elif 'SER' == x.Time2%}
-    <img src="{% static 'img/SER.svg' %}" width="20" name="CAT">
+    <img src="{% static 'img/SER.svg' %}" width="20" name="SER">
     {% endif %}
     {{x.Time2}}<br>
     <div style="margin-top:10px">
     {% if hora < horalimite %}
         {% for i in meu_palpite %}
-            Meu Palpite:{{i.time1}}x{{i.time2}}<br>
-            <a class="button" href="/copadomundo/update/{{i.id}}/">atualizar</a>
+            Meu palpite: {{i.time1}}x{{i.time2}}<br>
+            <a class="button" style="margin-top:10px" href="/copadomundo/update/{{i.id}}/">atualizar</a>
         {% empty %}
             <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
         {% endfor %}
     {% else %}
-        Tempo Esgotado.
+        {% for i in meu_palpite %}
+            Meu palpite: {{i.time1}}x{{i.time2}}<br>
+        {% empty %}
+            Tempo Esgotado.
+        {% endfor %}
     {% endif %}
     </div>
     {% endfor %}

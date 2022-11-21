@@ -154,3 +154,6 @@ def update(request, pk):
             return redirect('homecopa')
     data['form'] = form
     return render(request, 'copadomundo/save.html', data)
+
+def classificacao(request):
+    pirirpororo

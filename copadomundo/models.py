@@ -249,6 +249,30 @@ class Jogos(models.Model):
     Time1 = models.CharField(max_length=30, choices=SELECOES)
     Time2 = models.CharField(max_length=30, choices=SELECOES)
 
+class Resultado(models.Model):
+    gols = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (11, 11),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+    )
+    Rodada = models.IntegerField()
+    Jogo = models.IntegerField(null=True, blank=True)
+    time1 = models.PositiveSmallIntegerField(choices=gols)
+    time2 = models.PositiveSmallIntegerField(choices=gols)
+
 class Resultados(models.Model):
     RODADAS = (
         ('1', '1'),
