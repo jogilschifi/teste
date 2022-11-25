@@ -79,6 +79,7 @@ def home(request):
     resultado = resultado.filter(Jogo=page_num)
     data['resultado'] = resultado.first()
 
+    data['pontuacao'] = Pontuacao.objects.all()
     return render(request, 'copadomundo/home.html', data)
 
 @login_required
