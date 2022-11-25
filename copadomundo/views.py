@@ -165,244 +165,89 @@ def caminhocalculadora(request):
 @login_required
 def calculadora(request):
     data = {}
-    data['classificacao'] = Pontuacao.objects.all()
-    data['rodada']= request.GET['rodada']
-    data['jogo'] = request.GET['jogo']
     resul = Resultado.objects.all()
     resul = resul.filter(Rodada=str(request.GET['rodada']))
-    resul = resul.filter(Rodada=str(request.GET['jogo']))
-    data['resultadoobj'] = resul
-    resul = resul.first()
+    pontuacao = Pontuacao.objects.all()
+    pontuacao = pontuacao.filter(Rodada=str(request.GET['rodada']))
 
     palpi = Palpites.objects.all()
     palpi = palpi.filter(Rodada=str(request.GET['rodada']))
-    palpi = palpi.filter(Jogo=str(request.GET['jogo']))
+
+    lista_resultado = []
+    for i in resul:
+        lista_resultado.append(i.Jogo)
+    data['lista_resultado'] = lista_resultado
+    lista_pontuacao = []
+    for i in pontuacao:
+        lista_pontuacao.append(i.Jogo)
+    data['lista_pontuacao'] = lista_pontuacao
+    lista_palpites = []
+    for i in lista_resultado:
+        if i not in lista_pontuacao:
+            lista_palpites.append(i)
+    data['lista_palpites'] = lista_palpites
+
+    resul = resul.first()
     palpites = []
     for i in palpi:
-        PONTOS = 0
-        RE = 0
-        RB = 0
-        RP = 0
-        ER = 0
-        if resul.time1 - resul.time2 > 0:
-            if i.time1 - i.time2 > 0:
-                if resul.time1 - resul.time2 == i.time1 - i.time2:
-                    if resul.time1 == i.time1:
-                        PONTOS = 18
-                        RE = 1
+        if i.Jogo in lista_palpites:
+            PONTOS = 0
+            RE = 0
+            RB = 0
+            RP = 0
+            ER = 0
+            GV = 0
+            GP = 0
+            if resul.time1 - resul.time2 > 0:
+                if i.time1 - i.time2 > 0:
+                    if resul.time1 - resul.time2 == i.time1 - i.time2:
+                        if resul.time1 == i.time1:
+                            PONTOS = 18
+                            RE = 1
+                        else:
+                            PONTOS = 12
+                            RB = 1
                     else:
-                        PONTOS = 12
-                        RB = 1
+                        PONTOS = 9
+                        RP = 1
+                        if resul.time1 == i.time1:
+                            GV = 1
+                        elif resul.time2 == i.time2:
+                            GP = 1
                 else:
-                    PONTOS = 9
-                    RP = 1
+                    ER = 1
+            elif resul.time1 - resul.time2 < 0:
+                if i.time1 - i.time2 < 0:
+                    if resul.time1 - resul.time2 == i.time1 - i.time2:
+                        if resul.time1 == i.time1:
+                            PONTOS = 18
+                            RE = 1
+                        else:
+                            PONTOS = 12
+                            RB = 1
+                    else:
+                        PONTOS = 9
+                        RP = 1
+                        if resul.time1 == i.time1:
+                            GP = 1
+                        elif resul.time2 == i.time2:
+                            GV = 1
+                else:
+                    ER = 1
+            elif resul.time1 - resul.time2 == i.time1 - i.time2:
+                if resul.time1 == i.time1:
+                    PONTOS = 18
+                    RE = 1
+                else:
+                    PONTOS = 12
+                    RB = 1
             else:
                 ER = 1
-        elif resul.time1 - resul.time2 < 0:
-            if i.time1 - i.time2 < 0:
-                if resul.time1 - resul.time2 == i.time1 - i.time2:
-                    if resul.time1 == i.time1:
-                        PONTOS = 18
-                        RE = 1
-                    else:
-                        PONTOS = 12
-                        RB = 1
-                else:
-                    PONTOS = 9
-                    RP = 1
-            else:
-                ER = 1
-        elif resul.time1 - resul.time2 == i.time1 - i.time2:
-            if resul.time1 == i.time1:
-                PONTOS = 18
-                RE = 1
-            else:
-                PONTOS = 12
-                RB = 1
-        else:
-            ER = 1
-        palpites.append({"user": i.user, "user_id": i.user_id, "PONTOS": PONTOS, "RE": RE, "RB": RB, "RP": RP, "ER": ER})
-        pontuacao = Pontuacao(user_id=i.user_id, Rodada=request.GET['rodada'], RE=RE, RB=RB, RP=RP, ER=ER, PONTOS=PONTOS)
+            palpites.append({"user": i.user, "user_id": i.user_id, "Jogo":i.Jogo, "Rodada": i.Rodada, "PONTOS": PONTOS, "RE": RE, "RB": RB, "RP": RP, "ER": ER, "GV": GV, "GP": GP})
+            pontuacao = Pontuacao(user_id=i.user_id, Rodada=request.GET['rodada'], Jogo=i.Jogo, RE=RE, RB=RB, RP=RP, GV=GV, GP=GP, ER=ER, PONTOS=PONTOS)
+
     data['palpite'] = palpites
-    count = 0
-    for i in range(len(palpi)):
-        if resul.time1 - resul.time2 > 0:
-            data['derrota'] += 1
-        else:
-            count += 1
-    data['vitoria'] = count
     return render(request, 'copadomundo/calculadora.html', data)
-
-    #usuarios = Pontuacao.objects.all()
-    #usuarios_novos = Palpites.objects.all()
-    #rodadaant = str(int(request.GET['rodada']) - 1)
-    #rodadaatual = str(request.GET['rodada'])
-    #usuarios_ant = usuarios.filter(Rodada=rodadaant)
-    #usuarios_atual = usuarios_novos.filter(Rodada=rodadaatual)
-    #usuarios_atual = usuarios_atual.aggregate(Max('user_id'))
-    #usuarios_atual = usuarios_atual["user_id__max"]
-    #usuarios_atual = usuarios_atual + 1
-    #usuariomax = usuarios_ant.aggregate(Max('user_id'))
-    #usuariomax = usuariomax["user_id__max"]
-    #usuariomax = usuariomax + 1
-    #if usuarios_atual > usuariomax:
-        #usuariomax = usuarios_atual
-    #data['usuariomax'] = usuariomax
-    #data['salvo'] = 0
-    #data['salvo1'] = 0
-    #data['salvo2'] = 0
-    #data['salvo3'] = 0
-    #data['salvo4'] = 0
-    #data['salvo5'] = 0
-    #for j in range(usuariomax):
-        #palpite = palpi.filter(user=j)
-        #if palpite:
-            #data['salvo1'] += 1
-            #data['palpiteobj'] = palpite
-            #palpite = palpite.first()
-            #ttime1 = palpite.AthleticoPR
-            #ttime2 = palpite.Palmeiras
-            #user = palpite.user
-            #palpite = {"AthleticoPR": ttime1, "Palmeiras": ttime2, "Corinthians": ttime3, "Internacional": ttime4,
-               #        "AtleticoMG": ttime5, "Fluminense": ttime6, "Santos": ttime7, "SaoPaulo": ttime8,
-              #         "Flamengo": ttime9, "Botafogo": ttime10, "Avai": ttime11, "Bragantino": ttime12,
-             #          "AtleticoGO": ttime13, "Goias": ttime14, "Ceara": ttime15, "Coritiba": ttime16,
-            #           "AmericaMG": ttime17, "Cuiaba": ttime18, "Juventude": ttime19, "Fortaleza": ttime20, "user": user}
-            #data['palpite'] = palpite
-            #ordem = OrdenacaoBrasileirao.objects.all()
-            #ordem = ordem.filter(Rodada=str(request.GET['rodada']))
-            #data['ordemobj'] = ordem
-            #if ordem:
-            #    times = ordem.first()
-            #    time1 = times.AthleticoPR
-            #    time2 = times.Palmeiras
-
-            #    ordem = [time1, time2, time3, time4, time5, time6, time7, time8, time9, time10, time11, time12, time13,
-            #             time14, time15, time16, time17, time18, time19, time20]
-            #    data['ordem'] = ordem
-            #else:
-            #    return redirect('/caminhocalculadora/')
-            #tttime1 = resul.AthleticoPR
-            #tttime2 = resul.Palmeiras
-
-            #resultado = {"AthleticoPR": tttime1, "Palmeiras": tttime2, "Corinthians": tttime3, "Internacional": tttime4,
-              #           "AtleticoMG": tttime5, "Fluminense": tttime6, "Santos": tttime7, "SaoPaulo": tttime8,
-             #            "Flamengo": tttime9, "Botafogo": tttime10, "Avai": tttime11, "Bragantino": tttime12,
-            #             "AtleticoGO": tttime13, "Goias": tttime14, "Ceara": tttime15, "Coritiba": tttime16,
-            #             "AmericaMG": tttime17, "Cuiaba": tttime18, "Juventude": tttime19, "Fortaleza": tttime20}
-            #data['resultado'] = resultado
-            #i = 0
-            #igual = 0
-            #exato = 0
-            #bonus = 0
-            #diferente = 0
-            #total = 0
-            #while i < 19:
-                #if i % 2 == 0:
-                    #if resultado[ordem[i]] != None:
-                        #if resultado[ordem[i + 1]] != None:
-                            #if palpite[ordem[i]] != None:
-                                #if palpite[ordem[i + 1]] != None:
-                                    #if resultado[ordem[i]] - resultado[ordem[i + 1]] > 0:
-                                        #if palpite[ordem[i]] - palpite[ordem[i + 1]] > 0:
-                                            #if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
-                                                #if resultado[ordem[i]] - palpite[ordem[i]] == 0:
-                                                #    exato += 1
-                                                #    data['exato'] = exato
-                                                #    total += 18
-                                                #    data['total'] = total
-                                                #else:
-                                                #    bonus += 1
-                                               #     data['bonus'] = bonus
-                                              #      total += 12
-                                             #       data['total'] = total
-                                            #else:
-                                           #     igual += 1
-                                          #      data['igual'] = igual
-                                         #       total += 9
-                                        #        data['total'] = total
-                                       # else:
-                                      #      diferente += 1
-                                     #       data['diferente'] = diferente
-                                    #elif resultado[ordem[i]] - resultado[ordem[i + 1]] < 0:
-                                        #if palpite[ordem[i]] - palpite[ordem[i + 1]] < 0:
-                                            #if resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[ordem[i + 1]]:
-                                                #if resultado[ordem[i]] - palpite[ordem[i]] == 0:
-                                                #    exato += 1
-                                               #     data['exato'] = exato
-                                              #      total += 18
-                                             #       data['total'] = total
-                                            #    else:
-                                           #         bonus += 1
-                                          #          data['bonus'] = bonus
-                                         #           total += 12
-                                        #            data['total'] = total
-                                       #     else:
-                                      #          igual += 1
-                                     #           data['igual'] = igual
-                                    #            total += 9
-                                   #             data['total'] = total
-                                  #      else:
-                                 #           diferente += 1
-                                #            data['diferente'] = diferente
-                               #     elif resultado[ordem[i]] - resultado[ordem[i + 1]] == palpite[ordem[i]] - palpite[
-                              #          ordem[i + 1]]:
-                             #           if resultado[ordem[i]] - palpite[ordem[i]] == 0:
-                            #                exato += 1
-                           #                 data['exato'] = exato
-                          #                  total += 18
-                         #                   data['total'] = total
-                        #                else:
-                       #                     igual += 1
-                      #                      data['igual'] = igual
-                     #                       total += 9
-                    #                        data['total'] = total
-                   #                 else:
-                  #                      diferente += 1
-                 #                       data['diferente'] = diferente
-                #i += 1
-
-            #userid = palpite["user"]
-            #rodada = request.GET['rodada']
-            #pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=rodada, RE=exato, RB=bonus, RP=igual, ER=diferente, PONTOS=total)
-            #Verificacao
-            #verificacao = PontuacaoBrasileirao.objects.all()
-            #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
-            #verificacao = verificacao.filter(user_id=j)
-            #verificacao = verificacao.first()
-            #if verificacao:
-                #pontos = verificacao.PONTOS
-                #erro = verificacao.ER
-                #if pontos == total:
-               #     if erro == diferente:
-              #          data['salvo2'] += 1
-             #   else:
-            #        verificacao.delete()
-           #         pontuacao.save()
-          #  else:
-         #       pontuacao.save()
-        #else:
-            #data['salvo'] += 1
-            #user = usuarios.filter(user=j)
-            #if user:
-                #data['salvo3'] += 1
-                #verificacao = PontuacaoBrasileirao.objects.all()
-                #verificacao = verificacao.filter(Rodada=request.GET['rodada'])
-                #verificacao = verificacao.filter(user_id=j)
-               # verificacao = verificacao.first()
-              #  if verificacao:
-             #       pontos = verificacao.PONTOS
-            #        erro = verificacao.ER
-           #         if pontos == 0:
-          #              if erro == 0:
-         #                   data['salvo4'] += 1
-        #        else:
-       #             pontuacao = PontuacaoBrasileirao(user_id=j, Rodada=int(request.GET['rodada']), RE=0, RB=0, RP=0, ER=0, PONTOS=0)
-      #              pontuacao.save()
-     #               data['salvo5'] += 1
-
-    #return render(request, 'app/tabelapontuacao.html', data)
-
 #@login_required
 #def classificacao(request):
 #    pirirpororo
