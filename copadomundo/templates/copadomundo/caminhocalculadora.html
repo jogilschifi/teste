@@ -12,13 +12,6 @@
         <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
             {% endfor %}
     </select>
-    <label for="jogo">Jogo:</label>
-    <select name="jogo" id="jogo" class="form-control">
-        <option action="/caminhocalculadora/" value="0">Selecione</option>
-            {% for x in rodada %}
-        <option value="{{ x.Jogo }}">{{ x.Jogo }}</option>
-            {% endfor %}
-    </select>
     <!--<label for="usuario">Usuário:</label>
     <select name="usuario" id="usuario" class="form-control">
         <option action="/caminhocalculadora/" value="0">Selecione</option>

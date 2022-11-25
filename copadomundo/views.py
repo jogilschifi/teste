@@ -245,7 +245,7 @@ def calculadora(request):
                 ER = 1
             palpites.append({"user": i.user, "user_id": i.user_id, "Jogo":i.Jogo, "Rodada": i.Rodada, "PONTOS": PONTOS, "RE": RE, "RB": RB, "RP": RP, "ER": ER, "GV": GV, "GP": GP})
             pontuacao = Pontuacao(user_id=i.user_id, Rodada=request.GET['rodada'], Jogo=i.Jogo, RE=RE, RB=RB, RP=RP, GV=GV, GP=GP, ER=ER, PONTOS=PONTOS)
-
+            pontuacao.save()
     data['palpite'] = palpites
     return render(request, 'copadomundo/calculadora.html', data)
 #@login_required
