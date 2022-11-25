@@ -69,10 +69,11 @@ def home(request):
     data['object'] = page.object_list
     data['page_num'] = page_num
     meu_palpite = Palpites.objects.all()
-    #meu_palpite = meu_palpite.filter(Rodada= verificacao.Rodada)
     meu_palpite = meu_palpite.filter(user=request.user)
     data['meu_palpite'] = meu_palpite.filter(Jogo=page_num)
-
+    minha_pontuacao = Pontuacao.objects.all()
+    minha_pontuacao = minha_pontuacao.filter(user=request.user)
+    data['minha_pontuacao']  = minha_pontuacao.filter(Jogo=page_num)
     return render(request, 'copadomundo/home.html', data)
 
 @login_required
@@ -99,38 +100,6 @@ def palpite(request, Rodada, Jogo):
             return redirect(reverse("homecopa"))
     data['form'] = form
     return render(request, 'copadomundo/save.html', data)
-
-#@login_required
-#def save(request):
-    #form = PalpitesForm()
-    #if request.method == 'POST':
-    #    form = PalpitesForm(request.POST)
-    #    if form.is_valid():
-    #        form.instance.user = request.user
-    #        form.save()
-    #        return redirect('homecopa')
-    #context = {'form': form}
-    #if not request.GET['home']:
-    #    return redirect(reverse("palpite", kwargs={'Rodada':request.GET['Rodada'], 'Jogo':request.GET['Jogo']}))
-    #if not request.GET['away']:
-    #    return redirect(reverse("palpite", kwargs={'Rodada':request.GET['Rodada'], 'Jogo':request.GET['Jogo']}))
-    #verificacao = Palpites.objects.all()
-    #verificacao = verificacao.filter(Rodada=int(request.GET['Rodada']))
-    #verificacao = verificacao.filter(user=request.user)
-    #verificacao = verificacao.filter(Jogo=int(request.GET['Jogo']))
-    #data = {}
-    #if verificacao:
-    #    data['mensagem'] = 'Voce já palpitou'
-    #else:
-    #    data['mensagem'] = 'Palpite Salvo'
-    #    palpite = Palpites(Rodada=int(request.GET['Rodada']), user=request.user, Jogo=int(request.GET['Jogo']), time1= int(request.GET['home']), time2= int(request.GET['away']))
-    #    palpite.save()
-
-    #data['home'] = request.GET['home']
-    #data['away'] = request.GET['away']
-    #data['Rodada'] = request.GET['Rodada']
-    #data['Jogo'] = request.GET['Jogo']
-    #return render(request, 'copadomundo/save.html', context)
 
 @login_required
 def update(request, pk):
