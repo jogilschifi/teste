@@ -29,7 +29,6 @@ class Palpites(models.Model):
     time1 = models.PositiveSmallIntegerField(choices=gols)
     time2 = models.PositiveSmallIntegerField(choices=gols)
 
-
 class Horarios(models.Model):
     GRUPOS = (
         ('Grupo A', 'Grupo A'),
@@ -408,6 +407,7 @@ class Pontuacao(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     Rodada = models.IntegerField(choices=RODADAS)
+    Jogo = models.IntegerField(null=True, blank=True)
     RE = models.IntegerField(null=True)
     RB = models.IntegerField(null=True)
     RP = models.IntegerField(null=True)
@@ -428,6 +428,7 @@ class PontuacaoTotal(models.Model):
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     Rodada = models.IntegerField(choices=RODADAS)
+    Jogo = models.IntegerField(null=True, blank=True)
     RE = models.IntegerField(null=True)
     RB = models.IntegerField(null=True)
     RP = models.IntegerField(null=True)

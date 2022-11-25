@@ -162,21 +162,76 @@ def caminhocalculadora(request):
     data['usuario'] = Palpites.objects.all()
     return render(request, 'copadomundo/caminhocalculadora.html', data)
 
-#@login_required
-#def calculadora(request):
-    #data = {}
-    #data['classificacao'] = Pontuacao.objects.all()
-    #data['rodada']= request.GET['rodada']
-    #data['jogo'] = request.GET['jogo']
-    #resul = Resultado.objects.all()
-    #resul = resul.filter(Rodada=str(request.GET['rodada']))
-    #resul = resul.filter(Rodada=str(request.GET['jogo']))
-    #data['resultadoobj'] = resul
-    #resul = resul.first()
+@login_required
+def calculadora(request):
+    data = {}
+    data['classificacao'] = Pontuacao.objects.all()
+    data['rodada']= request.GET['rodada']
+    data['jogo'] = request.GET['jogo']
+    resul = Resultado.objects.all()
+    resul = resul.filter(Rodada=str(request.GET['rodada']))
+    resul = resul.filter(Rodada=str(request.GET['jogo']))
+    data['resultadoobj'] = resul
+    resul = resul.first()
 
-    #palpi = Palpites.objects.all()
-    #palpi = palpi.filter(Rodada=str(request.GET['rodada']))
-    #palpi = palpi.filter(Rodada=str(request.GET['jogo']))
+    palpi = Palpites.objects.all()
+    palpi = palpi.filter(Rodada=str(request.GET['rodada']))
+    palpi = palpi.filter(Jogo=str(request.GET['jogo']))
+    palpites = []
+    for i in palpi:
+        PONTOS = 0
+        RE = 0
+        RB = 0
+        RP = 0
+        ER = 0
+        if resul.time1 - resul.time2 > 0:
+            if i.time1 - i.time2 > 0:
+                if resul.time1 - resul.time2 == i.time1 - i.time2:
+                    if resul.time1 == i.time1:
+                        PONTOS = 18
+                        RE = 1
+                    else:
+                        PONTOS = 12
+                        RB = 1
+                else:
+                    PONTOS = 9
+                    RP = 1
+            else:
+                ER = 1
+        elif resul.time1 - resul.time2 < 0:
+            if i.time1 - i.time2 < 0:
+                if resul.time1 - resul.time2 == i.time1 - i.time2:
+                    if resul.time1 == i.time1:
+                        PONTOS = 18
+                        RE = 1
+                    else:
+                        PONTOS = 12
+                        RB = 1
+                else:
+                    PONTOS = 9
+                    RP = 1
+            else:
+                ER = 1
+        elif resul.time1 - resul.time2 == i.time1 - i.time2:
+            if resul.time1 == i.time1:
+                PONTOS = 18
+                RE = 1
+            else:
+                PONTOS = 12
+                RB = 1
+        else:
+            ER = 1
+        palpites.append({"user": i.user, "user_id": i.user_id, "PONTOS": PONTOS, "RE": RE, "RB": RB, "RP": RP, "ER": ER})
+        pontuacao = Pontuacao(user_id=i.user_id, Rodada=request.GET['rodada'], RE=RE, RB=RB, RP=RP, ER=ER, PONTOS=PONTOS)
+    data['palpite'] = palpites
+    count = 0
+    for i in range(len(palpi)):
+        if resul.time1 - resul.time2 > 0:
+            data['derrota'] += 1
+        else:
+            count += 1
+    data['vitoria'] = count
+    return render(request, 'copadomundo/calculadora.html', data)
 
     #usuarios = Pontuacao.objects.all()
     #usuarios_novos = Palpites.objects.all()
