@@ -78,8 +78,6 @@ def home(request):
     resultado = Resultado.objects.all()
     resultado = resultado.filter(Jogo=page_num)
     data['resultado'] = resultado.first()
-
-    data['pontuacao'] = Pontuacao.objects.all()
     return render(request, 'copadomundo/home.html', data)
 
 @login_required
@@ -222,6 +220,7 @@ def calculadora(request):
             pontuacao = Pontuacao(user_id=i.user_id, Rodada=request.GET['rodada'], Jogo=i.Jogo, RE=RE, RB=RB, RP=RP, GV=GV, GP=GP, ER=ER, PONTOS=PONTOS)
             pontuacao.save()
     data['palpite'] = palpites
+    data['pontuacao'] = Pontuacao.objects.all()
     return render(request, 'copadomundo/calculadora.html', data)
 #@login_required
 #def classificacao(request):
