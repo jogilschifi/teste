@@ -71,9 +71,14 @@ def home(request):
     meu_palpite = Palpites.objects.all()
     meu_palpite = meu_palpite.filter(user=request.user)
     data['meu_palpite'] = meu_palpite.filter(Jogo=page_num)
-    minha_pontuacao = Pontuacao.objects.all()
-    minha_pontuacao = minha_pontuacao.filter(user=request.user)
-    data['minha_pontuacao']  = minha_pontuacao.filter(Jogo=page_num)
+    pontuacao = Pontuacao.objects.all()
+    pontuacao = pontuacao.filter(user=request.user)
+    pontuacao = pontuacao.filter(Jogo=page_num)
+    data['pontuacao'] = pontuacao.first()
+    resultado = Resultado.objects.all()
+    resultado = resultado.filter(Jogo=page_num)
+    data['resultado'] = resultado.first()
+
     return render(request, 'copadomundo/home.html', data)
 
 @login_required

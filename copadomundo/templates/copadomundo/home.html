@@ -101,7 +101,9 @@
     {% elif 'SER' == x.Time1%}
     <img src="{% static 'img/SER.svg' %}" width="30" name="SER">
     {% endif%}
+    {{resultado.time1}}
     x
+    {{resultado.time2}}
     {% if 'CAT' == x.Time2 %}
     <img src="{% static 'img/CAT.svg' %}" width="30" name="CAT">
     {% elif 'EQU' == x.Time2%}
@@ -179,6 +181,7 @@
     {% else %}
         {% for i in meu_palpite %}
             Meu palpite: {{i.time1}}x{{i.time2}}<br>
+            Pontuação: {{pontuacao.PONTOS}}
         {% empty %}
             Tempo Esgotado.
         {% endfor %}
