@@ -138,8 +138,8 @@ def caminhocalculadora(request):
 @login_required
 def calculadora(request):
     data = {}
-    resul = Resultado.objects.all()
-    resul = resul.filter(Rodada=str(request.GET['rodada']))
+    resultado = Resultado.objects.all()
+    resultado = resultado.filter(Rodada=str(request.GET['rodada']))
     pontuacao = Pontuacao.objects.all()
     pontuacao = pontuacao.filter(Rodada=str(request.GET['rodada']))
 
@@ -147,7 +147,7 @@ def calculadora(request):
     palpi = palpi.filter(Rodada=str(request.GET['rodada']))
 
     lista_resultado = []
-    for i in resul:
+    for i in resultado:
         lista_resultado.append(i.Jogo)
     data['lista_resultado'] = lista_resultado
     lista_pontuacao = []
@@ -159,8 +159,6 @@ def calculadora(request):
         if i not in lista_pontuacao:
             lista_palpites.append(i)
     data['lista_palpites'] = lista_palpites
-
-    resul = resul.first()
     palpites = []
     for i in palpi:
         if i.Jogo in lista_palpites:
@@ -171,6 +169,8 @@ def calculadora(request):
             ER = 0
             GV = 0
             GP = 0
+            resul = resultado.filter(Jogo=i.Jogo)
+            resul = resul.first()
             if resul.time1 - resul.time2 > 0:
                 if i.time1 - i.time2 > 0:
                     if resul.time1 - resul.time2 == i.time1 - i.time2:
