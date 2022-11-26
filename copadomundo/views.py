@@ -222,6 +222,39 @@ def calculadora(request):
     data['palpite'] = palpites
     data['pontuacao'] = Pontuacao.objects.all()
     return render(request, 'copadomundo/calculadora.html', data)
-#@login_required
-#def classificacao(request):
-#    pirirpororo
+
+@login_required
+def calculadoraclassificacao(request):
+    pontuacao = Pontuacao.objects.all()
+    lista_usuarios = []
+    for i in pontuacao:
+        if i.user_id not in lista_usuarios:
+            lista_usuarios.append(i.user_id)
+    ver_pontuacao_total = PontuacaoTotal.objects.all()
+    #get(id=pk)
+    classificacao = []
+    for i in lista_usuarios:
+        pontuacao_usuario = pontuacao.filter(user=i)
+        PONTOS = pontuacao_usuario.aggregate(Sum('PONTOS'))
+        PONTOS = PONTOS["PONTOS__sum"]
+        RE = pontuacao_usuario.aggregate(Sum('RE'))
+        RE = RE["RE__sum"]
+        RB = pontuacao_usuario.aggregate(Sum('RB'))
+        RB = RB["RB__sum"]
+        RP = pontuacao_usuario.aggregate(Sum('RP'))
+        RP = RP["RP__sum"]
+        ER = pontuacao_usuario.aggregate(Sum('ER'))
+        ER = ER["ER__sum"]
+        GV = pontuacao_usuario.aggregate(Sum('GV'))
+        GV = GV["GV__sum"]
+        GP = pontuacao_usuario.aggregate(Sum('GP'))
+        GP = GP["GP__sum"]
+        pontuacao_usuario = pontuacao_usuario.first()
+        classificacao.append(
+            {"user":pontuacao_usuario.user, "user_id": i, "PONTOS": PONTOS, "RE": RE, "RB": RB,
+             "RP": RP, "ER": ER, "GV": GV, "GP": GP})
+        pontuacao_total = PontuacaoTotal(user_id=i, RE=RE, RB=RB, RP=RP, GV=GV, GP=GP, ER=ER, PONTOS=PONTOS)
+    data = {}
+    data['lista_usuarios'] = lista_usuarios
+    data['classificacao'] = classificacao
+    return render(request, 'copadomundo/calculadora.html', data)

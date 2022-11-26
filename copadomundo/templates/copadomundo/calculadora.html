@@ -63,5 +63,32 @@ lista palpites:{{lista_palpites}}<br>
             </tr>
         {% endfor %}
     </table>
+        <table  border="1" class="table table-sm">
+        <tr>
+            <th>Nome</th>
+            <th>Rod</th>
+            <th>Pts</th>
+            <th>RE</th>
+            <th>RB</th>
+            <th>RP</th>
+            <th>GV</th>
+            <th>GP</th>
+            <th>ER</th>
+        </tr>
+        {% for x in classificacao %}
+            <tr align="center">
+                <td align="left">{{x.user}}</td>
+                <td>{{x.Rodada}}</td>
+                <td>{{x.PONTOS}}</td>
+                <td>{{x.RE}}</td>
+                <td>{{x.RB}}</td>
+                <td>{{x.RP}}</td>
+                <td>{{x.GV}}</td>
+                <td>{{x.GP}}</td>
+                <td>{{x.ER}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a class="button" href="/copadomundo/calculadoraclassificacao/">classificacao</a>
 </div>
 {% endblock %}
