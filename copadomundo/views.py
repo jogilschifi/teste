@@ -61,8 +61,10 @@ def home(request):
         data['horalimite'] = datetime.datetime(2022, 11, 24, 10, 00)
     elif page_num == '15':
         data['horalimite'] = datetime.datetime(2022, 11, 24, 13, 00)
-    else:
+    elif page_num == '16':
         data['horalimite'] = datetime.datetime(2022, 11, 24, 16, 00)
+    else:
+        data['horalimite'] = datetime.datetime(2022, 11, 28, 13, 00)
     data['hora'] = datetime.datetime.now()
     data['pages'] = p
     data['page'] = page
