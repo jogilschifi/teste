@@ -279,6 +279,13 @@ def classificacao(request):
         GVGP = clas.GV + clas.GP
         return clas.PONTOS, clas.RE, clas.RB, clas.id, GVGP, clas.GV, -clas.id
     classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+
+    cla = []
+    count = 1
+    for i in classificacao_sort:
+        cla.append({"PONTOS": i.PONTOS, "RE": i.RE, "RB": i.RB, "RP": i.RP,
+                    "user": i.user, "id": i.user_id, "posicao": count})
+        count += 1
     data = {}
-    data['classificacao'] = classificacao_sort
+    data['cla'] = cla
     return render(request, 'copadomundo/classificacao.html', data)
