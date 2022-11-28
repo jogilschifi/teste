@@ -1,5 +1,5 @@
 from django.urls import path
-from copadomundo.views import home, palpite, update, caminhocalculadora, calculadora, calculadoraclassificacao, classificacao
+from copadomundo.views import home, palpite, update, caminhocalculadora, calculadora, calculadoraclassificacao, classificacao, perfilcopa
 
 urlpatterns = [
     path('', home, name='homecopa'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('calculadora/', calculadora),
     path('calculadoraclassificacao/', calculadoraclassificacao),
     path('classificacao/', classificacao),
+    path('<int:pk>/<user>/', perfilcopa),
 #    path('calculadora/', calculadora),
     #path('update/<int:pk>/', PalpiteUpdate.as_view(), name='palpiteupdate'),
 ]

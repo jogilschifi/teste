@@ -181,12 +181,21 @@
             <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
         {% endfor %}
     {% else %}
-        {% for i in meu_palpite %}
-            Meu palpite: {{i.time1}}x{{i.time2}}<br>
-            Pontuação: {{pontuacao.PONTOS}}
-        {% empty %}
-            Tempo Esgotado.
-        {% endfor %}
+        {% if usuario == request.user %}
+            {% for i in meu_palpite %}
+                Meu palpite: {{i.time1}}x{{i.time2}}<br>
+                Pontuação: {{pontuacao.PONTOS}}
+            {% empty %}
+                Tempo Esgotado.
+            {% endfor %}
+        {% else %}
+            {% for i in meu_palpite %}
+                Palpite: {{i.time1}}x{{i.time2}}<br>
+                Pontuação: {{pontuacao.PONTOS}}
+            {% empty %}
+                Tempo Esgotado.
+            {% endfor %}
+        {% endif %}
     {% endif %}
     </div>
     {% endfor %}

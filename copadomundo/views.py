@@ -78,6 +78,7 @@ def home(request):
     resultado = Resultado.objects.all()
     resultado = resultado.filter(Jogo=page_num)
     data['resultado'] = resultado.first()
+    data['usuario'] = request.user
     return render(request, 'copadomundo/home.html', data)
 
 @login_required
@@ -289,3 +290,61 @@ def classificacao(request):
     data = {}
     data['cla'] = cla
     return render(request, 'copadomundo/classificacao.html', data)
+
+def perfilcopa(request, user, pk):
+    jogos = Jogos.objects.all()
+    p = Paginator(jogos, 1)
+    page_num = request.GET.get('page', 1)
+    page = p.page(page_num)
+    data = {}
+    if page_num == 1:
+        data['horalimite'] = datetime.datetime(2022, 11, 20, 13, 00)
+    elif page_num == '1':
+        data['horalimite'] = datetime.datetime(2022, 11, 20, 13, 00)
+    elif page_num == '2':
+        data['horalimite'] = datetime.datetime(2022, 11, 21, 10, 00)
+    elif page_num == '3':
+        data['horalimite'] = datetime.datetime(2022, 11, 21, 13, 00)
+    elif page_num == '4':
+        data['horalimite'] = datetime.datetime(2022, 11, 21, 16, 00)
+    elif page_num == '5':
+        data['horalimite'] = datetime.datetime(2022, 11, 22, 7, 00)
+    elif page_num == '6':
+        data['horalimite'] = datetime.datetime(2022, 11, 22, 10, 00)
+    elif page_num == '7':
+        data['horalimite'] = datetime.datetime(2022, 11, 22, 13, 00)
+    elif page_num == '8':
+        data['horalimite'] = datetime.datetime(2022, 11, 22, 16, 00)
+    elif page_num == '9':
+        data['horalimite'] = datetime.datetime(2022, 11, 23, 7, 00)
+    elif page_num == '10':
+        data['horalimite'] = datetime.datetime(2022, 11, 23, 10, 00)
+    elif page_num == '11':
+        data['horalimite'] = datetime.datetime(2022, 11, 23, 13, 00)
+    elif page_num == '12':
+        data['horalimite'] = datetime.datetime(2022, 11, 23, 16, 00)
+    elif page_num == '13':
+        data['horalimite'] = datetime.datetime(2022, 11, 24, 7, 00)
+    elif page_num == '14':
+        data['horalimite'] = datetime.datetime(2022, 11, 24, 10, 00)
+    elif page_num == '15':
+        data['horalimite'] = datetime.datetime(2022, 11, 24, 13, 00)
+    else:
+        data['horalimite'] = datetime.datetime(2022, 11, 24, 16, 00)
+    data['hora'] = datetime.datetime.now()
+    data['pages'] = p
+    data['page'] = page
+    data['object'] = page.object_list
+    data['page_num'] = page_num
+    meu_palpite = Palpites.objects.all()
+    meu_palpite = meu_palpite.filter(user=pk)
+    data['meu_palpite'] = meu_palpite.filter(Jogo=page_num)
+    pontuacao = Pontuacao.objects.all()
+    pontuacao = pontuacao.filter(user=pk)
+    pontuacao = pontuacao.filter(Jogo=page_num)
+    data['pontuacao'] = pontuacao.first()
+    resultado = Resultado.objects.all()
+    resultado = resultado.filter(Jogo=page_num)
+    data['resultado'] = resultado.first()
+    data['usuario'] = user
+    return render(request, 'copadomundo/home.html', data)
