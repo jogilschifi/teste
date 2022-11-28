@@ -1,0 +1,38 @@
+{% extends 'copadomundo/index.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    td:nth-child(1) {
+        text-align: right;
+
+    }
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+    th:nth-child(2), th:nth-child(3) {
+        ;
+    }
+    table {
+        display:
+        padding: 20px;
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
+    }
+</style>
+    <table class="table table-striped">
+        <tr style="background-color: lightgray">
+            <th style="text-align:right">#</th>
+            <th style="text-align:left">Classificação</th>
+            <th style="text-align:center">Pontos</th>
+        </tr>
+        {% for x in classificacao %}
+            <tr align="center">
+                <td>{{x.posicao}}</td>
+                <td align="left"><a href="/{{x.id}}/{{x.user}}/">{{x.user}}</a></td>
+                <td>{{x.PONTOS}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

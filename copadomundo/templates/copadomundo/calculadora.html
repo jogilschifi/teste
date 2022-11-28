@@ -1,10 +1,11 @@
-{% extends 'app/index.html' %}
+{% extends 'copadomundo/index.html' %}
 {% load static %}
 
 {% block content %}
 lista resultado:{{lista_resultado}}<br>
 lista pontuacao:{{lista_pontuacao}}<br>
 lista palpites:{{lista_palpites}}<br>
+pontuacao: {{pontuacao}}
 {{palpite}}
 <div class="card card-body">
     <table  border="1" class="table table-sm">
@@ -67,6 +68,7 @@ lista palpites:{{lista_palpites}}<br>
         <tr>
             <th>Nome</th>
             <th>Rod</th>
+            <th>Jogo</th>
             <th>Pts</th>
             <th>RE</th>
             <th>RB</th>
@@ -79,6 +81,7 @@ lista palpites:{{lista_palpites}}<br>
             <tr align="center">
                 <td align="left">{{x.user}}</td>
                 <td>{{x.Rodada}}</td>
+                <td>{{x.Jogo}}</td>
                 <td>{{x.PONTOS}}</td>
                 <td>{{x.RE}}</td>
                 <td>{{x.RB}}</td>
