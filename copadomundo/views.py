@@ -274,6 +274,11 @@ def calculadoraclassificacao(request):
 
 @login_required
 def classificacao(request):
+    classificacao = PontuacaoTotal.objects.all()
+    def classif_sort(clas):
+        GVGP = clas.GV + clas.GP
+        return clas.PONTOS, clas.RE, clas.RB, clas.id, GVGP, clas.GV, -clas.id
+    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
     data = {}
-    data['classificacao'] = PontuacaoTotal.objects.all()
+    data['classificacao'] = classificacao_sort
     return render(request, 'copadomundo/classificacao.html', data)
