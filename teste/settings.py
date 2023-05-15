@@ -132,4 +132,4 @@ django_on_heroku.settings(locals())
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-CSRF_TRUSTED_ORIGINS = ['https://fantapro.up.railway.app','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://fantapro.up.railway.app','https://*.127.0.0.1', 'https://fantapro.com.br/']
