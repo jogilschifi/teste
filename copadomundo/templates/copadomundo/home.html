@@ -14,7 +14,7 @@
             <a class="page-link" href="?page={{page.previous_page_number}}"><</a>
         </li>
         {% endif %}
-        {% for in pages.page_range %}
+        {% for x in pages.page_range %}
             {% if page.number == x %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{x}}">{{x}}</a>
