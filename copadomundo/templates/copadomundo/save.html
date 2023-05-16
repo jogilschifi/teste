@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="grid">
-    {% for x in jogo %}
+    <!--{% for x in Jogo %}
     <b>{{x.Grupo}}</b><br>
     <d style="font-size: 15px;">({{x.Local}})</d><br>
     <d style="font-size: 18px;">{{x.Horario}}</d><br>
@@ -141,12 +141,12 @@
     <img src="{% static 'img/SER.svg' %}" width="30" name="SER">
     {% endif%}
     {{x.Time2}}<br>
-
-    {% endfor %}
-    <form name="form" id="form" action="" method="POST">
+    {% empty %}
+    {% endfor %}-->
+    <form name="form" id="form" action="?page={{page_num}}" method="POST">
                 {% csrf_token %}
         <!-- <input data-role="none" type="number" name="home" min="0" max="15" style="width: 40px;" /> x <input data-role="none" type="number" name="away" min="0" max="15" style="width: 40px;" /><br> -->
-                {{form.time1}}
+                {{form.time1}}{{page_num}}
                 {{form.time2}}<br>
                 <input type="hidden" name="Rodada" value="{{Rodada}}">
                 <input type="hidden" name="Jogo" value="{{Jogo}}">

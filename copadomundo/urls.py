@@ -6,7 +6,7 @@ urlpatterns = [
     #path('jogos/', PalpiteList.as_view(), name='palpitescopa'),
     path('palpite/<Rodada>/<Jogo>/', palpite, name='palpite'),
     #path('save/', save),
-    path('update/<int:pk>/', update, name='update'),
+    path('update/<int:page>/<int:pk>/', update, name='update'),
 #    path('classificacao/', classificacao),
     path('caminhocalculadora/', caminhocalculadora),
     path('calculadora/', calculadora),

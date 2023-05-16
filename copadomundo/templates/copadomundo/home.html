@@ -8,13 +8,13 @@
 <div align="right" style="margin-top:20px">
     <a class="button" href="/copadomundo/classificacao/">Classificação</a>
 </div>
-<ul class="pagination">
+<ul class="pagination" style="align:center">
         {% if page.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{page.previous_page_number}}"><</a>
         </li>
         {% endif %}
-        {% for in pages.page_range %}
+        {% for x in pages.page_range %}
             {% if page.number == x %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{x}}">{{x}}</a>
@@ -176,7 +176,7 @@
     {% if hora < horalimite %}
         {% for i in meu_palpite %}
             Meu palpite: {{i.time1}}x{{i.time2}}<br>
-            <a class="button" style="margin-top:10px" href="/copadomundo/update/{{i.id}}/">atualizar</a>
+            <a class="button" style="margin-top:10px" href="/copadomundo/update/{{page_num}}/{{i.id}}/">atualizar</a>
         {% empty %}
             <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
         {% endfor %}

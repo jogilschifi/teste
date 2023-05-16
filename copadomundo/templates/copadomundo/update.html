@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="grid">
-    {% for x in jogo %}
+    <!--{% for x in jogo %}
     <b>{{x.Grupo}}</b><br>
     <d style="font-size: 15px;">({{x.Local}})</d><br>
     <d style="font-size: 18px;">{{x.Horario}}</d><br>
@@ -125,7 +125,7 @@
     {% endif%}
     {{x.Time2}}<br>
 
-    {% endfor %}
+    {% endfor %}-->
     <form name="form" id="form" action="/copadomundo/up/" method="POST">
                 {% csrf_token %}
         <!-- <input data-role="none" type="number" name="home" min="0" max="15" style="width: 40px;" /> x <input data-role="none" type="number" name="away" min="0" max="15" style="width: 40px;" /><br> -->

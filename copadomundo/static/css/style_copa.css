@@ -281,6 +281,5 @@
             padding: 22px; text-align: center;
         }
         .pagination {
-            items-align: center;
+            align: center;
         }
-

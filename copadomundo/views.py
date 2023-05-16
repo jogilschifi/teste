@@ -24,6 +24,7 @@ import datetime
 
 @login_required
 def home(request):
+
     jogos = Jogos.objects.all()
     p = Paginator(jogos, 1)
     page_num = request.GET.get('page', 1)
@@ -38,7 +39,7 @@ def home(request):
     elif page_num == '3':
         data['horalimite'] = datetime.datetime(2022, 11, 21, 13, 00)
     elif page_num == '4':
-        data['horalimite'] = datetime.datetime(2022, 11, 21, 16, 00)
+        data['horalimite'] = datetime.datetime(2023, 11, 21, 16, 00)
     elif page_num == '5':
         data['horalimite'] = datetime.datetime(2022, 11, 22, 7, 00)
     elif page_num == '6':
@@ -109,7 +110,7 @@ def palpite(request, Rodada, Jogo):
     return render(request, 'copadomundo/save.html', data)
 
 @login_required
-def update(request, pk):
+def update(request, pk, page):
     palpite = Palpites.objects.get(id=pk)
     usuario_palpite = palpite.user_id
     if not usuario_palpite == request.user.id:
@@ -117,9 +118,10 @@ def update(request, pk):
     jogo = Jogos.objects.all()
     jogo = jogo.filter(Rodada=palpite.Rodada)
     data = {}
+    data['page_num']= page
     data['jogo'] = jogo.filter(Jogo=palpite.Jogo)
     data['Rodada'] = palpite.Rodada
-    data['Jogo'] = palpite.Jogo
+    data['Jogo'] = str(palpite.Jogo)
     palpite = Palpites.objects.get(id=pk)
     form = PalpitesForm(instance=palpite)
     if request.method == 'POST':
@@ -306,9 +308,9 @@ def perfilcopa(request, user, pk):
     elif page_num == '2':
         data['horalimite'] = datetime.datetime(2022, 11, 21, 10, 00)
     elif page_num == '3':
-        data['horalimite'] = datetime.datetime(2022, 11, 21, 13, 00)
+        data['horalimite'] = datetime.datetime(2023, 11, 21, 13, 00)
     elif page_num == '4':
-        data['horalimite'] = datetime.datetime(2022, 11, 21, 16, 00)
+        data['horalimite'] = datetime.datetime(2023, 11, 21, 16, 00)
     elif page_num == '5':
         data['horalimite'] = datetime.datetime(2022, 11, 22, 7, 00)
     elif page_num == '6':
