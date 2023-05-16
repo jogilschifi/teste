@@ -157,67 +157,6 @@ def perfilusuarios(request, pk, user):
     return render(request, 'app/perfilusuarios.html', data)
 
 
-class CopadoBrasilList(LoginRequiredMixin, ListView):
-    model = CopadoBrasil
-    context_object_name = 'copadobrasil'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['copadobrasil'] = context['copadobrasil'].filter(user=self.request.user)
-        context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 1, 19, 00)
-        return context
-
-    def filter(self, user):
-        pass
-
-    @classmethod
-    def user_id(cls):
-        pass
-
-class CopadoBrasilCreate(LoginRequiredMixin, CreateView):
-    model = CopadoBrasil
-    fields = '__all__'
-    context_object_name = 'copadobrasil'
-    success_url = reverse_lazy('palpites')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dados'] = CopadoBrasil.objects.all()
-        context['dados'] = context['dados'].filter(user=self.request.user)
-        context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 1, 00, 00)
-        return context
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(CopadoBrasilCreate, self).form_valid(form)
-
-class CopadoBrasilUpdate(LoginRequiredMixin, UpdateView):
-    model = CopadoBrasil
-    fields = '__all__'
-    context_object_name = 'copadobrasil'
-    success_url = reverse_lazy('palpites')
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(CopadoBrasilUpdate, self).form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['horario'] = datetime.datetime.now()
-        context['horalimite'] = datetime.datetime(2022, 10, 1, 19, 00)
-        return context
-
-class CopadoBrasilDetail(LoginRequiredMixin, DetailView):
-    model = CopadoBrasil
-    context_object_name = 'copadobrasil'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['resultado'] = ResultadosCopadoBrasil.objects.all()
-        context['resultado'] = context['resultado'].first()
-        return context
-
 class PalpiteList(LoginRequiredMixin, ListView):
     model = Brasileirao
     context_object_name = 'palpites'

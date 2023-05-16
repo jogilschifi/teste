@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'copadomundo',
+    'copadobrasil',
     'crispy_forms',
 ]
 

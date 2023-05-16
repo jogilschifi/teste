@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, CopadoBrasilList, CopadoBrasilCreate, CopadoBrasilUpdate, CopadoBrasilDetail
+from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios
 from django.contrib.auth.views import LogoutView
 
 
@@ -35,10 +35,6 @@ urlpatterns = [
     path('palpite/<int:pk>/', PalpiteDetail.as_view(), name='palpitedetail'),
     path('palpitecreate/', PalpiteCreate.as_view(), name='palpitecreate'),
     path('palpiteupdate/<int:pk>/', PalpiteUpdate.as_view(), name='palpiteupdate'),
-    path('copadobrasil/', CopadoBrasilList.as_view(), name='copadobrasil'),
-    path('copadobrasilcreate/', CopadoBrasilCreate.as_view(), name='copadobrasilcreate'),
-    path('copadobrasilupdate/<int:pk>/', CopadoBrasilUpdate.as_view(), name='copadobrasilupdate'),
-    path('copadobrasil/<int:pk>/', CopadoBrasilDetail.as_view(), name='copadobrasildetail'),
     #path('palpitedelete/<int:pk>/', PalpiteDelete.as_view(), name='palpitedelete'),
     path('pontuacao/', pontuacao),
     path('desempate/', desempate),
@@ -51,4 +47,5 @@ urlpatterns = [
     path('caminhocalculadora/', caminhocalculadora),
     path('calculadoradoispontozero/', calculadoradoispontozero),
     path('copadomundo/', include('copadomundo.urls')),
+    path('copadobrasil/', include('copadobrasil.urls')),
 ]
