@@ -1,0 +1,28 @@
+{% extends 'copadomundo/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<form id="formrodada" action="/copadomundo/calculadora" method="GET">
+    {% csrf_token %}
+    <label for="rodada">Rodada:</label>
+    <select name="rodada" id="rodada" class="form-control">
+        <option action="/caminhocalculadora/" value="0">Selecione</option>
+            {% for x in rodada %}
+        <option value="{{ x.Rodada }}">{{ x.Rodada }}</option>
+            {% endfor %}
+    </select>
+    <!--<label for="usuario">Usuário:</label>
+    <select name="usuario" id="usuario" class="form-control">
+        <option action="/caminhocalculadora/" value="0">Selecione</option>
+            {% for usuarios in usuario %}
+        <option value="{{ usuarios.user.id }}">{{ usuarios.user }}</option>
+            {% endfor %}
+    </select>-->
+    <input type="submit" class="btn btn-success" value="Calcular">
+
+</form>
+<!--
+    <a href="/">voltar</a><br>
+-->
+{% endblock %}

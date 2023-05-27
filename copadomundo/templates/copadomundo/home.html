@@ -1,0 +1,456 @@
+{% extends 'copadomundo/index.html' %}
+{% load static %}
+
+{% block content %}
+<!-- <div align="right" style="font-size: 20px; margin-bottom: 25px" >
+    <a class="btn"  style="border: solid;"href="/copadomundo/classificacao/">CLASSIFICAÇÃO</a>
+</div> -->
+<div align="right" style="margin-top:20px">
+    <a class="button" href="/copadomundo/classificacao/">Classificação</a>
+</div>
+<ul class="pagination" style="align:center">
+        {% if page.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page.previous_page_number}}"><</a>
+        </li>
+        {% endif %}
+        {% for x in pages.page_range %}
+            {% if page.number == x %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{x}}">{{x}}</a>
+                </li>
+            {% elif x > page.number|add:'-2' and x < page.number|add:'-2' %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{x}}">{{x}}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if page.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page.next_page_number}}">></a>
+        </li>
+        {% endif %}
+</ul>
+<div class="grid">
+    {% for x in page %}
+    <b>{{x.Grupo}}</b><br>
+    <d style="font-size: 15px;">({{x.Local}})</d><br>
+    <d style="font-size: 18px;">{{x.Horario}}</d><br>
+    <br>
+    {{x.Time1}}
+    {% if 'CAT' == x.Time1 %}
+    <img src="{% static 'img/CAT.svg' %}" width="30" name="CAT">
+    {% elif 'EQU' == x.Time1%}
+    <img src="{% static 'img/EQU.svg' %}" width="30" name="EQU">
+    {% elif 'ING' == x.Time1%}
+    <img src="{% static 'img/ING.svg' %}" width="30" name="ING">
+    {% elif 'IRA' == x.Time1%}
+    <img src="{% static 'img/IRA.svg' %}" width="30" name="IRA">
+    {% elif 'SEN' == x.Time1%}
+    <img src="{% static 'img/SEN.svg' %}" width="30" name="SEN">
+    {% elif 'HOL' == x.Time1%}
+    <img src="{% static 'img/HOL.svg' %}" width="30" name="HOL">
+    {% elif 'EUA' == x.Time1%}
+    <img src="{% static 'img/EUA.svg' %}" width="30" name="EUA">
+    {% elif 'GAL' == x.Time1%}
+    <img src="{% static 'img/GAL.svg' %}" width="30" name="GAL">
+    {% elif 'ARG' == x.Time1%}
+    <img src="{% static 'img/ARG.svg' %}" width="30" name="ARG">
+    {% elif 'ARA' == x.Time1%}
+    <img src="{% static 'img/ARA.svg' %}" width="30" name="ARA">
+    {% elif 'MEX' == x.Time1%}
+    <img src="{% static 'img/MEX.svg' %}" width="30" name="MEX">
+    {% elif 'POL' == x.Time1%}
+    <img src="{% static 'img/POL.svg' %}" width="30" name="POL">
+    {% elif 'DIN' == x.Time1%}
+    <img src="{% static 'img/DIN.svg' %}" width="30" name="DIN">
+    {% elif 'TUN' == x.Time1%}
+    <img src="{% static 'img/TUN.svg' %}" width="30" name="TUN">
+    {% elif 'FRA' == x.Time1%}
+    <img src="{% static 'img/FRA.svg' %}" width="30" name="FRA">
+    {% elif 'ALE' == x.Time1%}
+    <img src="{% static 'img/ALE.svg' %}" width="30" name="ALE">
+    {% elif 'JAP' == x.Time1%}
+    <img src="{% static 'img/JAP.svg' %}" width="30" name="JAP">
+    {% elif 'ESP' == x.Time1%}
+    <img src="{% static 'img/ESP.svg' %}" width="30" name="ESP">
+    {% elif 'CRC' == x.Time1%}
+    <img src="{% static 'img/CRC.svg' %}" width="30" name="CRC">
+    {% elif 'MAR' == x.Time1%}
+    <img src="{% static 'img/MAR.svg' %}" width="30" name="MAR">
+    {% elif 'CRO' == x.Time1%}
+    <img src="{% static 'img/CRO.svg' %}" width="30" name="CRO">
+    {% elif 'AUS' == x.Time1%}
+    <img src="{% static 'img/AUS.svg' %}" width="30" name="AUS">
+    {% elif 'BEL' == x.Time1%}
+    <img src="{% static 'img/BEL.svg' %}" width="30" name="BEL">
+    {% elif 'CAN' == x.Time1%}
+    <img src="{% static 'img/CAN.svg' %}" width="30" name="CAN">
+    {% elif 'POR' == x.Time1%}
+    <img src="{% static 'img/POR.svg' %}" width="30" name="POR">
+    {% elif 'URU' == x.Time1%}
+    <img src="{% static 'img/URU.svg' %}" width="30" name="URU">
+    {% elif 'COR' == x.Time1%}
+    <img src="{% static 'img/COR.svg' %}" width="30" name="COR">
+    {% elif 'GAN' == x.Time1%}
+    <img src="{% static 'img/GAN.svg' %}" width="30" name="GAN">
+    {% elif 'SUI' == x.Time1%}
+    <img src="{% static 'img/SUI.svg' %}" width="30" name="SUI">
+    {% elif 'CAM' == x.Time1%}
+    <img src="{% static 'img/CAM.svg' %}" width="30" name="CAM">
+    {% elif 'BRA' == x.Time1%}
+    <img src="{% static 'img/BRA.svg' %}" width="30" name="BRA">
+    {% elif 'SER' == x.Time1%}
+    <img src="{% static 'img/SER.svg' %}" width="30" name="SER">
+    {% endif%}
+    {{resultado.time1}}
+    x
+    {{resultado.time2}}
+    {% if 'CAT' == x.Time2 %}
+    <img src="{% static 'img/CAT.svg' %}" width="30" name="CAT">
+    {% elif 'EQU' == x.Time2%}
+    <img src="{% static 'img/EQU.svg' %}" width="30" name="EQU">
+    {% elif 'ING' == x.Time2%}
+    <img src="{% static 'img/ING.svg' %}" width="30" name="ING">
+    {% elif 'IRA' == x.Time2%}
+    <img src="{% static 'img/IRA.svg' %}" width="30" name="IRA">
+    {% elif 'SEN' == x.Time2%}
+    <img src="{% static 'img/SEN.svg' %}" width="30" name="SEN">
+    {% elif 'HOL' == x.Time2%}
+    <img src="{% static 'img/HOL.svg' %}" width="30" name="HOL">
+    {% elif 'EUA' == x.Time2%}
+    <img src="{% static 'img/EUA.svg' %}" width="30" name="EUA">
+    {% elif 'GAL' == x.Time2%}
+    <img src="{% static 'img/GAL.svg' %}" width="30" name="GAL">
+    {% elif 'ARG' == x.Time2%}
+    <img src="{% static 'img/ARG.svg' %}" width="30" name="ARG">
+    {% elif 'ARA' == x.Time2%}
+    <img src="{% static 'img/ARA.svg' %}" width="30" name="ARA">
+    {% elif 'MEX' == x.Time2%}
+    <img src="{% static 'img/MEX.svg' %}" width="30" name="MEX">
+    {% elif 'POL' == x.Time2%}
+    <img src="{% static 'img/POL.svg' %}" width="30" name="POL">
+    {% elif 'DIN' == x.Time2%}
+    <img src="{% static 'img/DIN.svg' %}" width="30" name="DIN">
+    {% elif 'TUN' == x.Time2%}
+    <img src="{% static 'img/TUN.svg' %}" width="30" name="TUN">
+    {% elif 'FRA' == x.Time2%}
+    <img src="{% static 'img/FRA.svg' %}" width="30" name="FRA">
+    {% elif 'ALE' == x.Time2%}
+    <img src="{% static 'img/ALE.svg' %}" width="30" name="ALE">
+    {% elif 'JAP' == x.Time2%}
+    <img src="{% static 'img/JAP.svg' %}" width="30" name="JAP">
+    {% elif 'ESP' == x.Time2%}
+    <img src="{% static 'img/ESP.svg' %}" width="30" name="ESP">
+    {% elif 'CRC' == x.Time2%}
+    <img src="{% static 'img/CRC.svg' %}" width="30" name="CRC">
+    {% elif 'MAR' == x.Time2%}
+    <img src="{% static 'img/MAR.svg' %}" width="30" name="MAR">
+    {% elif 'CRO' == x.Time2%}
+    <img src="{% static 'img/CRO.svg' %}" width="30" name="CRO">
+    {% elif 'AUS' == x.Time2%}
+    <img src="{% static 'img/AUS.svg' %}" width="30" name="AUS">
+    {% elif 'BEL' == x.Time2%}
+    <img src="{% static 'img/BEL.svg' %}" width="30" name="BEL">
+    {% elif 'CAN' == x.Time2%}
+    <img src="{% static 'img/CAN.svg' %}" width="30" name="CAN">
+    {% elif 'POR' == x.Time2%}
+    <img src="{% static 'img/POR.svg' %}" width="30" name="POR">
+    {% elif 'URU' == x.Time2%}
+    <img src="{% static 'img/URU.svg' %}" width="30" name="URU">
+    {% elif 'COR' == x.Time2%}
+    <img src="{% static 'img/COR.svg' %}" width="30" name="COR">
+    {% elif 'GAN' == x.Time2%}
+    <img src="{% static 'img/GAN.svg' %}" width="30" name="GAN">
+    {% elif 'SUI' == x.Time2%}
+    <img src="{% static 'img/SUI.svg' %}" width="30" name="SUI">
+    {% elif 'CAM' == x.Time2%}
+    <img src="{% static 'img/CAM.svg' %}" width="30" name="CAM">
+    {% elif 'BRA' == x.Time2%}
+    <img src="{% static 'img/BRA.svg' %}" width="30" name="BRA">
+    {% elif 'SER' == x.Time2%}
+    <img src="{% static 'img/SER.svg' %}" width="30" name="SER">
+    {% endif %}
+    {{x.Time2}}<br>
+    <div style="margin-top:10px">
+    {% if hora < horalimite %}
+        {% for i in meu_palpite %}
+            Meu palpite: {{i.time1}}x{{i.time2}}<br>
+            <a class="button" style="margin-top:10px" href="/copadomundo/update/{{page_num}}/{{i.id}}/">atualizar</a>
+        {% empty %}
+            <a class="button" href="/copadomundo/palpite/{{x.Rodada}}/{{x.Jogo}}/">palpitar</a>
+        {% endfor %}
+    {% else %}
+        {% if usuario == request.user %}
+            {% for i in meu_palpite %}
+                Meu palpite: {{i.time1}}x{{i.time2}}<br>
+                Pontuação: {{pontuacao.PONTOS}}
+            {% empty %}
+                Tempo Esgotado.
+            {% endfor %}
+        {% else %}
+            {% for i in meu_palpite %}
+                Palpite: {{i.time1}}x{{i.time2}}<br>
+                Pontuação: {{pontuacao.PONTOS}}
+            {% empty %}
+                Tempo Esgotado.
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    </div>
+    {% endfor %}
+</div>
+
+
+<!--
+<div align="center"><button onclick="showPrev()"> <</button>
+<button onclick="showNext()"> > </button></div>
+
+{% for x in jogos %}
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ1}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ1}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo1}}</d><br>
+    <br>
+    {{x.Time1J1}}
+    <img src="{% static 'img/CAT.svg' %}" width="20" name="CAT">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/EQU.svg' %}" width="20" name="EQU">
+    {{x.Time2J1}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ2}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ2}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo2}}</d><br>
+    <br>
+    {{x.Time1J2}}
+    <img src="{% static 'img/ING.svg' %}" width="20" name="ING">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/IRA.svg' %}" width="20" name="IRA">
+    {{x.Time2J2}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ3}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ3}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo3}}</d><br>
+    <br>
+    {{x.Time1J3}}
+    <img src="{% static 'img/SEN.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/HOL.svg' %}" width="20" name="HOL">
+    {{x.Time2J3}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ4}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ4}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo4}}</d><br>
+    <br>
+    {{x.Time1J4}}
+    <img src="{% static 'img/EUA.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/GAL.svg' %}" width="20" name="HOL">
+    {{x.Time2J4}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ5}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ5}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo5}}</d><br>
+    <br>
+    {{x.Time1J5}}
+    <img src="{% static 'img/ARG.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/ARA.svg' %}" width="20" name="HOL">
+    {{x.Time2J5}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ6}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ6}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo6}}</d><br>
+    <br>
+    {{x.Time1J6}}
+    <img src="{% static 'img/DIN.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/TUN.svg' %}" width="20" name="HOL">
+    {{x.Time2J6}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ7}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ7}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo7}}</d><br>
+    <br>
+    {{x.Time1J7}}
+    <img src="{% static 'img/MEX.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/POL.svg' %}" width="20" name="HOL">
+    {{x.Time2J7}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ8}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ8}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo8}}</d><br>
+    <br>
+    {{x.Time1J8}}
+    <img src="{% static 'img/FRA.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/AUS.svg' %}" width="20" name="HOL">
+    {{x.Time2J8}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ9}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ9}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo9}}</d><br>
+    <br>
+    {{x.Time1J9}}
+    <img src="{% static 'img/MAR.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/CRO.svg' %}" width="20" name="HOL">
+    {{x.Time2J9}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ10}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ10}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo10}}</d><br>
+    <br>
+    {{x.Time1J10}}
+    <img src="{% static 'img/ALE.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/JAP.svg' %}" width="20" name="HOL">
+    {{x.Time2J10}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ11}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ11}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo11}}</d><br>
+    <br>
+    {{x.Time1J11}}
+    <img src="{% static 'img/ESP.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/CRC.svg' %}" width="20" name="HOL">
+    {{x.Time2J11}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ12}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ12}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo12}}</d><br>
+    <br>
+    {{x.Time1J12}}
+    <img src="{% static 'img/BEL.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/CAN.svg' %}" width="20" name="HOL">
+    {{x.Time2J12}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ13}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ13}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo13}}</d><br>
+    <br>
+    {{x.Time1J13}}
+    <img src="{% static 'img/SUI.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/CAM.svg' %}" width="20" name="HOL">
+    {{x.Time2J13}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ14}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ14}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo14}}</d><br>
+    <br>
+    {{x.Time1J14}}
+    <img src="{% static 'img/URU.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/COR.svg' %}" width="20" name="HOL">
+    {{x.Time2J14}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ15}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ15}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo15}}</d><br>
+    <br>
+    {{x.Time1J15}}
+    <img src="{% static 'img/POR.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/GAN.svg' %}" width="20" name="HOL">
+    {{x.Time2J15}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+    <span ng-show="showMyPrediction">
+    <input data-role="none" type="number" ng-model="match.new_prediction.user_prediction.score_home_team" step="1" min="0" max="15" style="width: 40px;" /> x <input data-role="none" type="number" ng-model="match.new_prediction.user_prediction.score_away_team" step="1" min="0" max="15" style="width: 40px;" />
+    <button data-icon="check" data-inline="true" ng-click="saveIndividualPrediction(match); showMyPrediction=false">Enviar palpite</button>
+    </span>
+</div>
+<div class="grid" style="font-size: 20px;">
+    <b>{{x.GrupoJ16}}</b><br>
+    <d style="font-size: 15px;">({{x.LocalJ16}})</d><br>
+    <d style="font-size: 18px;">{{x.Jogo16}}</d><br>
+    <br>
+    {{x.Time1J16}}
+    <img src="{% static 'img/BRA.svg' %}" width="20" name="SEN">
+    {{form.Catar}}
+    x
+    {{form.Internacional}}
+    <img src="{% static 'img/SER.svg' %}" width="20" name="HOL">
+    {{x.Time2J16}}<br>
+    <button data-icon="audio" data-inline="true" ng-hide="showMyPrediction" ng-click="newUserPrediction(match); showMyPrediction=!showMyPrediction" class="ui-btn ui-icon-audio ui-btn-icon-left ui-btn-inline ui-shadow ui-corner-all">Palpitar</button>
+</div>
+{% endfor %}
+
+<div class="grid">
+{% for x in jogos %}
+{{x.Jogo1}}
+{% endfor %}
+{{palpites}}
+</div>
+<div class="grid">
+    <img src="{% static 'img/Catar.svg' %}" width="20" name="CAT">
+{% for x in jogos %}
+{{x.Jogo1}}
+{% endfor %}
+    <img src="{% static 'img/Equador.svg' %}" width="20" name="EQU"><br>
+{{palpites}}
+</div>-->
+
+{% endblock %}
