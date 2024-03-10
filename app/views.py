@@ -1466,3 +1466,6 @@ def calculadoradoispontozero(request):
         #data['res'] = data['res'].filter(Rodada=rodada)
         #result = ResultadosBrasileirao.objects.filter(Rodada=rodada)
         #return render(request, 'app/resultado.html', result, data)
+
+def formula1(request):
+    return render(request, 'app/formula1.html')
