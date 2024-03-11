@@ -1,0 +1,80 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if horario > horalimite %}
+    tempo esgotado <br>
+{% else %}
+    {% for dadoss in dados %}
+        {% if dadoss.user == request.user %}
+        Você já palpitou nesta rodada. Atualize seu palpite.<br>
+        <a href="/palpitef1update/{{dadoss.id}}">Atualizar</a>
+        {% endif %}
+    {% empty %}
+
+        <style>
+            td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+              text-align: right ;
+            }
+            tr {
+              border-bottom: 1px solid #ddd;
+            }
+            th:nth-child(2), th:nth-child(3) {
+              background-color: white;
+            }
+            table {
+            border: 1px solid whitesmoke;
+            border-collapse: collapse;
+            }
+        </style>
+
+
+        <form method="POST" action="">
+            {% csrf_token %}
+
+        <h4 align="middle">3ª Circuito (GP DA AUSTRÁLIA) </h4>
+            <input type="hidden" name="Rodada" value="38">
+                        <table align="center" cellpadding="5">
+                            <tr style="blank: true">
+                                <td>Primeiro colocado:</td>
+                                <td>{{form.PrimeiroColocado}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Segundo colocado:</td>
+                                <td>{{form.SegundoColocado}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Terceiro colocado:</td>
+                                <td>{{form.TerceiroColocado}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Volta mais rápida:</td>
+                                <td>{{form.Voltamaisrapida}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Quem vai bater:</td>
+                                <td>{{form.Quembate}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Quem não finaliza a prova:</td>
+                                <td>{{form.Quemnaofinalizaaprova}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Quem ganha mais posições:</td>
+                                <td>{{form.Quemganhamaisposicoes}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Qual equipe vai somar mais pontos:</td>
+                                <td>{{form.Equipe}}</td>
+                            </tr>
+                        </table>
+            <input type="submit" value="Salvar">
+        </form>
+    {% endfor %}
+{% endif %}
+<br>
+<!--
+    <a href="/brasileirao/">voltar</a><br>
+-->
+{% endblock %}

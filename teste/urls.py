@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, formula1
+from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, PalpiteF1List, PalpiteF1Create, PalpiteF1Update
 from django.contrib.auth.views import LogoutView
 
 
@@ -48,5 +48,7 @@ urlpatterns = [
     path('calculadoradoispontozero/', calculadoradoispontozero),
     path('copadomundo/', include('copadomundo.urls')),
     path('copadobrasil/', include('copadobrasil.urls')),
-    path('formula1/', formula1),
+    path('formula1/', PalpiteF1List.as_view(), name='palpitesf1'),
+    path('palpitef1create/', PalpiteF1Create.as_view(), name='palpitef1create'),
+    path('palpitef1update/<int:pk>/', PalpiteF1Update.as_view(), name='palpitef1update'),
 ]

@@ -14,7 +14,7 @@ Apostas encerram às: <br> <b>{{horalimite|date:"H:i"}}</b>, de <b>{{horalimite|
 {% if horario < horalimite %}
     {% for brasileirao in palpites %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/palpitef1update/{{brasileirao.id}}">Palpitar</a><br>
+                    <a class="dropdown-item" href="/palpitef1update/{{palpitesformula1.id}}">Palpitar</a><br>
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -24,7 +24,7 @@ Apostas encerram às: <br> <b>{{horalimite|date:"H:i"}}</b>, de <b>{{horalimite|
 {% else %}
     {% for brasileirao in palpites %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/palpite/{{brasileirao.id}}">Meu palpite</a><br>
+                    <a class="dropdown-item" href="/palpite/{{palpitesformula1.id}}">Meu palpite</a><br>
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

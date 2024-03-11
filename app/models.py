@@ -3,6 +3,52 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class PalpitesFormula1(models.Model):
+    pilotos = (
+        ('Max Verstappen', 'Max Verstappen'),
+        ('Logan Sargeant', 'Logan Sargeant'),
+        ('Daniel Ricciardo', 'Daniel Ricciardo'),
+        ('Lando Norris', 'Lando Norris'),
+        ('Pierre Gasly', 'Pierre Gasly'),
+        ('Sergio Perez', 'Sergio Perez'),
+        ('Fernando Alonso', 'Fernando Alonso'),
+        ('Charles Leclerc', 'Charles Leclerc'),
+        ('Lance Stroll', 'Lance Stroll'),
+        ('Kevin Magnussen', 'Kevin Magnussen'),
+        ('Yuki Tsunoda', 'Yuki Tsunoda'),
+        ('Alexander Albon', 'Alexander Albon'),
+        ('Guan Yu Zhou', 'Guan Yu Zhou'),
+        ('Nico Hulkenberg', 'Nico Hulkenberg'),
+        ('Esteban Ocon', 'Esteban Ocon'),
+        ('Oliver Bearman', 'Oliver Bearman'),
+        ('Lewis Hamilton', 'Lewis Hamilton'),
+        ('Carlos Sainz Jr.', 'Carlos Sainz Jr.'),
+        ('George Russell', 'George Russell'),
+        ('Valtteri Bottas', 'Valtteri Bottas'),
+        ('Oscar Piastri', 'Oscar Piastri'),
+    )
+    equipes = (
+        ('Red Bull Racing', 'Red Bull Racing'),
+        ('Williams', 'Williams'),
+        ('AlphaTauri', 'AlphaTauri'),
+        ('McLaren', 'McLaren'),
+        ('Alpine', 'Alpine'),
+        ('Aston Martin Racing', 'Aston Martin Racing'),
+        ('Hass F1 Team', 'Hass F1 Team'),
+        ('Sauber', 'Sauber'),
+        ('Ferrari', 'Ferrari'),
+        ('Mercedes', 'Mercedes'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    PrimeiroColocado = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    SegundoColocado = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    TerceiroColocado = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    Voltamaisrapida = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    Quemnaofinalizaaprova = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    Quembate = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    Quemganhamaisposicoes = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
+    Equipe = models.CharField(max_length=20, choices=equipes, null=True, blank=True)
+
 class Clubes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     athleticoPR = models.IntegerField()

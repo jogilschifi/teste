@@ -20,7 +20,7 @@ import datetime
 
 from operator import itemgetter
 
-from .models import Clubes, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
+from .models import PalpitesFormula1, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
 from django.contrib.auth.models import Group, User, GroupManager
 
 # Create your views here.
@@ -1467,5 +1467,73 @@ def calculadoradoispontozero(request):
         #result = ResultadosBrasileirao.objects.filter(Rodada=rodada)
         #return render(request, 'app/resultado.html', result, data)
 
-def formula1(request):
-    return render(request, 'app/formula1.html')
+#def formula1(request):
+
+    #return render(request, 'app/formula1.html')
+
+class PalpiteF1List(LoginRequiredMixin, ListView):
+    model = PalpitesFormula1
+    context_object_name = 'palpitesf1'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Verficacao se usuario irá palpitar ou atualizar palpite
+        context['palpitesf1'] = context['palpitesf1'].filter(user=self.request.user)
+        # context['palpitesf1'] = context['palpitesf1'].filter(Prova=3)
+        # Verficacao se usuario pode palpitar/atualizar palpite ou visualizar palpite
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2024, 3, 24, 1, 00)
+        context['temporestante'] = context['horalimite'] - context['horario']
+        # context['classificacao'] = PontuacaoTotalBrasileirao.objects.all()
+        # context['classificacao'] = context['classificacao'].filter(user=self.request.user)
+        # rodada = context['classificacao'].aggregate(Max('Rodada'))
+        # rodada = rodada["Rodada__max"]
+        # context['classificacao'] = context['classificacao'].filter(Rodada=rodada)
+        # context['classificacao'] = context['classificacao'].first()
+        return context
+
+    def filter(self, user):
+        pass
+
+    @classmethod
+    def user_id(cls):
+        pass
+
+
+class PalpiteF1Create(LoginRequiredMixin, CreateView):
+    model = PalpitesFormula1
+    fields = '__all__'
+    context_object_name = 'palpitesf1'
+    success_url = reverse_lazy('palpitesf1')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Verificacao se usuario já palpitou (acessando pela URL)
+        context['dados'] = PalpitesFormula1.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        # context['dados'] = context['dados'].filter(Prova=3)
+        # Verficacao se já passou do horario para palpitar (acessando pela URL)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2024, 3, 24, 1, 00)
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PalpiteF1Create, self).form_valid(form)
+
+class PalpiteF1Update(LoginRequiredMixin, UpdateView):
+    model = PalpitesFormula1
+    fields = '__all__'
+    success_url = reverse_lazy('palpitesf1')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PalpiteF1Update, self).form_valid(form)
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Verficacao se já passou do horario para atualizar palpite (acessando pela URL)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2024, 3, 24, 1, 00)
+        return context
