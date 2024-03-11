@@ -49,6 +49,59 @@ class PalpitesFormula1(models.Model):
     Quemganhamaisposicoes = models.CharField(max_length=20, choices=pilotos, null=True, blank=True)
     Equipe = models.CharField(max_length=20, choices=equipes, null=True, blank=True)
 
+class PontuacaoF1(models.Model):
+    Etapa = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+        (11, 11),
+        (12, 12),
+        (13, 13),
+        (14, 14),
+        (15, 15),
+        (16, 16),
+        (17, 17),
+        (18, 18),
+        (19, 19),
+        (20, 20),
+        (21, 21),
+        (22, 22),
+        (23, 23),
+        (24, 24),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    Etapa = models.IntegerField(choices=Etapa)
+    PrimeiroColocado = models.IntegerField(null=True)
+    SegundoColocado = models.IntegerField(null=True)
+    TerceiroColocado = models.IntegerField(null=True)
+    Podio = models.IntegerField(null=True)
+    Voltamaisrapida = models.IntegerField(null=True)
+    Quemnaofinalizaaprova = models.IntegerField(null=True)
+    Quembate = models.IntegerField(null=True)
+    Equipe = models.IntegerField(null=True)
+    Pts = models.IntegerField()
+
+class PontuacaoTotalF1(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    Etapa = models.IntegerField()
+    PrimeiroColocado = models.IntegerField(null=True)
+    SegundoColocado = models.IntegerField(null=True)
+    TerceiroColocado = models.IntegerField(null=True)
+    Podio = models.IntegerField(null=True)
+    Voltamaisrapida = models.IntegerField(null=True)
+    Quemnaofinalizaaprova = models.IntegerField(null=True)
+    Quembate = models.IntegerField(null=True)
+    Equipe = models.IntegerField(null=True)
+    Pts = models.IntegerField()
+
 class Clubes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     athleticoPR = models.IntegerField()

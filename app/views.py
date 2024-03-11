@@ -1537,3 +1537,4 @@ class PalpiteF1Update(LoginRequiredMixin, UpdateView):
         context['horario'] = datetime.datetime.now()
         context['horalimite'] = datetime.datetime(2024, 3, 24, 1, 00)
         return context
+

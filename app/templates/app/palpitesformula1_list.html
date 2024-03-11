@@ -12,19 +12,21 @@ Apostas encerram às: <br> <b>{{horalimite|date:"H:i"}}</b>, de <b>{{horalimite|
   Menu
   </button>
 {% if horario < horalimite %}
-    {% for brasileirao in palpites %}
+    {% for x in palpitesf1 %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/palpitef1update/{{palpitesformula1.id}}">Palpitar</a><br>
+                    <a class="dropdown-item" href="/palpitef1update/{{x.id}}">Palpitar</a><br>
+
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/palpitef1create/">Palpitar</a><br>
             </div>
+
     {% endfor %}
 {% else %}
-    {% for brasileirao in palpites %}
+    {% for x in palpitesf1 %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/palpite/{{palpitesformula1.id}}">Meu palpite</a><br>
+                    <a class="dropdown-item" href="/palpite/{{x.id}}">Meu palpite</a><br>
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
