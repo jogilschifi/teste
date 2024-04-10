@@ -12,28 +12,25 @@ Apostas encerram às: <br> <b>{{horalimite|date:"H:i"}}</b>, de <b>{{horalimite|
   Menu
   </button>
 {% if horario < horalimite %}
-    {% for x in palpitesf1 %}
+    {% for x in palpitespgl %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/palpitef1update/{{x.id}}">Palpitar</a><br>
-                <a class="dropdown-item" href="/palpitef1update/{{x.id}}">Resultados</a><br>
+                    <a class="dropdown-item" href="/palpitepglupdate/{{x.id}}">Palpitar</a><br>
 
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/palpitef1create/">Palpitar</a><br>
-                <a class="dropdown-item" href="/palpitef1update/{{x.id}}">Resultados</a><br>
+                    <a class="dropdown-item" href="/palpitepglcreate/">Palpitar</a><br>
             </div>
 
     {% endfor %}
 {% else %}
-    {% for x in palpitesf1 %}
+    {% for x in palpitespgl %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/palpite/{{x.id}}">Meu palpite</a><br>
-                <a class="dropdown-item" href="/palpitef1update/{{x.id}}">Resultados</a><br>
+                    <a class="dropdown-item" href="/palpitepgl/{{x.id}}">Meu palpite</a><br>
             </div>
     {% empty %}
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/f1resultado/">Resultados</a><br>
+
             </div>
     {% endfor %}
 {% endif %}

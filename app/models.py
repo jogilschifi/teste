@@ -3,6 +3,48 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class PalpitesPGL(models.Model):
+    placar = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    FaZe_V = models.IntegerField(choices=placar)
+    FaZe_D = models.IntegerField(choices=placar)
+    Spirit_V = models.IntegerField(choices=placar)
+    Spirit_D = models.IntegerField(choices=placar)
+    Vitality_V = models.IntegerField(choices=placar)
+    Vitality_D = models.IntegerField(choices=placar)
+    MOUZ_V = models.IntegerField(choices=placar)
+    MOUZ_D = models.IntegerField(choices=placar)
+    Virtuspro_V = models.IntegerField(choices=placar)
+    Virtuspro_D = models.IntegerField(choices=placar)
+    NatusVincere_V = models.IntegerField(choices=placar)
+    NatusVincere_D = models.IntegerField(choices=placar)
+    G2_V = models.IntegerField(choices=placar)
+    G2_D = models.IntegerField(choices=placar)
+    Complexity_V = models.IntegerField(choices=placar)
+    Complexity_D = models.IntegerField(choices=placar)
+    Heroic_V = models.IntegerField(choices=placar)
+    Heroic_D = models.IntegerField(choices=placar)
+    Cloud9_V = models.IntegerField(choices=placar)
+    Cloud9_D = models.IntegerField(choices=placar)
+    EternalFire_V = models.IntegerField(choices=placar)
+    EternalFire_D = models.IntegerField(choices=placar)
+    paiN_V = models.IntegerField(choices=placar)
+    paiN_D = models.IntegerField(choices=placar)
+    ECSTATIC_V = models.IntegerField(choices=placar)
+    ECSTATIC_D = models.IntegerField(choices=placar)
+    TheMongolz_V = models.IntegerField(choices=placar)
+    TheMongolz_D = models.IntegerField(choices=placar)
+    Imperial_V = models.IntegerField(choices=placar)
+    Imperial_D = models.IntegerField(choices=placar)
+    FURIA_V = models.IntegerField(choices=placar)
+    FURIA_D = models.IntegerField(choices=placar)
+
+
 class PalpitesFormula1(models.Model):
     pilotos = (
         ('Max Verstappen', 'Max Verstappen'),

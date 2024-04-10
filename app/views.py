@@ -20,7 +20,7 @@ import datetime
 
 from operator import itemgetter
 
-from .models import PalpitesFormula1, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
+from .models import PalpitesPGL, PalpitesFormula1, PontuacaoF1, PontuacaoTotalF1, Brasileirao, ResultadosBrasileirao, OrdenacaoBrasileirao, PontuacaoBrasileirao, PontuacaoTotalBrasileirao, CopadoBrasil, ResultadosCopadoBrasil
 from django.contrib.auth.models import Group, User, GroupManager
 
 # Create your views here.
@@ -1538,3 +1538,85 @@ class PalpiteF1Update(LoginRequiredMixin, UpdateView):
         context['horalimite'] = datetime.datetime(2024, 3, 24, 1, 00)
         return context
 
+def f1resultado(request):
+    classificacao = PontuacaoTotalF1.objects.all()
+    etapas = PontuacaoF1.objects.values('Etapa').distinct()
+    etapa = classificacao.aggregate(Max('Etapa'))
+    etapa = etapa["Etapa__max"]
+    #rodadas = ResultadosBrasileirao.objects.all()
+    classificacao = classificacao.filter(Etapa=etapa)
+    def classif_sort(clas):
+        return clas.Pts, -clas.id
+    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+
+    data = {}
+    data['etapas'] = etapas
+    data['etapa'] = etapa
+    usuarios = len(classificacao)
+
+    cla = []
+    for i in range(usuarios):
+        classifnova = classificacao_sort[i]
+        cla.append({"Pts":classifnova.Pts, "user":classifnova.user, "posicao":i+1})
+    data['cla'] = cla
+    return render(request, 'app/f1resultado.html', data)
+
+def f1resultadoporrodada(request):
+    classificacao = PontuacaoF1.objects.all()
+    etapas = PontuacaoF1.objects.values('Etapa').distinct()
+    etapa = request.GET['etapa']
+    #rodadas = ResultadosBrasileirao.objects.all()
+    classificacao = classificacao.filter(Etapa=etapa)
+    def classif_sort(clas):
+        return clas.Pts, -clas.id
+    classificacao_sort = sorted(classificacao, key=classif_sort, reverse=True)
+
+    data = {}
+    data['etapas'] = etapas
+    data['etapa'] = etapa
+    usuarios = len(classificacao)
+
+    cla = []
+    for i in range(usuarios):
+        classifnova = classificacao_sort[i]
+        cla.append({"Pts":classifnova.Pts, "user":classifnova.user, "posicao":i+1})
+    data['cla'] = cla
+    return render(request, 'app/f1resultadoporrodada.html', data)
+
+class PalpitePGLList(LoginRequiredMixin, ListView):
+    model = PalpitesPGL
+    fields = '__all__'
+    context_object_name = 'palpitespgl'
+    success_url = reverse_lazy('palpitespgl')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Verificacao se usuario já palpitou (acessando pela URL)
+        context['dados'] = PalpitesPGL.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        # context['dados'] = context['dados'].filter(Prova=3)
+        # Verficacao se já passou do horario para palpitar (acessando pela URL)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2024, 3, 21, 9, 00)
+        return context
+
+class PalpitePGLCreate(LoginRequiredMixin, CreateView):
+    model = PalpitesPGL
+    fields = '__all__'
+    context_object_name = 'palpitespgl'
+    success_url = reverse_lazy('palpitespgl')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Verificacao se usuario já palpitou (acessando pela URL)
+        context['dados'] = PalpitesPGL.objects.all()
+        context['dados'] = context['dados'].filter(user=self.request.user)
+        # context['dados'] = context['dados'].filter(Prova=3)
+        # Verficacao se já passou do horario para palpitar (acessando pela URL)
+        context['horario'] = datetime.datetime.now()
+        context['horalimite'] = datetime.datetime(2024, 3, 21, 9, 00)
+        return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PalpitePGLCreate, self).form_valid(form)

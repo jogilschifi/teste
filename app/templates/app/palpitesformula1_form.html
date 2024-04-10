@@ -3,6 +3,52 @@
 
 {% block content %}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selecoes = document.querySelectorAll('.selecao');
+
+            selecoes.forEach(function(selecao) {
+                selecao.addEventListener('change', function() {
+                    var selecionados = [];
+
+                    selecoes.forEach(function(outraSelecao) {
+                        if (outraSelecao !== selecao && outraSelecao.value !== '') {
+                            selecionados.push(outraSelecao.value);
+                        }
+                    });
+
+                    selecoes.forEach(function(outraSelecao) {
+                        if (outraSelecao !== selecao) {
+                            outraSelecao.innerHTML = '';
+                            outraSelecao.add(new Option('', ''));
+
+                            Array.from(outraSelecao.options).forEach(function(opcao) {
+                                if (opcao.value === '' || selecionados.indexOf(opcao.value) === -1) {
+                                    outraSelecao.add(new Option(opcao.text, opcao.value));
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+
+            // Carrega as opções iniciais para todas as seleções
+            var opcoesIniciais = [];
+            selecoes.forEach(function(selecao) {
+                Array.from(selecao.options).forEach(function(opcao) {
+                    opcoesIniciais.push(opcao.value);
+                });
+            });
+
+            selecoes.forEach(function(selecao) {
+                selecao.innerHTML = '';
+                selecao.add(new Option('', ''));
+                opcoesIniciais.forEach(function(opcao) {
+                    selecao.add(new Option(opcao, opcao));
+                });
+            });
+        });
+    </script>
 {% if horario > horalimite %}
     tempo esgotado <br>
 {% else %}
@@ -66,6 +112,53 @@
                             </tr>
                         </table>
             <input type="submit" value="Salvar">
+        </form>
+
+        <form method="post" id="palpites-form">
+            {% csrf_token %}
+            <select name="PrimeiroColocado" class="selecao">
+                <option value="">Selecione o primeiro colocado</option>
+                {% for escolha in form.PrimeiroColocado.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="SegundoColocado" class="selecao">
+                <option value="">Selecione o segundo colocado</option>
+                {% for escolha in form.SegundoColocado.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="TerceiroColocado" class="selecao">
+                <option value="">Selecione o terceiro colocado</option>
+                {% for escolha in form.TerceiroColocado.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="Voltamaisrapida" class="selecao">
+                <option value="">Selecione a volta mais rápida</option>
+                {% for escolha in form.Voltamaisrapida.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="Quemnaofinalizaaprova" class="selecao">
+                <option value="">Selecione quem não finaliza a prova</option>
+                {% for escolha in form.Quemnaofinalizaaprova.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="Quembate" class="selecao">
+                <option value="">Selecione quem bate</option>
+                {% for escolha in form.Quembate.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <select name="Quemganhamaisposicoes" class="selecao">
+                <option value="">Selecione quem ganha mais posições</option>
+                {% for escolha in form.Quemganhamaisposicoes.field.choices %}
+                    <option value="{{ escolha.0 }}">{{ escolha.1 }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Enviar Palpites</button>
         </form>
     {% endfor %}
 {% endif %}

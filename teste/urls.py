@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, PalpiteF1List, PalpiteF1Create, PalpiteF1Update
+from app.views import bemvindo, dashboard, grupos, liga, PalpiteList, PalpiteDetail, PalpiteCreate, PalpiteUpdate, PalpiteDelete, CustomLoginView, RegisterPage, profile, pontuacao, desempate, rodada, resultado, classificacao, classificacaogrupo, classificacaoporrodada, classificacaoporrodadagrupo, classificacaodoispontozero, caminhocalculadora, calculadoradoispontozero, perfilusuarios, PalpiteF1List, PalpiteF1Create, PalpiteF1Update, f1resultado, f1resultadoporrodada, PalpitePGLList, PalpitePGLCreate
 from django.contrib.auth.views import LogoutView
 
 
@@ -49,6 +49,10 @@ urlpatterns = [
     path('copadomundo/', include('copadomundo.urls')),
     path('copadobrasil/', include('copadobrasil.urls')),
     path('formula1/', PalpiteF1List.as_view(), name='palpitesf1'),
+    path('f1resultado/', f1resultado),
+    path('f1resultadoporrodada/', f1resultadoporrodada),
     path('palpitef1create/', PalpiteF1Create.as_view(), name='palpitef1create'),
     path('palpitef1update/<int:pk>/', PalpiteF1Update.as_view(), name='palpitef1update'),
+    path('pglmajor/', PalpitePGLList.as_view(), name='palpitespgl'),
+    path('palpitepglcreate/', PalpitePGLCreate.as_view(), name='palpitespglcreate'),
 ]

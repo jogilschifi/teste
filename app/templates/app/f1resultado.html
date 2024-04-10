@@ -1,0 +1,68 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    td:nth-child(1) {
+        text-align: right;
+
+    }
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+    th:nth-child(2), th:nth-child(3) {
+        ;
+    }
+    table {
+        display:
+        padding: 20px;
+        border: 1px solid whitesmoke;
+        border-collapse: collapse;
+    }
+</style>
+    <table class="table table-striped">
+        <tr style="background-color: lightgray">
+            <th style="text-align:right">#</th>
+            <th style="text-align:left">Classificação</th>
+            <th style="text-align:center">Pontos</th>
+        </tr>
+        {% for x in cla %}
+            <tr align="center">
+                <td>{{x.posicao}}</td>
+                <td align="left">{{x.user}}</td>
+                <td>{{x.Pts}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+<form id="form" action="\f1resultadoporrodada\" method="GET">
+    {% csrf_token %}
+    <!-- teste -->
+    <label >Resultado:</label>
+    <select name="etapa" id="etapa" class="form-select-padding">
+        <option value="0">Selecione</option>
+            {% for x in etapas %}
+        <option value="{{ x.Etapa }}">{{ x.Etapa }}</option>
+            {% endfor %}
+    </select>
+
+    <input type="submit" class="btn-success btn-custom" value="Verificar">
+
+</form>
+
+<!--
+<div class="col-lg-12" style="text-align:right; font-size: 10px; margin-top: 0px">
+<a href="/desempate/">Critérios de desempate</a>
+</div>
+
+
+<br>
+
+{% if group %}
+    <a href="/classificacao/">voltar</a><br>
+{% else %}
+    <a href="/brasileirao/">voltar</a><br>
+{% endif %}
+-->
+{% endblock %}

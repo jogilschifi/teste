@@ -1,0 +1,192 @@
+{% extends 'app/index.html' %}
+{% load static %}
+
+{% block content %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var placaresSelecionados = {
+                '3x0': 0,
+                '0x3': 0,
+                '3x1': 0,
+                '1x3': 0,
+                '3x2': 0,
+                '2x3': 0
+            };
+
+            var form = document.forms["palpitesForm"];
+
+            // Loop através dos campos de placar
+            for (var i = 0; i < form.elements.length; i++) {
+                var field = form.elements[i];
+
+                // Verifica se é um campo de placar
+                if (field.type === 'number') {
+                    var placar = parseInt(field.value);
+
+                    // Atualiza o contador de placares selecionados
+                    if (placar === 3) {
+                        placaresSelecionados[field.name.slice(0, -2)]++;
+                    }
+                }
+            }
+
+            // Verifica se as condições são atendidas
+            if (placaresSelecionados['3x0'] !== 2 ||
+                placaresSelecionados['0x3'] !== 2 ||
+                placaresSelecionados['3x1'] !== 3 ||
+                placaresSelecionados['1x3'] !== 3 ||
+                placaresSelecionados['3x2'] !== 3 ||
+                placaresSelecionados['2x3'] !== 3) {
+                alert("Você deve selecionar os placares conforme as condições especificadas.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+{% if horario > horalimite %}
+    tempo esgotado <br>
+{% else %}
+    {% for dadoss in dados %}
+        {% if dadoss.user == request.user %}
+        Você já palpitou nesta rodada. Atualize seu palpite.<br>
+        <a href="/palpitef1update/{{dadoss.id}}">Atualizar</a>
+        {% endif %}
+    {% empty %}
+
+        <style>
+            td:nth-child(1), td:nth-child(2), td:nth-child(3) {
+              text-align: right ;
+            }
+            tr {
+              border-bottom: 1px solid #ddd;
+            }
+            th:nth-child(2), th:nth-child(3) {
+              background-color: white;
+            }
+            table {
+            border: 1px solid whitesmoke;
+            border-collapse: collapse;
+            }
+        </style>
+
+
+        <form method="POST" action="" onsubmit="return validarFormulario()">
+            {% csrf_token %}
+
+
+        </form>
+
+        <form method="post" id="palpitesForm" onsubmit="return validarFormulario()">
+            {% csrf_token %}
+            <h4 align="middle">PGL MAJOR COPENHAGEN 2024</h4>
+            <input type="hidden" name="FASE" value="2">
+                        <table align="center" cellpadding="5">
+                            <tr style="blank: true">
+                                <td>FaZe:</td>
+                                <td>{{form.FaZe_V}}</td>
+                                <td>x</td>
+                                <td>{{form.FaZe_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Spirit:</td>
+                                <td>{{form.Spirit_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Spirit_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Vitality:</td>
+                                <td>{{form.Vitality_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Vitality_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>MOUZ:</td>
+                                <td>{{form.MOUZ_V}}</td>
+                                <td>x</td>
+                                <td>{{form.MOUZ_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Virtus.pro:</td>
+                                <td>{{form.Virtuspro_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Virtuspro_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Natus Vincere:</td>
+                                <td>{{form.NatusVincere_V}}</td>
+                                <td>x</td>
+                                <td>{{form.NatusVincere_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>G2:</td>
+                                <td>{{form.G2_V}}</td>
+                                <td>x</td>
+                                <td>{{form.G2_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Complexity:</td>
+                                <td>{{form.Complexity_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Complexity_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Heroic:</td>
+                                <td>{{form.Heroic_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Heroic_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Cloud9:</td>
+                                <td>{{form.Cloud9_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Cloud9_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Eternal Fire:</td>
+                                <td>{{form.EternalFire_V}}</td>
+                                <td>x</td>
+                                <td>{{form.EternalFire_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>paiN:</td>
+                                <td>{{form.paiN_V}}</td>
+                                <td>x</td>
+                                <td>{{form.paiN_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>ECSTATIC:</td>
+                                <td>{{form.ECSTATIC_V}}</td>
+                                <td>x</td>
+                                <td>{{form.ECSTATIC_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>TheMongolz:</td>
+                                <td>{{form.TheMongolz_V}}</td>
+                                <td>x</td>
+                                <td>{{form.TheMongolz_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>Imperial:</td>
+                                <td>{{form.Imperial_V}}</td>
+                                <td>x</td>
+                                <td>{{form.Imperial_D}}</td>
+                            </tr>
+                            <tr style="blank: true">
+                                <td>FURIA:</td>
+                                <td>{{form.FURIA_V}}</td>
+                                <td>x</td>
+                                <td>{{form.FURIA_D}}</td>
+                            </tr>
+                        </table>
+            <input type="submit" value="Salvar">
+        </form>
+    {% endfor %}
+{% endif %}
+<br>
+<!--
+    <a href="/brasileirao/">voltar</a><br>
+-->
+{% endblock %}
