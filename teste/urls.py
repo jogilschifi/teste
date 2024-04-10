@@ -46,8 +46,6 @@ urlpatterns = [
     path('classificacaodoispontozero/', classificacaodoispontozero),
     path('caminhocalculadora/', caminhocalculadora),
     path('calculadoradoispontozero/', calculadoradoispontozero),
-    path('copadomundo/', include('copadomundo.urls')),
-    path('copadobrasil/', include('copadobrasil.urls')),
     path('formula1/', PalpiteF1List.as_view(), name='palpitesf1'),
     path('f1resultado/', f1resultado),
     path('f1resultadoporrodada/', f1resultadoporrodada),
@@ -56,3 +54,5 @@ urlpatterns = [
     path('pglmajor/', PalpitePGLList.as_view(), name='palpitespgl'),
     path('palpitepglcreate/', PalpitePGLCreate.as_view(), name='palpitespglcreate'),
 ]
+#path('copadomundo/', include('copadomundo.urls')),
+#path('copadobrasil/', include('copadobrasil.urls')),

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class PalpitesPGL(models.Model):
     placar = (
         (0, 0),
@@ -62,7 +63,6 @@ class PalpitesFormula1(models.Model):
         ('Guan Yu Zhou', 'Guan Yu Zhou'),
         ('Nico Hulkenberg', 'Nico Hulkenberg'),
         ('Esteban Ocon', 'Esteban Ocon'),
-        ('Oliver Bearman', 'Oliver Bearman'),
         ('Lewis Hamilton', 'Lewis Hamilton'),
         ('Carlos Sainz Jr.', 'Carlos Sainz Jr.'),
         ('George Russell', 'George Russell'),
